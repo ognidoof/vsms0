@@ -44,7 +44,7 @@
                 <div class="user"><h2> Christina</h2></div> <br/>
 
 
-                <p><a class="btn btn-danger btn-lg" href="#" role="button">User Account &raquo;</a></p>
+                <p><a class="btn btn-danger btn-lg" href="#" role="button">User Accounts &raquo;</a></p>
                 <p><a class="btn btn-primary btn-lg" href="MenuDish.jsp" role="button">Menu &raquo;</a></p>
                 <p><a class="btn btn-primary btn-lg" href="OrderChoice.jsp" role="button">Orders &raquo;</a></p>
                 <p><a class="btn btn-primary btn-lg" href="SupplierSearch.jsp" role="button">Suppliers &raquo;</a></p>
