@@ -1,0 +1,296 @@
+/* ==========================================================================
+   Timothy
+   ========================================================================== */
+
+.panel-group, 
+.panel-group .panel, 
+.panel-group .panel-heading,
+.panel-group .panel-heading a,  
+.panel-group .panel-title,  
+.panel-group .panel-title a,  
+.panel-group .panel-body,
+.panel-group .panel-group .panel-heading + .panel-collapse > .panel-body  {
+    border-radius:2px;
+    border:0;
+}
+.panel-group .panel-heading + .panel-collapse > .panel-body {
+    border-top: 0;
+}
+
+.panel-group .panel-heading {
+    padding: 0;
+}
+.panel-group .panel-heading a {
+    display: block;
+    background: #2e6da4;
+    color:#fff;
+    padding:15px;
+    text-decoration:none;
+    position: relative;
+}
+.panel-group .panel-heading a.collapsed {
+    background: #c4ced5; 
+    color:inherit;
+}
+
+.panel-group .panel-heading a:after {
+    content: '-';
+    position: absolute;
+    right: 20px;
+}
+.panel-group .panel-heading a.collapsed:after {
+    content: '+';
+}
+.panel-group .panel-collapse {
+    margin-top:5px!important;
+}
+.panel-group .panel-body  {
+    background: #f7f7f7;
+    padding:15px;
+}
+.panel-group .panel {
+    background-color: transparent;
+}
+
+.panel-group .panel-body p:last-child,
+.panel-group .panel-body  ul:last-child,
+.panel-group .panel-body  ol:last-child {
+    margin-bottom: 0;
+}
+
+.hist-supplier-green{
+    
+    color: blue;
+    
+    font: bold;
+}
+
+.hist-collapse-header{
+    
+    color: green;
+    
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+p.success {
+        color: #40BB5D;
+    }
+
+.inputs{
+
+    display: block;
+    width: 90%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;   
+
+}
+tr input{
+    display: block;
+    width: 90%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;  
+
+
+}
+.searchBar{
+    display: block;
+    width: 400px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+}
+
+.user{
+    color: #4DA2BF;
+}
+
+.toRight{
+    float: right
+}
+
+@media (min-width:600px){
+    .title2{
+        font-size: 30px
+    }
+    h1{
+        font-size: 50px
+    }
+    h2{
+        font-size: 30px
+    }
+    h3{
+        font-size: 20px
+    }
+
+    .inputs{
+
+        display: block;
+        width: 400px;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;   
+
+    }
+
+
+    tr input{
+        display: block;
+        width: 90%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;  
+
+
+    }
+
+    /* ==========================================================================
+       Timothy
+       ========================================================================== */
+
+    .panel-group, 
+    .panel-group .panel, 
+    .panel-group .panel-heading,
+    .panel-group .panel-heading a,  
+    .panel-group .panel-title,  
+    .panel-group .panel-title a,  
+    .panel-group .panel-body,
+    .panel-group .panel-group .panel-heading + .panel-collapse > .panel-body  {
+        border-radius:2px;
+        border:0;
+    }
+    .panel-group .panel-heading + .panel-collapse > .panel-body {
+        border-top: 0;
+    }
+
+    .panel-group .panel-heading {
+        padding: 0;
+    }
+    .panel-group .panel-heading a {
+        display: block;
+        background: #2e6da4;
+        color:#fff;
+        padding:15px;
+        text-decoration:none;
+        position: relative;
+    }
+    .panel-group .panel-heading a.collapsed {
+        background: #c4ced5; 
+        color:inherit;
+    }
+
+    .panel-group .panel-heading a:after {
+        content: '-';
+        position: absolute;
+        right: 20px;
+    }
+    .panel-group .panel-heading a.collapsed:after {
+        content: '+';
+    }
+    .panel-group .panel-collapse {
+        margin-top:5px!important;
+    }
+    .panel-group .panel-body  {
+        background: #f7f7f7;
+        padding:15px;
+    }
+    .panel-group .panel {
+        background-color: transparent;
+    }
+
+    .panel-group .panel-body p:last-child,
+    .panel-group .panel-body  ul:last-child,
+    .panel-group .panel-body  ol:last-child {
+        margin-bottom: 0;
+    }
+
+    .hist-supplier-green{
+
+        color: blue;
+
+        font: bold;
+    }
+
+    .hist-collapse-header{
+
+        color: green;
+
+    }
+
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
