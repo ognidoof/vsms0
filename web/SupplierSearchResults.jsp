@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entity.Supplier"%>
 <%@page import="java.util.List"%>
+<%@page import="Manager.SearchDAO"%>
 <%@page import="DAO.SupplierDAO"%>
 <!DOCTYPE html>
 <html>
@@ -43,8 +44,10 @@
         <div id="menu">
         </div>
 <%
-    SupplierDAO sDAO = new SupplierDAO();
-    List<Supplier> slist = sDAO.retrieveAll();
+    String inputStr = request.getParameter("supName");
+    //SupplierDAO sDAO = new SupplierDAO();
+    SearchDAO sDAO = new SearchDAO();
+    List<Supplier> slist = sDAO.Search(inputStr);
 %>
 
 <div class="jumbotron">
@@ -73,7 +76,7 @@
                     for (Supplier found : slist2){
             %>
             <p><Strong> <a href="SupplierView.jsp?id=<%= found.getSupName() %>"><%= found.getSupName() %></a> </Strong></p>
-            <p> <%= found.getDesc() %> </p></br>
+            <p> <%= found.getDesc() %> </p><br/>
             <%        
                     }
                 }
