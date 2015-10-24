@@ -8,6 +8,9 @@ import Entity.Order;
 import Entity.Order;
 import Entity.OrderItem;
 import Entity.OrderItem;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.*;
 
 /**
@@ -21,7 +24,7 @@ public class OrderDAO {
         OrderNum++;
         return OrderNum;
     }
-    
+    /*
     public static ArrayList<Order> populateOrder(){
                     ArrayList<Order> orderList=new ArrayList<Order>();
                     
@@ -63,10 +66,12 @@ public class OrderDAO {
                     orderList.add(order1);
                     return orderList;
     }
+    */
     
     public static ArrayList<Order> populateEmergencyOrder(){
+        
                     ArrayList<Order> orderList=new ArrayList<Order>();
-                    
+                    /*
                     //order 1
                     OrderItem item1=new OrderItem("Seedless Lime",15,"kg");
                     OrderItem item2=new OrderItem("Pineapple",1,"whole");
@@ -103,8 +108,91 @@ public class OrderDAO {
                     orderList.add(order3);
                     orderList.add(order2);
                     orderList.add(order1);
-                    
+                    */
                     return orderList;
+                
     }
+  
+    
+    public static ArrayList<Order> populateOrder()
+    {
+        String vendorID="1";//session.getAttribute("vendorID");
+        Connection conn = null;
+        PreparedStatement statement = null;
+        PreparedStatement statementOrderItem = null;
+        PreparedStatement statementSupplier = null;
+        ResultSet rs = null;
+        ResultSet rsOrderItem = null;
+        ResultSet rsSupplier = null;
+        String query = "";
+        String queryOrderItem = "";
+        String querySupplier = "";
+        //String count = "";
+        ArrayList<Order> orderList=new ArrayList<Order>();
+        
+        try
+        {
+            conn = ConnectionManager.getConnection();
+            query = "select * from `order`where vendor_id=?";
+             //where vendor_id=?
+            statement = conn.prepareStatement(query);
+            statement.setString(1,vendorID);
+            rs = statement.executeQuery();
+           
+            while(rs.next()){
+                
+                //count = rs.getString("count");
+                String orderId=rs.getString("order_id");
+                String totalPrice=rs.getString("total_price");
+                Order tempOrder=new Order(orderId,totalPrice,new ArrayList<OrderItem>());
+                queryOrderItem = "select * from orderline where order_id=?";
+                statementOrderItem=conn.prepareStatement(queryOrderItem);
+                statementOrderItem.setString(1,orderId);
+                rsOrderItem = statementOrderItem.executeQuery();
+                while(rsOrderItem.next()){
+                    String supplierId=rsOrderItem.getString("supplier_id");
+                    String ingredientName=rsOrderItem.getString("ingredient_name");
+                    String price=rsOrderItem.getString("price");
+                    String quantity=rsOrderItem.getString("quantity");
+                    OrderItem tempItem=new OrderItem(ingredientName,quantity,price);
+                    tempOrder.addOrderItem(tempItem);
+                }
+                orderList.add(tempOrder);
+      
+            }
+            
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(statement != null)
+            {
+                try
+                {
+                    statement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }                
+            }            
+        }        
+        //return count;
+        return orderList;
+    }    
     
 }
