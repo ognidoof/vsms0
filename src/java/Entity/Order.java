@@ -12,22 +12,22 @@ package Entity;
  */
 import java.util.*;
 public class Order {
-    public String orderNum;
-    public String deadline;
-    public String supplier;
+    public String orderId;
+    public String totalPrice;
+    //public String supplier;
     public ArrayList<OrderItem> itemList;
     
     public Order(){
-        this.orderNum="";
-        this.deadline=null;
-        this.supplier="";
+        this.orderId="";
+        this.totalPrice=null;
+        //this.supplier="";
         this.itemList=new ArrayList<OrderItem>();
     }
     
-    public Order(String orderNum, String deadline,String supplier,ArrayList<OrderItem> itemList){
-        this.orderNum=orderNum;
-        this.deadline=deadline;
-        this.supplier=supplier;
+    public Order(String orderId, String totalPrice,ArrayList<OrderItem> itemList){
+        this.orderId=orderId;
+        this.totalPrice=totalPrice;
+        //this.supplier=supplier;
         this.itemList=itemList;
     }
     
@@ -38,13 +38,13 @@ public class Order {
     public ArrayList<OrderItem> getOrderItem(){
         return this.itemList;
     }
-    public String getOrderNum(){
-        return this.orderNum;
+    public String getOrderId(){
+        return this.orderId;
     }
-    public String getDeadline(){
-        return this.deadline;
+    public String getTotalPrice(){
+        return this.totalPrice;
     }
-    public String getSupplier(){
-        return this.supplier;
-    }        
+    //public String getSupplier(){
+    //    return this.supplier;
+    //}        
 }

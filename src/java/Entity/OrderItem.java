@@ -12,47 +12,47 @@ package Entity;
  */
 public class OrderItem {
     public String name;
-    //public double price;
-    public double quantity;
-    public String units;
+    public String price;
+    public String quantity;
+    //public String units;
     
     public OrderItem(){
         this.name="";
-        //this.price=0;
-        this.quantity=0;
-        this.units="";
+        this.price="";
+        this.quantity="";
+        //this.units="";
     }
     
-    public OrderItem(String name,double quantity,String units){
+    public OrderItem(String name,String quantity,String price){
         this.name=name;
-        //this.price=price;
+        this.price=price;
         this.quantity=quantity;
-        this.units=units;
+        //this.units=units;
     }
     
     public String getName(){
         return this.name;
     }
-    //public Double getPrice(){
-        //return this.price;
-    //}
-    public double getQuantity(){
+    public String getPrice(){
+        return this.price;
+    }
+    public String getQuantity(){
         return this.quantity;
     }
-    public String getUnits(){
-        return this.units;
-    }
+    //public String getUnits(){
+    //    return this.units;
+    //}
     
     public void setName(String name){
         this.name=name;
     }
-    //public void setPrice(double price){
-        //this.price=price;
-    //}
-    public void setQuantity(double quantity){
+    public void setPrice(String price){
+        this.price=price;
+    }
+    public void setQuantity(String quantity){
         this.quantity=quantity;
     }
-    public void setUnits(String units){
-        this.units=units;
-    }
+    //public void setUnits(String units){
+    //   this.units=units;
+    //}
 }
