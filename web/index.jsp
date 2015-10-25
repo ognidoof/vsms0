@@ -9,7 +9,7 @@
 
     session.setAttribute("menu", menu);
     session.setAttribute("orders", OrderDAO.populateOrder());
-    session.setAttribute("orders",OrderDAO.populateOrder());
+    //session.setAttribute("orders", OrderDAO.populateOrder());
     session.setAttribute("eorders",OrderDAO.populateEmergencyOrder());
 %>
 <html>
