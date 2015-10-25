@@ -172,7 +172,8 @@
                         while(iter.hasNext()){
                             
                             Ingredient ingredient=iter.next();
-                            OrderItem tempItem=new OrderItem(ingredient.getName(),(ingredient.getQuantity())*ingredientQuantityNum+"",ingredient.getUnit());
+                            //OrderItem tempItem=new OrderItem(ingredient.getName(),(ingredient.getQuantity())*ingredientQuantityNum+"",ingredient.getUnit());
+                            OrderItem tempItem=new OrderItem();
                             Supplier supplier=tempMap.get(ingredient);
                            
                             String supplierName="";
@@ -241,12 +242,12 @@
                             <div class="panel-heading"><h4>Order #<%=tempOrder.getOrderId()%></h4></div>
                             <div class="panel-body"> 
                                 <h3><%//=tempOrder.getSupplier()%></h3>
-                                <h5><%=tempOrder.getTotalPrice()%></h5>
+                                <h5>Price:<%=tempOrder.getTotalPrice()%></h5>
                                 <ul>
-                                    <li ><%=tempItemList.get(0).getName()%> ... <%=tempItemList.get(0).getQuantity()%><%=tempItemList.get(0).getPrice()%></li>
+                                    <li ><%=tempItemList.get(0).getName()%> ... <%=tempItemList.get(0).getQuantity()%><%="  "+tempItemList.get(0).getUnit()%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>
                                     <li >
                                         <% if(tempItemList.size()>=2){%>
-                                        <%=tempItemList.get(1).getName()%> ... <%=tempItemList.get(1).getQuantity()%><%=tempItemList.get(1).getPrice()%>
+                                        <%=tempItemList.get(1).getName()%> ... <%=tempItemList.get(1).getQuantity()%><%="  "+tempItemList.get(1).getUnit()%><%//"  $"+tempItemList.get(1).getPrice()%><%//"  Supplier:"+tempItemList.get(1).getSupplier()%>
                                         <%}%>
                                     </li>
                                     <li >...</li>
