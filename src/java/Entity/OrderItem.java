@@ -14,20 +14,24 @@ public class OrderItem {
     public String name;
     public String price;
     public String quantity;
+    public String unit;
+    public String supplier;
     //public String units;
     
     public OrderItem(){
         this.name="";
         this.price="";
         this.quantity="";
-        //this.units="";
+        this.unit="";
+        this.supplier="";
     }
     
-    public OrderItem(String name,String quantity,String price){
+    public OrderItem(String name,String quantity,String price,String unit,String supplier){
         this.name=name;
         this.price=price;
         this.quantity=quantity;
-        //this.units=units;
+        this.unit=unit;
+        this.supplier=supplier;
     }
     
     public String getName(){
@@ -39,9 +43,12 @@ public class OrderItem {
     public String getQuantity(){
         return this.quantity;
     }
-    //public String getUnits(){
-    //    return this.units;
-    //}
+    public String getUnit(){
+        return this.unit;
+    }
+    public String getSupplier(){
+        return this.supplier;
+    }
     
     public void setName(String name){
         this.name=name;
@@ -52,7 +59,10 @@ public class OrderItem {
     public void setQuantity(String quantity){
         this.quantity=quantity;
     }
-    //public void setUnits(String units){
-    //   this.units=units;
-    //}
+    public void setUnit(String unit){
+       this.unit=unit;
+    }
+    public void setSupplier(String supplier){
+       this.supplier=supplier;
+    }
 }
