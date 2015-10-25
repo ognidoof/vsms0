@@ -121,12 +121,17 @@ public class OrderDAO {
         PreparedStatement statement = null;
         PreparedStatement statementOrderItem = null;
         PreparedStatement statementSupplier = null;
+        PreparedStatement statementIngredient = null;
+        
         ResultSet rs = null;
         ResultSet rsOrderItem = null;
         ResultSet rsSupplier = null;
+        ResultSet rsIngredient = null;
+        
         String query = "";
         String queryOrderItem = "";
         String querySupplier = "";
+        String queryIngredient = "";
         //String count = "";
         ArrayList<Order> orderList=new ArrayList<Order>();
         
@@ -154,7 +159,28 @@ public class OrderDAO {
                     String ingredientName=rsOrderItem.getString("ingredient_name");
                     String price=rsOrderItem.getString("price");
                     String quantity=rsOrderItem.getString("quantity");
-                    OrderItem tempItem=new OrderItem(ingredientName,quantity,price);
+                    //OrderItem tempItem=new OrderItem(ingredientName,quantity,price);
+                    //tempOrder.addOrderItem(tempItem);
+                    
+                    queryIngredient = "select * from ingredient where ingredient_name= ?";
+                    statementIngredient=conn.prepareStatement(queryIngredient);
+                    statementIngredient.setString(1,ingredientName);
+                    rsIngredient=statementIngredient.executeQuery();
+                    String unit="";
+                    while(rsIngredient.next()){
+                        unit=rsIngredient.getString("unit");
+                    }
+                    
+                    querySupplier = "select * from supplier where supplier_id=?";
+                    statementSupplier=conn.prepareStatement(querySupplier);
+                    statementSupplier.setString(1,supplierId);
+                    rsSupplier=statementSupplier.executeQuery();
+                    String supplier="";//rsSupplier.getString("supplier_name");
+                    while(rsSupplier.next()){
+                        supplier=rsSupplier.getString("supplier_name");
+                    }
+                    
+                    OrderItem tempItem=new OrderItem(ingredientName,quantity,price,unit,supplier);
                     tempOrder.addOrderItem(tempItem);
                 }
                 orderList.add(tempOrder);
@@ -179,6 +205,40 @@ public class OrderDAO {
                     e.printStackTrace();
                 }
             }
+            if(statementOrderItem != null)
+            {
+                try
+                {
+                    statementOrderItem.close(); 
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(statementSupplier != null)
+            {
+                try
+                {
+                    statementSupplier.close();    
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(statementIngredient != null)
+            {
+                try
+                {
+                    statementIngredient.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            
             if(conn != null)
             {
                 try
