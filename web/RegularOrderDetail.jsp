@@ -65,11 +65,11 @@
             <div class="container">
 
                 <div class="inline">
-                    <h1>Order #<%=display.getOrderNum()%></h1>
+                    <h1>Order #<%=display.getOrderId()%></h1>
                 </div>
                 <div class="inline">
-                    <h5>Deadline: <%=display.getDeadline()%></h5>
-                    <h5>Supplier: <%=display.getSupplier()%></h5>
+                    <h5>Total Price: <%=display.getTotalPrice()%></h5>
+                    <!--<h5>Supplier: <%//display.getSupplier()%></h5>-->
                 </div>
 
                 <div>
@@ -210,11 +210,13 @@
                 <div class="table-responsive table-condensed">   
                     <table class="table table-condensed" style="margin:1em">
                         <tr>
-                            <th>No.</th>
+                             <th>No.</th>
                             <th>Item</th>
                             <!--<th>Price</th>-->
                             <th>Quantity</th>
                             <th>Units</th>
+                            <th>Unit Price</th>
+                            <th>Supplier</th>
                             <!--<th>Edit?</th>-->
                             <!--<th>Delete?</th>-->
                         </tr>
@@ -230,7 +232,9 @@
                             <td><%=tempItem.getName()%></td>
                             <!--<td>$<%//tempItem.getPrice()%></td>-->
                             <td><%=tempItem.getQuantity()%></td>
-                            <td><%=tempItem.getUnits()%></td>
+                            <td><%=tempItem.getUnit()%></td>
+                            <td><%="$"+tempItem.getPrice()%></td>
+                            <td><%=tempItem.getSupplier()%></td>
                             <!--<td><a class="btn btn-primary btn-sm" id ="edit" href="#" role="button">Edit</a></td>-->
                             <!--<td><a data-toggle="modal" data-target="#deletePrompt" class="btn btn-danger btn-sm" id ="button2" href="#" role="button">Delete</a></td>-->
                         </tr>
