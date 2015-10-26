@@ -137,13 +137,14 @@ public class OrderDAO {
         
         try
         {
+            //Retrieves from database all orders relevant to the current person logged in(know this via vendor id)
             conn = ConnectionManager.getConnection();
             query = "select * from `order`where vendor_id=?";
              //where vendor_id=?
             statement = conn.prepareStatement(query);
             statement.setString(1,vendorID);
             rs = statement.executeQuery();
-           
+          
             while(rs.next()){
                 
                 //count = rs.getString("count");
@@ -154,6 +155,7 @@ public class OrderDAO {
                 statementOrderItem=conn.prepareStatement(queryOrderItem);
                 statementOrderItem.setString(1,orderId);
                 rsOrderItem = statementOrderItem.executeQuery();
+                //Retrieves from database all order items relevant to current order
                 while(rsOrderItem.next()){
                     String supplierId=rsOrderItem.getString("supplier_id");
                     String ingredientName=rsOrderItem.getString("ingredient_name");
@@ -162,6 +164,7 @@ public class OrderDAO {
                     //OrderItem tempItem=new OrderItem(ingredientName,quantity,price);
                     //tempOrder.addOrderItem(tempItem);
                     
+                    //retrieve units for an igredient
                     queryIngredient = "select * from ingredient where ingredient_name= ?";
                     statementIngredient=conn.prepareStatement(queryIngredient);
                     statementIngredient.setString(1,ingredientName);
@@ -171,6 +174,7 @@ public class OrderDAO {
                         unit=rsIngredient.getString("unit");
                     }
                     
+                    //retrieve a supplier for an ingredient
                     querySupplier = "select * from supplier where supplier_id=?";
                     statementSupplier=conn.prepareStatement(querySupplier);
                     statementSupplier.setString(1,supplierId);
