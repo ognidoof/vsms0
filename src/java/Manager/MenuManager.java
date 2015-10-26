@@ -5,6 +5,9 @@ import Entity.Supplier;
 import Entity.Menu;
 import Entity.Dish;
 import Entity.Ingredient;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -107,5 +110,203 @@ public class MenuManager {
         menu = new Menu(dishList);
         return menu;
         
+    }
+    
+    //this method creates an ingredient object
+    public Ingredient getIngredient(String ingredientName, String supplierId, String quantity){
+        Ingredient toReturn=null;
+        Connection conn = null;
+        PreparedStatement ingStatement = null;
+        ResultSet ingRs = null;  
+        String ingQuery = "";
+        try{
+            conn = ConnectionManager.getConnection();
+            ingQuery = "select * from ingredient where supplier_id=? and ingredient_name=?";
+             //where vendor_id=?
+            ingStatement = conn.prepareStatement(ingQuery);
+            ingStatement.setString(1,supplierId);
+            ingStatement.setString(2, ingredientName);
+            ingRs = ingStatement.executeQuery();
+            while(ingRs.next()){
+                String unit=ingRs.getString("unit");
+                toReturn=new Ingredient(ingredientName, Integer.parseInt(quantity), unit);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(ingStatement != null)
+            {
+                try
+                {
+                    ingStatement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            return toReturn;
+        }
+    }
+    
+    
+    public Supplier getSupplierById(String id){
+        Supplier supplier=null;
+        ArrayList<String> list=new ArrayList<String>();
+        Connection conn = null;
+        
+        PreparedStatement supStatement = null;
+        PreparedStatement itemStatement = null;
+        
+        ResultSet supRs = null;  
+        ResultSet itemRs = null;
+        
+        String supQuery = "";
+        String itemQuery = "";
+        try{
+            conn = ConnectionManager.getConnection();
+            supQuery = "select * from supplier where supplier_id=?";
+             //where vendor_id=?
+            supStatement = conn.prepareStatement(supQuery);
+            supStatement.setString(1,id);
+            supRs = supStatement.executeQuery();
+            while(supRs.next()){
+                String supplierName=supRs.getString("supplier_name");
+                String supplierDesc=supRs.getString("supplier_description");
+                String supplierType=supRs.getString("supplier_type");
+                
+                itemQuery = "select * from ingredient where supplier_id=?";
+                itemStatement = conn.prepareStatement(itemQuery);
+                itemStatement.setString(1,id);
+                itemRs=itemStatement.executeQuery();
+                while(itemRs.next()){
+                    String itemName=itemRs.getString("ingredient_name");
+                    list.add(itemName);
+                }
+                supplier=new Supplier(supplierName, list, supplierType,supplierDesc);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(supStatement != null)
+            {
+                try
+                {
+                    supStatement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(itemStatement != null)
+            {
+                try
+                {
+                    itemStatement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            return supplier;
+        }
+    }
+    
+    public HashMap<Ingredient,Supplier> populateIngredientList(String dishId, String vendorId){
+        HashMap<Ingredient, Supplier> ingredientMap=new HashMap<Ingredient, Supplier>();
+        Connection conn = null;
+        PreparedStatement recipeStatement = null;
+        ResultSet recipeRs = null;
+        String recipeQuery = "";
+        try{
+            conn = ConnectionManager.getConnection();
+            recipeQuery = "select * from recipe where dish_id=? and vendor_id=?";
+             //where vendor_id=?
+            recipeStatement = conn.prepareStatement(recipeQuery);
+            recipeStatement.setString(1,dishId);
+            recipeStatement.setString(2,vendorId);
+            recipeRs = recipeStatement.executeQuery();
+            while(recipeRs.next()){
+                String ingredientName=recipeRs.getString("ingredient_name");
+                String quantity=recipeRs.getString("quantity");
+                String supplier=recipeRs.getString("supplier_id");
+                Ingredient ingredient=getIngredient(ingredientName, supplier, quantity);
+                Supplier sup=getSupplierById(supplier);
+                ingredientMap.put(ingredient,sup);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(recipeStatement != null)
+            {
+                try
+                {
+                    recipeStatement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            return ingredientMap;
+        } 
+    }
+    
+    
+    public Menu populateMenu(){
+        String vendorID="1";//session.getAttribute("vendorID");
+        ArrayList<Dish> dishList=new ArrayList<Dish>();
+        Connection conn = null;
+        PreparedStatement dishStatement = null;
+        ResultSet dishRs = null;
+        String dishQuery = "";
+        try{
+            conn = ConnectionManager.getConnection();
+            dishQuery = "select * from dish where vendor_id=?";
+             //where vendor_id=?
+            dishStatement = conn.prepareStatement(dishQuery);
+            dishStatement.setString(1,vendorID);
+            dishRs = dishStatement.executeQuery();
+            while(dishRs.next()){
+                String dishId=dishRs.getString("dish_id");
+                String dishName=dishRs.getString("dish_name");
+                Dish dish=new Dish(dishName,populateIngredientList(dishId ,vendorID));
+                dishList.add(dish);
+            }
+            //Menu menu=new Menu(dishList);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(dishStatement != null)
+            {
+                try
+                {
+                    dishStatement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            return new Menu(dishList);
+        } 
     }
 }
