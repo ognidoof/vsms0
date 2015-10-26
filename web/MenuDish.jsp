@@ -97,7 +97,7 @@
                         String name = d.getName();
 
                 %>
-                <p> <%= name%> </p>
+                <p> <%=name%> </p>
                 <%
                     }
                 %>
