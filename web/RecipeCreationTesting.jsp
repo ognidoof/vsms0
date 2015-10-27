@@ -73,10 +73,26 @@
 
                     <input class="inputs" type="text" name="dishName" placeholder="Name of Dish">
                     <!-- This is where the ingredients print-->
-                    <h3>Ingredients:</h3>
-                    <ul id="ingredients"></ul>
-                    <a data-toggle="modal" class="btn btn-success" data-target="#myModal" >ADD Ingredient +</a><br>
 
+                    <!-- Hiding this for now***
+                                        <ul id="ingredients"></ul>
+                    
+                    -->
+
+
+                    <table id="ingredientTable" style='border-collapse: separate; border-spacing: 10px 10px;'>
+                        <tr><br/></tr>
+                        <tr>
+                            <th> <h3>Ingredients</h3></th><th><h3>Quantity</h3></th><th><h3>Units</h3></th>
+                        </tr>
+                    </table>
+
+
+
+
+                    <a data-toggle="modal" class="btn btn-success" data-target="#myModal" >ADD Ingredient +</a>
+
+                        <input class="btn btn-danger btn-small" type="button" value="Remove - " onclick="removeRowFromTable();" />
                     <p class="toRight">
                         <input class="btn btn-primary btn-lg" type="submit" value="Save" onclick="validateRow(this.form);" />
                         <a href="MenuDish.jsp" class="btn btn-primary btn-lg">Back</a>
@@ -125,7 +141,7 @@
                                                     <!--
                                MODAL IS CALLED HERE!!!"
                                                     -->
-                                                    <li><button type= "button" id="<%=s.getSupName()%>_<%=ingredient%> "  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button>
+                                                    <li><button type= "button" id="<%=s.getSupName()%>_<%=ingredient%>_<%=ingredient + "'s unit"%> "  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button>
                                                     </li>
 
                                                     <%
@@ -218,9 +234,6 @@
 
             <pre style="visibility:hidden;" id="output"></pre>
 
-
-
-
             <pre style="clear:both; visibility:hidden;" id="last"></pre>
 
 
@@ -244,7 +257,8 @@
             </script>
 
 
-            <script>var data = Bind({
+            <script>
+                var data = Bind({
                     me: {
                         ingredients: []
                     }
@@ -277,27 +291,24 @@
                             document.querySelector('#output').innerHTML = escape(JSON.stringify(this.__export(), '', 2));
                         }
                     },
-                    'me.list': {
-                        dom: '#list',
-                        transform: function (v) {
-                            return '<li>' + this.safe(v);
-                        }
-                    },
-                    'me.name': '.name',
+                    //printing done here
+
                     'me.ingredients': {
                         dom: '#ingredients',
                         transform: function (ingredient) {
-                            return '<li>' + this.safe(ingredient.name);
+
+                            array = ingredient.name.split("_");
+
+                            return this.safe(array[1]);
+
+
                         }
-                    },
-                    'me.ingredients.0.name': {
-                        dom: '#first-ingredient'
                     }
                 });
 
-                document.querySelector('#change').onclick = function () {
-                    data.me.ingredients.push({name: "apple"});
-                };
+//                document.querySelector('#change').onclick = function () {
+//                    data.me.ingredients.push({name: "apple"});
+//                };
 
                 console.clear();
 
@@ -310,13 +321,62 @@
                             '>': '&gt;',
                         }[m]
                     })
-                }</script>
+                }
+            </script>
             <script>
                 function myFunc(id) {
                     var item = document.getElementById('hiddenField').value;
                     data.me.ingredients.push({name: item});
+
+                    var tbl = document.getElementById('ingredientTable');
+                    var lastRow = tbl.rows.length;
+                    // if there's no header row in the table, then iteration = lastRow + 1
+                    var iteration = lastRow - 2;
+                    var row = tbl.insertRow(lastRow);
+
+                    // left cell
+
+                    var array = item.split("_");
+
+
+                    var cell1 = row.insertCell(0);
+                    var textNode = document.createTextNode(array[1]);
+                    cell1.appendChild(textNode);
+
+                    var cell2 = row.insertCell(1);
+                    var quantity = document.createElement('input');
+                    quantity.type = 'text';
+                    quantity.name = 'quantity' + iteration;
+                    quantity.id = 'quantity' + iteration;
+                    // quantity.size = 40;
+                    quantity.placeholder = "quantity";
+                    cell2.appendChild(quantity);
+
+                    var cell3 = row.insertCell(2);
+                    var textNode = document.createTextNode(array[2]);
+                    cell3.appendChild(textNode);
+
+                    var cell4 = row.insertCell(3);
+                    var element = document.createElement('input');
+                    element.type = 'hidden';
+                    element.name = 'element' + iteration;
+                    element.id = 'element' + iteration;
+                    element.value = item
+                    cell4.appendChild(element);
+
+
+                }
+                function removeRowFromTable()
+                {
+                    var tbl = document.getElementById('ingredientTable');
+                    var lastRow = tbl.rows.length;
+                    if (lastRow > 2)
+                        tbl.deleteRow(lastRow - 1);
                 }
 
-            </script>    
+            </script>  
+
+
+
     </body>
 </html>
