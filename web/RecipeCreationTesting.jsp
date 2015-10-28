@@ -131,9 +131,9 @@
                                                     <%
                                                         ArrayList<String> ingredientList = (ArrayList<String>) s.getItems();
                                                         Iterator iter = ingredientList.iterator();
-                                                        int counter = 0;
+                                                        //int counter = 0;
                                                         while (iter.hasNext()) {
-                                                            counter++;
+                                                           // counter++;
                                                             String ingredient = (String) iter.next();
                                                     %>
 
@@ -141,8 +141,8 @@
                                                     <!--
                                MODAL IS CALLED HERE!!!"
                                                     -->
-                                                    <li><button type= "button" id="<%=s.getSupName()%>_<%=ingredient%>_<%=ingredient + "'s unit"%> "  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button>
-                                                    </li>
+                                                    <button type= "button" id="<%=s.getSupName()%>_<%=ingredient%>_<%=ingredient + "'s unit"%> "  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button><br/>
+                                                    
 
                                                     <%
                                                         }
