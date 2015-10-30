@@ -95,11 +95,12 @@
                     <div class="panel-group" id="accordion">
 
                         <%                            Menu m1 = (Menu) session.getAttribute("menu");
-                            ArrayList<Dish> dlist = m1.getDishList();
-                            int count = 0;
-                            for (Dish d : dlist) {
-                                String name = d.getName();
-                                String ref = "collapse" + count;
+                            if (m1 != null) {
+                                ArrayList<Dish> dlist = m1.getDishList();
+                                int count = 0;
+                                for (Dish d : dlist) {
+                                    String name = d.getName();
+                                    String ref = "collapse" + count;
 
 
                         %>
@@ -113,27 +114,48 @@
                             </div><!--/.panel-heading -->
                             <div id="<%=ref%>" data-toggle="collapse" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    
-                                    <!--<p class="hist-supplier-green">Supplier: F.O.O.D Inc.</p>-->
-                                    <%
-                                        HashMap<Ingredient, Supplier> dIList = d.getIngredientList();
-                                        Set<Ingredient> ingredientSet = dIList.keySet();
-                                        Iterator<Ingredient> iter = ingredientSet.iterator();
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Ingredient</th>
+                                                <th>Quantity</th>
+                                                <th>Unit</th>
+                                            </tr>
+                                        </thead>
+                                        <!--<p class="hist-supplier-green">Supplier: F.O.O.D Inc.</p>-->
+                                        <%
+                                            HashMap<Ingredient, Supplier> dIList = d.getIngredientList();
+                                            Set<Ingredient> ingredientSet = dIList.keySet();
+                                            Iterator<Ingredient> iter = ingredientSet.iterator();
 
-                                        while (iter.hasNext()) {
-                                            Ingredient i = iter.next();
-                                    %>
+                                            while (iter.hasNext()) {
+                                                Ingredient i = iter.next();
+                                        %>
 
-                                    <p><%=i.getName()%></p>
-                                    <%
-                                        }
-                                    %>
+                                        <tbody>
+                                            <tr>
+                                                <td><%=i.getName()%></td>
+                                                <td><%=i.getQuantity()%></td>
+                                                <td><%=i.getUnit()%></td>
+                                            </tr>
+                                        </tbody>
+
+
+                                        <%
+                                            }
+                                        %>
+                                    </table>
                                 </div><!--/.panel-body -->
                             </div><!--/.panel-collapse -->
                         </div><!-- /.panel -->
 
                         <%
                                 count++;
+                            }
+                        } else {
+                        %>
+                        <p>No recipes found</p>
+                        <%
                             }
                         %>
 
