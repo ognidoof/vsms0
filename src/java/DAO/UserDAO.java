@@ -5,11 +5,11 @@
  */
 package DAO;
 
+import Entity.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.resource.spi.ConnectionManager;
@@ -44,7 +44,7 @@ public class UserDAO {
         ResultSet rs = null;
         String sql = "";
         Supplier supplierToReturn = null;
-        String TBLNAME = "supplier_credentials";
+        final String TBLNAME = "supplier_credentials";
         try {   
             
             //creates the connection to database
@@ -60,8 +60,8 @@ public class UserDAO {
             //Retrieves the supplier info from database and create a new supplier object to return
             while (rs.next()) {
 
-                String uname = rs.getString("username");
-                String password = rs.getString("password");
+                String uname = rs.getString("supplier_username");
+                String password = rs.getString("supplier_password");
                 
 
                 supplierToReturn = new Supplier(uname, password);
@@ -89,7 +89,7 @@ public class UserDAO {
         ResultSet rs = null;
         String sql = "";
         Vendor vendorToReturn = null;
-        String TBLNAME = "vendor_credentials";
+        final String TBLNAME = "vendor_credentials";
         try {   
             
             //creates the connection to database
@@ -105,8 +105,8 @@ public class UserDAO {
             //Retrieves the administrator info from database and create a new admin object to return
             while (rs.next()) {
 
-                String uname = rs.getString("username");
-                String password = rs.getString("password");
+                String uname = rs.getString("vendor_username");
+                String password = rs.getString("vendor_password");
                 
 
                 vendorToReturn = new Vendor(uname, password);
