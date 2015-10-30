@@ -5,11 +5,11 @@
 
 
 <% MenuManager menuManager = new MenuManager();
-    Menu menu = menuManager.defaultMenu();
+    Menu menu = menuManager.populateMenu();//defaultMenu();
 
     session.setAttribute("menu", menu);
     session.setAttribute("orders", OrderDAO.populateOrder());
-    session.setAttribute("orders",OrderDAO.populateOrder());
+    //session.setAttribute("orders", OrderDAO.populateOrder());
     session.setAttribute("eorders",OrderDAO.populateEmergencyOrder());
 %>
 <html>
@@ -22,8 +22,8 @@
 
         <div class="jumbotron">
             <div class="container">
-                <h1>User Test</h1>
-                <a href="welcome.jsp" class="btn btn-primary btn-lg">Begin Test</a>
+                <h1>User Test Vincent Change12<%=menu==null%></h1>
+                <a href="welcome.jsp" class="btn btn-primary btn-lg">Begin Test (Git is useful) </a>
 
             </div>
         </div>

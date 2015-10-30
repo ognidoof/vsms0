@@ -8,6 +8,9 @@ import Entity.Order;
 import Entity.Order;
 import Entity.OrderItem;
 import Entity.OrderItem;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.*;
 
 /**
@@ -21,7 +24,7 @@ public class OrderDAO {
         OrderNum++;
         return OrderNum;
     }
-    
+    /*
     public static ArrayList<Order> populateOrder(){
                     ArrayList<Order> orderList=new ArrayList<Order>();
                     
@@ -63,10 +66,12 @@ public class OrderDAO {
                     orderList.add(order1);
                     return orderList;
     }
+    */
     
     public static ArrayList<Order> populateEmergencyOrder(){
+        
                     ArrayList<Order> orderList=new ArrayList<Order>();
-                    
+                    /*
                     //order 1
                     OrderItem item1=new OrderItem("Seedless Lime",15,"kg");
                     OrderItem item2=new OrderItem("Pineapple",1,"whole");
@@ -103,8 +108,155 @@ public class OrderDAO {
                     orderList.add(order3);
                     orderList.add(order2);
                     orderList.add(order1);
-                    
+                    */
                     return orderList;
+                
     }
+  
+    
+    public static ArrayList<Order> populateOrder()
+    {
+        String vendorID="1";//session.getAttribute("vendorID");
+        Connection conn = null;
+        PreparedStatement statement = null;
+        PreparedStatement statementOrderItem = null;
+        PreparedStatement statementSupplier = null;
+        PreparedStatement statementIngredient = null;
+        
+        ResultSet rs = null;
+        ResultSet rsOrderItem = null;
+        ResultSet rsSupplier = null;
+        ResultSet rsIngredient = null;
+        
+        String query = "";
+        String queryOrderItem = "";
+        String querySupplier = "";
+        String queryIngredient = "";
+        //String count = "";
+        ArrayList<Order> orderList=new ArrayList<Order>();
+        
+        try
+        {
+            //Retrieves from database all orders relevant to the current person logged in(know this via vendor id)
+            conn = ConnectionManager.getConnection();
+            query = "select * from `order`where vendor_id=?";
+             //where vendor_id=?
+            statement = conn.prepareStatement(query);
+            statement.setString(1,vendorID);
+            rs = statement.executeQuery();
+          
+            while(rs.next()){
+                
+                //count = rs.getString("count");
+                String orderId=rs.getString("order_id");
+                String totalPrice=rs.getString("total_price");
+                Order tempOrder=new Order(orderId,totalPrice,new ArrayList<OrderItem>());
+                queryOrderItem = "select * from orderline where order_id=?";
+                statementOrderItem=conn.prepareStatement(queryOrderItem);
+                statementOrderItem.setString(1,orderId);
+                rsOrderItem = statementOrderItem.executeQuery();
+                //Retrieves from database all order items relevant to current order
+                while(rsOrderItem.next()){
+                    String supplierId=rsOrderItem.getString("supplier_id");
+                    String ingredientName=rsOrderItem.getString("ingredient_name");
+                    String price=rsOrderItem.getString("price");
+                    String quantity=rsOrderItem.getString("quantity");
+                    //OrderItem tempItem=new OrderItem(ingredientName,quantity,price);
+                    //tempOrder.addOrderItem(tempItem);
+                    
+                    //retrieve units for an igredient
+                    queryIngredient = "select * from ingredient where ingredient_name= ?";
+                    statementIngredient=conn.prepareStatement(queryIngredient);
+                    statementIngredient.setString(1,ingredientName);
+                    rsIngredient=statementIngredient.executeQuery();
+                    String unit="";
+                    while(rsIngredient.next()){
+                        unit=rsIngredient.getString("unit");
+                    }
+                    
+                    //retrieve a supplier for an ingredient
+                    querySupplier = "select * from supplier where supplier_id=?";
+                    statementSupplier=conn.prepareStatement(querySupplier);
+                    statementSupplier.setString(1,supplierId);
+                    rsSupplier=statementSupplier.executeQuery();
+                    String supplier="";//rsSupplier.getString("supplier_name");
+                    while(rsSupplier.next()){
+                        supplier=rsSupplier.getString("supplier_name");
+                    }
+                    
+                    OrderItem tempItem=new OrderItem(ingredientName,quantity,price,unit,supplier);
+                    tempOrder.addOrderItem(tempItem);
+                }
+                orderList.add(tempOrder);
+      
+            }
+            
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(statement != null)
+            {
+                try
+                {
+                    statement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(statementOrderItem != null)
+            {
+                try
+                {
+                    statementOrderItem.close(); 
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(statementSupplier != null)
+            {
+                try
+                {
+                    statementSupplier.close();    
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(statementIngredient != null)
+            {
+                try
+                {
+                    statementIngredient.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }                
+            }            
+        }        
+        //return count;
+        return orderList;
+    }    
     
 }

@@ -172,7 +172,8 @@
                         while(iter.hasNext()){
                             
                             Ingredient ingredient=iter.next();
-                            OrderItem tempItem=new OrderItem(ingredient.getName(),(ingredient.getQuantity())*ingredientQuantityNum,ingredient.getUnit());
+                            //OrderItem tempItem=new OrderItem(ingredient.getName(),(ingredient.getQuantity())*ingredientQuantityNum+"",ingredient.getUnit());
+                            OrderItem tempItem=new OrderItem();
                             Supplier supplier=tempMap.get(ingredient);
                            
                             String supplierName="";
@@ -204,7 +205,7 @@
                     Iterator<String> stringIter=keySet.iterator();
                     while(stringIter.hasNext()){
                         String supName=stringIter.next();
-                        Order tempOrder=new Order((OrderDAO.getOrderNum()+""),request.getParameter("deadline"),supName,(ArrayList<OrderItem>)outputMap.get(supName));
+                        Order tempOrder=new Order((OrderDAO.getOrderNum()+""),supName,(ArrayList<OrderItem>)outputMap.get(supName));
                         orderList.add(tempOrder);
                     }
                     
@@ -228,7 +229,7 @@
                     //}   
                 %>
                 <div class="well">
-                                            <p>Pending Orders</p>
+                                            <p>Pending Orders <%=orderList.size()%></p>
                                         </div>
                 <div class="container-fluid">
                     <div class="row">
@@ -238,15 +239,15 @@
                            ArrayList<OrderItem> tempItemList=tempOrder.getOrderItem();
                         %>
                         <div class="panel panel-default col-sm-5" onclick="location.href = 'RegularOrderDetail.jsp?num=<%=i%>';">
-                            <div class="panel-heading"><h4>Order #<%=tempOrder.getOrderNum()%></h4></div>
+                            <div class="panel-heading"><h4>Order #<%=tempOrder.getOrderId()%></h4></div>
                             <div class="panel-body"> 
-                                <h3><%=tempOrder.getSupplier()%></h3>
-                                <h5><%=tempOrder.getDeadline()%></h5>
+                                <h3><%//=tempOrder.getSupplier()%></h3>
+                                <h5>Price:<%=tempOrder.getTotalPrice()%></h5>
                                 <ul>
-                                    <li ><%=tempItemList.get(0).getName()%> ... <%=tempItemList.get(0).getQuantity()%><%=tempItemList.get(0).getUnits()%></li>
+                                    <li ><%=tempItemList.get(0).getName()%> ... <%=tempItemList.get(0).getQuantity()%><%="  "+tempItemList.get(0).getUnit()%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>
                                     <li >
                                         <% if(tempItemList.size()>=2){%>
-                                        <%=tempItemList.get(1).getName()%> ... <%=tempItemList.get(1).getQuantity()%><%=tempItemList.get(1).getUnits()%>
+                                        <%=tempItemList.get(1).getName()%> ... <%=tempItemList.get(1).getQuantity()%><%="  "+tempItemList.get(1).getUnit()%><%//"  $"+tempItemList.get(1).getPrice()%><%//"  Supplier:"+tempItemList.get(1).getSupplier()%>
                                         <%}%>
                                     </li>
                                     <li >...</li>
