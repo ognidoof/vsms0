@@ -20,8 +20,8 @@ import javax.resource.spi.ConnectionManager;
  */
 public class UserDAO {
     
-    private static final String TBLNAME = "sup";
-    private static final String TBLNAME = "ven";
+
+
     
     private void handleSQLException(SQLException e, String sql, String... parameters) {
 
@@ -44,7 +44,7 @@ public class UserDAO {
         ResultSet rs = null;
         String sql = "";
         Supplier supplierToReturn = null;
-
+        String TBLNAME = "supplier_credentials";
         try {   
             
             //creates the connection to database
@@ -57,14 +57,14 @@ public class UserDAO {
 
             rs = stmt.executeQuery();
             
-            //Retrieves the administrator info from database and create a new admin object to return
+            //Retrieves the supplier info from database and create a new supplier object to return
             while (rs.next()) {
 
-                String username = rs.getString("username");
+                String uname = rs.getString("username");
                 String password = rs.getString("password");
                 
 
-                supplierToReturn = new Supplier(username, password);
+                supplierToReturn = new Supplier(uname, password);
 
             }
             
@@ -89,7 +89,7 @@ public class UserDAO {
         ResultSet rs = null;
         String sql = "";
         Vendor vendorToReturn = null;
-
+        String TBLNAME = "vendor_credentials";
         try {   
             
             //creates the connection to database
@@ -105,11 +105,11 @@ public class UserDAO {
             //Retrieves the administrator info from database and create a new admin object to return
             while (rs.next()) {
 
-                String username = rs.getString("username");
+                String uname = rs.getString("username");
                 String password = rs.getString("password");
                 
 
-                vendorToReturn = new Vendor(username, password);
+                vendorToReturn = new Vendor(uname, password);
 
             }
             
