@@ -147,7 +147,7 @@ tr input{
     float: right
 }
 
-@media (max-width:600px){
+@media (max-width:800px){
     .title2{
         font-size: 30px
     }
@@ -166,18 +166,18 @@ tr input{
     {
         box-shadow: inset 0 0 1px #FFC;
 
-        height: 210px;
+        height: 150px;
         margin: 5px;
         moz-user-select: none;
         position: relative;
         user-select: none;
-        width: 210px;
+        width: 150px;
     }
 
 
 }
 
-@media (min-width:600px){
+@media (min-width:800px){
     .title2{
         font-size: 30px
     }
