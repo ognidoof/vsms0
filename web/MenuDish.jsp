@@ -46,7 +46,7 @@
                     units = "pieces";
                 }
                 int qty = Integer.parseInt(quantity);
-                Ingredient ing = new Ingredient(ingredient, "0", qty, units);
+                Ingredient ing = new Ingredient(ingredient, "0", qty, units, "0");
                 map.put(ing, null);
             } else {
                 check = false;

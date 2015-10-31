@@ -204,7 +204,7 @@ public class MenuManager {
                 String unit = ingRs.getString("unit");
                 String ingID = ingRs.getString("ingredient_id");
                 String ingName = ingRs.getString("ingredient_name");
-                toReturn = new Ingredient(ingName, ingID, Integer.parseInt(quantity), unit);
+                toReturn = new Ingredient(ingName, ingID, Integer.parseInt(quantity), unit, supplierId);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -352,6 +352,7 @@ public class MenuManager {
     public void insertDish(Dish d, String vID) {
         Connection conn = null;
         PreparedStatement dishStatement = null;
+        PreparedStatement ingreStatement = null;
 
         String dishStmt = "", ingreStmt = "";
         String vendorID = "1";//session.getAttribute("vendorID");
@@ -375,8 +376,15 @@ public class MenuManager {
                 while (iter.hasNext()) {
                     Ingredient i = iter.next();
                     ingreStmt = "INSERT INTO recipe"
-                            + "(dish_id, ingredient_name,quantity,vendor_id) VALUES"
-                            + "(?,?,?,?)";
+                            + "(dish_id, ingredient_id,quantity,vendor_id,supplier_id) VALUES"
+                            + "(?,?,?,?,?)";
+                    ingreStatement = conn.prepareStatement(ingreStmt);
+                    ingreStatement.setString(1, d.getDishID());
+                    ingreStatement.setString(2, i.getingID());
+                    String q = i.getQuantity() + "";
+                    ingreStatement.setString(3, q);
+                    ingreStatement.setString(4, vID);
+                    ingreStatement.setString(5, i.getSupID());
                 }
             }
 
