@@ -14,7 +14,7 @@ import java.util.*;
 public class Order {
     public String orderId;
     public String totalPrice;
-    //public String supplier;
+    public String supplier;
     public ArrayList<OrderItem> itemList;
     
     public Order(){
@@ -30,6 +30,9 @@ public class Order {
         //this.supplier=supplier;
         this.itemList=itemList;
     }
+    public void setSupplier(String supplier){
+        this.supplier=supplier;
+    }
     
     public void addOrderItem(OrderItem oi){
         itemList.add(oi);
@@ -44,7 +47,7 @@ public class Order {
     public String getTotalPrice(){
         return this.totalPrice;
     }
-    //public String getSupplier(){
-    //    return this.supplier;
-    //}        
+    public String getSupplier(){
+        return this.supplier;
+    }        
 }
