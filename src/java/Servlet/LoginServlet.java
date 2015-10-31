@@ -6,12 +6,14 @@
 package Servlet;
 
 import DAO.UserDAO;
-import Entity.*;
+import Entity.Supplier;
+import Entity.Vendor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,8 +22,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Joel
  */
-@WebServlet(name="LoginServlet", urlPatterns={"/LoginServlet"})
-public class LoginServlet {
+@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+public class LoginServlet extends HttpServlet {
+
     UserDAO userDAO = new UserDAO();
     
     
@@ -38,24 +41,24 @@ public class LoginServlet {
             //create a new session
             HttpSession session = request.getSession();
 
-            Supplier supplier = loginSupplier(username, password);
-            Vendor vendor = loginVendor(username, password);
+            String supplier_id = loginSupplier(username, password);
+            String vendor_id = loginVendor(username, password);
             
             //destination
-            String url = "index.jsp";
+            String url = "LoginMain.jsp";
             
-            if(vendor == null && supplier == null){
+            if(vendor_id == null && supplier_id == null){
                 //redirect to login page with error
                 request.setAttribute("errMsg", "Invalid E-mail or Password entered.");
-            }else if(vendor != null && supplier ==null){
+            }else if(vendor_id != null && supplier_id ==null){
                 //redirect to vendor home
-                url = "VendorMain.jsp";
-                session.setAttribute("currentVendor", vendor);
+                url = "welcome.jsp";
+                session.setAttribute("currentVendor", vendor_id);
                 request.setAttribute("errMsg", null);
-            }else if(vendor == null && supplier != null){
+            }else if(vendor_id == null && supplier_id != null){
                 //redirect to supplier home
                 url = "ChatSupplier.jsp";
-                session.setAttribute("currentVendor", supplier);
+                session.setAttribute("currentVendor", supplier_id);
                 request.setAttribute("errMsg", null);
             }else{
                 request.setAttribute("errMsg", "Invalid E-mail or Password entered.");
@@ -69,41 +72,61 @@ public class LoginServlet {
         }
     }
     
-    private Vendor loginVendor(String username, String password){
-        boolean check = false;
+    private String loginVendor(String username, String password){
+        //boolean check = false;
         
-        Vendor v = userDAO.retrieveVendor(username);
+        String v_id = userDAO.retrieveVendor(username, password);
         
-        if(v != null){
-            String checkPW = v.getPassword();
-            
-            if(checkPW.equals(password)){
-                check = true;
-            }
-        }
-        
-        if(check){
-            return v;
-        }
-        return null;
+        return v_id;
     }
     
-    private Supplier loginSupplier(String username, String password){
-        boolean check = false;
+    private String loginSupplier(String username, String password){
+        //boolean check = false;
         
-        Supplier s = userDAO.retrieveSupplier(username);
-        
-        if(s != null){
-            String checkPW = s.getPassword();
-            
-            if(checkPW.equals(password)){
-                check = true;
-            }
-        }
-        
-        if(check){
-            return s;
-        }
-        return null;
+        String s_id = userDAO.retrieveSupplier(username, password);
+       
+        return s_id;
     }
+
+
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

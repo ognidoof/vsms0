@@ -15,12 +15,11 @@
     <body>
         <h1>Login</h1>
         <%
-            Vendor currentVendor = (Vendor)session.getAttribute("currentVendor");
-            Supplier currentSupplier = (Supplier)session.getAttribute("currentSupplier");
+            String currentVendor = (String)session.getAttribute("currentVendor");
+            String currentSupplier = (String)session.getAttribute("currentSupplier");
             String errorMsg = (String)request.getAttribute("errorMsg");
-                
         %>
-        
+            
         <%
             if(currentVendor == null && currentSupplier == null){
         %>
@@ -32,9 +31,9 @@
                 <input type="text" value="supplierName" placeholder="Enter username"></br>
                 <input type="text" value="supplierPw" placeholder="Enter password"></br>
                 -->
-                <input type="text" value="username" placeholder="Enter username"></br>
-                <input type="text" value="password" placeholder="Enter password"></br>
-                <input type="submit" value="submit1">
+                <input type="text" name="username" placeholder="Enter username" required="true"></br>
+                <input type="text" name="password" placeholder="Enter password" required="true"></br>
+                <input type="submit" value="Submit">
             </form>
         </div>
         <!--
