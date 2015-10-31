@@ -18,14 +18,18 @@
 
 <%
     Menu menu = (Menu) session.getAttribute("menu");
-
+    int last = 0;
     int append = 1;
     boolean check = true;
     String dishName = request.getParameter("dishName");
+    Menu m1 = (Menu) session.getAttribute("menu");
 
     if (dishName != null) {
         HashMap<Ingredient, Supplier> map = new HashMap<Ingredient, Supplier>();
-
+        if (m1 != null) {
+            ArrayList<Dish> dlist = m1.getDishList();
+            last = Integer.parseInt(dlist.get(dlist.size() - 1).getDishID());
+        }
         while (check) {
 
             String ingredient = request.getParameter("ingredient" + append);
@@ -42,15 +46,18 @@
                     units = "pieces";
                 }
                 int qty = Integer.parseInt(quantity);
-                Ingredient ing = new Ingredient(ingredient, qty, units);
+                Ingredient ing = new Ingredient(ingredient, "0", qty, units);
                 map.put(ing, null);
             } else {
                 check = false;
             }
             append++;
         }
-
-        Dish newDish = new Dish(dishName, map);
+        last = last + 1;
+        String l = last + "";
+        Dish newDish = new Dish(l, dishName, map);
+        MenuManager menuMan = new MenuManager();
+        menuMan.insertDish(newDish, "1");
         ArrayList<Dish> dishList = menu.getDishList();
         dishList.add(newDish);
         menu.setDishList(dishList);
@@ -94,12 +101,15 @@
 
                     <div class="panel-group" id="accordion">
 
-                        <%                            Menu m1 = (Menu) session.getAttribute("menu");
+                        <%                            
+
                             if (m1 != null) {
                                 ArrayList<Dish> dlist = m1.getDishList();
+                                last = Integer.parseInt(dlist.get(dlist.size() - 1).getDishID());
                                 int count = 0;
                                 for (Dish d : dlist) {
                                     String name = d.getName();
+                                    String dID = d.getDishID();
                                     String ref = "collapse" + count;
 
 
@@ -108,7 +118,7 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#<%=ref%>">
-                                        <%=name%>
+                                        <%=name%> <%=dID%>
                                     </a>
                                 </h4>
                             </div><!--/.panel-heading -->
