@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package Manager;
 
+import Entity.Dish;
+import Entity.Menu;
 import Entity.Supplier;
+import Manager.ConnectionManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,4 +92,46 @@ public class SupplierDAO {
             }
         return sup;
     }
+    
+    public static ArrayList<Supplier> favouriteSuppliers(){
+        String vendorID="1";//session.getAttribute("vendorID");
+        ArrayList<Supplier> favouriteList=new ArrayList<Supplier>();
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String query = "";
+        try{
+            conn = ConnectionManager.getConnection();
+            query = "select * from favourite_supplier where vendor_id=?";
+             //where vendor_id=?
+            statement = conn.prepareStatement(query);
+            statement.setString(1,vendorID);
+            rs = statement.executeQuery();
+            while(rs.next()){
+                String supplier_id=rs.getString("supplier_id");
+                favouriteList.add(MenuManager.getSupplierById(supplier_id));
+            }
+            //Menu menu=new Menu(dishList);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(statement != null)
+            {
+                try
+                {
+                    statement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            return favouriteList;
+        } 
+    }
 }
+
