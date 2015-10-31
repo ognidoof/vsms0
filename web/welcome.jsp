@@ -15,6 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+        <link rel="stylesheet" href="css/metro/metro-icon.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <style>
             body {
@@ -42,6 +43,38 @@
                 <h1>Welcome,<br/> </h1>
 
                 <div class="user"><h2> Christina</h2></div> <br/>
+
+
+                <div class="tile">
+                    <div class="tile-content slide-left">
+                        <div class="slide">
+                            <img src="pictures/url.jpg" alt="Mountain View" style="width:inherit; height:inherit;">
+                        </div>
+                        <div class="slide-over">
+                            View Menu
+                            Managing Menu
+                            Creating New Recipes
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="tile">
+                    <div class="tile-content slide-left">
+                        <div class="slide">
+                            <img src="pictures/url.jpg" alt="Mountain View" style="width:inherit; height:inherit;">
+                        </div>
+                        <div class="slide-over">
+                            View Menu
+                            Managing Menu
+                            Creating New Recipes
+                        </div>
+                    </div>
+                </div>
+
+
+
 
 
                 <p><a class="btn btn-danger btn-lg" href="#" role="button">User Accounts &raquo;</a></p>
