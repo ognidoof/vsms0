@@ -42,14 +42,14 @@ public class LoginServlet {
             Vendor vendor = loginVendor(username, password);
             
             //destination
-            String url = "index.jsp";
+            String url = "LoginMain.jsp";
             
             if(vendor == null && supplier == null){
                 //redirect to login page with error
                 request.setAttribute("errMsg", "Invalid E-mail or Password entered.");
             }else if(vendor != null && supplier ==null){
                 //redirect to vendor home
-                url = "VendorMain.jsp";
+                url = "welcome.jsp";
                 session.setAttribute("currentVendor", vendor);
                 request.setAttribute("errMsg", null);
             }else if(vendor == null && supplier != null){
