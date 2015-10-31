@@ -24,7 +24,7 @@
         </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
-        <script type="text/javascript" src="parsley.js"></script>
+        
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
@@ -40,7 +40,7 @@
 
 
 
-                <form name="RecipeCreation" method="get" action="MenuDish.jsp" data-parsley-validate >
+                <form name="RecipeCreation" method="get" action="MenuDish.jsp"  >
 
 
                     <!--validity check, unsure if still required-->    
@@ -56,7 +56,8 @@
                     <h3 class="title2">Name of Dish</h3>
 
 
-                    <input class="inputs" type="text" size="30" name="dishName" placeholder="Dish Name" /><br/>
+                    <input class="inputs" type="text" size="30" name="dishName" placeholder="Dish Name" required/><br/>
+                    
 
                     <table id="tblSample">
                         <tr><br/></tr><tr>
@@ -68,7 +69,7 @@
                                        id="ingredient" size="40" placeholder="ingredient"  required/>&nbsp</td>
                             <td>
                                <input type="number" name="quantity1"
-                                       id="quantity" size="10" placeholder="amount" data-parsley-type="integer" min="0" data-parsley-min="0" required />&nbsp
+                                       id="quantity" size="10" placeholder="amount" min="0" step="1" required />&nbsp
                             </td>
                             <td>
                                 <input   type="text" name="units1"

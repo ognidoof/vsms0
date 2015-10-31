@@ -39,11 +39,13 @@ function addRowToTable()
    
   var cell3 = row.insertCell(2);
   var quantity = document.createElement('input');
-  quantity.type = 'text';
+  quantity.type = 'number';
   quantity.name = 'quantity' + iteration;
   quantity.id = 'quantity' + iteration;
   quantity.size = 10;
   quantity.placeholder = "amount";
+  quantity.min = "0";
+  quantity.step = "1";
   
   cell3.appendChild(quantity) ; 
     
