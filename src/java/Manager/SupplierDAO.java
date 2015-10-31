@@ -80,8 +80,9 @@ public class SupplierDAO {
         supArray.add(s5);
         
         return supArray;
-    */
+    
     }
+    */
     
     public Supplier getSupplier(String supName, List<Supplier> supArray){
             Supplier sup = null;
