@@ -6,13 +6,14 @@
 package DAO;
 
 import Entity.*;
+import Manager.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.resource.spi.ConnectionManager;
+//import javax.resource.spi.ConnectionManager;
 
 /**
  *
@@ -75,8 +76,8 @@ public class UserDAO {
 
         } finally {
 
-            ConnectionManager.close(conn, rs, stmt);
-
+            //conn.close();
+            ConnectionManager.close(conn, stmt, rs);
         }
 
         return supplierToReturn;
@@ -107,9 +108,9 @@ public class UserDAO {
 
                 String uname = rs.getString("vendor_username");
                 String password = rs.getString("vendor_password");
-                
+                String vendor_id = rs.getString("vendor_id");
 
-                vendorToReturn = new Vendor(uname, password);
+                vendorToReturn = new Vendor(uname, password, vendor_id);
 
             }
             
@@ -120,7 +121,7 @@ public class UserDAO {
 
         } finally {
 
-            ConnectionManager.close(conn, rs, stmt);
+            ConnectionManager.close(conn, stmt, rs);
 
         }
 
