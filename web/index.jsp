@@ -23,7 +23,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>User Test Vincent Change12<%=menu==null%></h1>
-                <a href="welcome.jsp" class="btn btn-primary btn-lg">Begin Test (Git is useful) </a>
+                <a href="LoginMain.jsp" class="btn btn-primary btn-lg">Begin Test (Git is useful) </a>
 
             </div>
         </div>
