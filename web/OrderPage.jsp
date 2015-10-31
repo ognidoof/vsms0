@@ -210,6 +210,7 @@
                         //nameList.add(supName);
                         //nameList.add("string");
                         Order tempOrder=new Order((OrderDAO.getOrderNum()+""),"0",(ArrayList<OrderItem>)outputMap.get(supName));
+                        tempOrder.setSupplier(supName);
                         OrderDAO.saveOrderToDatabase(tempOrder);
                         orderList.add(tempOrder);
                         
