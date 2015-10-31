@@ -220,7 +220,7 @@ public class MenuManager {
         }
     }
     
-    public Supplier getSupplierById(String id) {
+    public static Supplier getSupplierById(String id) {
         Supplier supplier = null;
         ArrayList<String> list = new ArrayList<String>();
         Connection conn = null;
