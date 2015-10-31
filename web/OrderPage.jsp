@@ -57,7 +57,7 @@
                 <h1>Order Page</h1>
                 <!-- 2 tiles side by side together -->
                 <!--<a data-toggle="modal" data-target="#createOrder" style="text-align:center" class="btn btn-primary btn-lg col-sm-6" id ="button1" href="#" role="button">Create New Order</a>-->
-                <a style="text-align:center" class="btn btn-primary btn-lg col-sm-6" id ="button1" href="CreateOrder.jsp" role="button">Create New Order</a>
+                <div><a style="text-align:center" class="btn btn-primary btn-lg col-sm-6" id ="button1" href="CreateOrder.jsp" role="button">Create New Order</a></div><br/><br/>
                 <div id="createOrder" class="modal fade" role="dialog">
                     <div class="modal-dialog modal-lg">
 
