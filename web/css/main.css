@@ -147,6 +147,22 @@ tr input{
     float: right
 }
 
+@media (max-width:601px){
+    .title2{
+        font-size: 30px
+    }
+    h1{
+        font-size: 45px
+    }
+    h2{
+        font-size: 26px
+    }
+    h3{
+        font-size: 20px
+    }
+
+}
+
 @media (min-width:600px){
     .title2{
         font-size: 30px
@@ -158,7 +174,7 @@ tr input{
         font-size: 30px
     }
     h3{
-        font-size: 20px
+        font-size: 24px
     }
 
     .inputs{
