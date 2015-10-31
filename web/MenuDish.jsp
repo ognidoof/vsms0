@@ -162,7 +162,7 @@
 
                     </div>
                     <A HREF="welcome.jsp" class="btn btn-primary btn-lg">Back</A>
-                    <a href="Recipe.jsp" class="btn btn-primary btn-lg">Create a dish</a>
+                    <a href="RecipeCreationTesting.jsp" class="btn btn-primary btn-lg">Create a dish</a>
                 </div>
             </div>
             <div>
