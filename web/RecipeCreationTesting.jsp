@@ -46,10 +46,12 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src = "bootstrap/js/bootstrap.js"></script>
-
+        
+        
+        
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
-
+        
 
     </head>
 
@@ -67,11 +69,10 @@
                    // Supplier toDisplay = sDAO.getSupplier("FreshFruitz", supList2);
                 %>
                 <h1>Create Dish</h1>
-
                 <h2>Dish Name:</h2>
                 <form name="RecipeCreation" method="get" action="MenuDish.jsp" data-parsley-validate >
-
-                    <input class="inputs" type="text" name="dishName" placeholder="Name of Dish">
+                    <input class="inputs" type="text" name="dishName" placeholder="Name of Dish" required/>
+                    
                     <!-- This is where the ingredients print-->
 
                     <!-- Hiding this for now***
