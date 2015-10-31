@@ -18,7 +18,7 @@ import java.util.*;
  * @author David
  */
 public class OrderDAO {
-    public static int OrderNum=879;
+    public static int OrderNum=0;
     
     public static int getOrderNum(){
         OrderNum++;
@@ -67,6 +67,121 @@ public class OrderDAO {
                     return orderList;
     }
     */
+    public static void saveOrderItemToDatabase(OrderItem orderItem, String order_id,String vendor_id){
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String query = "";
+        
+        String ingredient_name=orderItem.getName();
+        String price=orderItem.getPrice();
+        String quantity=orderItem.getQuantity();
+        //get supplier ID? or retrieve from arraylist?
+        String supplier_id=orderItem.getSupplier();
+        
+        try
+        {
+            conn = ConnectionManager.getConnection();
+            query = "INSERT INTO orderline " +"(vendor_id,order_id,supplier_id,ingredient_name,price,quantity) VALUES(?,?,?,?,?,?)";
+             //where vendor_id=?
+            statement = conn.prepareStatement(query);
+            statement.setString(1,vendor_id);
+            statement.setString(2,order_id);
+            statement.setString(3,supplier_id);
+            statement.setString(4,ingredient_name);
+            statement.setString(5,price);
+            statement.setString(6,quantity);
+            statement.executeUpdate();
+            
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(statement != null)
+            {
+                try
+                {
+                    statement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }                
+            }
+        }
+    }
+    
+    
+    public static void saveOrderToDatabase(Order order){
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String query = "";
+        
+        String order_id=order.getOrderId();
+        String vendor_id="1";//session.getAttribute("vendorID");
+        String total_price=order.getTotalPrice();
+        ArrayList<OrderItem> itemList=order.getOrderItem();
+        
+        try
+        {
+            conn = ConnectionManager.getConnection();
+            query = "INSERT INTO `order` " +"(order_id,vendor_id,total_price) VALUES(?,?,?)";
+             //where vendor_id=?
+            statement = conn.prepareStatement(query);
+            statement.setString(1,order_id);
+            statement.setString(2,vendor_id);
+            statement.setString(3,total_price);
+            statement.executeUpdate();
+            for(OrderItem item:itemList){
+                saveOrderItemToDatabase(item, order_id,vendor_id);
+            }
+            
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(statement != null)
+            {
+                try
+                {
+                    statement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }                
+            }
+        }
+        
+        
+    }
     
     public static ArrayList<Order> populateEmergencyOrder(){
         
@@ -149,6 +264,10 @@ public class OrderDAO {
                 
                 //count = rs.getString("count");
                 String orderId=rs.getString("order_id");
+                int orderNumber=Integer.parseInt(orderId);
+                if(orderNumber>OrderNum){
+                    OrderNum=orderNumber;
+                }
                 String totalPrice=rs.getString("total_price");
                 Order tempOrder=new Order(orderId,totalPrice,new ArrayList<OrderItem>());
                 queryOrderItem = "select * from orderline where order_id=?";
@@ -186,6 +305,7 @@ public class OrderDAO {
                     
                     OrderItem tempItem=new OrderItem(ingredientName,quantity,price,unit,supplier);
                     tempOrder.addOrderItem(tempItem);
+                    tempOrder.setSupplier(supplier);
                 }
                 orderList.add(tempOrder);
       

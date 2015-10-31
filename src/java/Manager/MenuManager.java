@@ -27,6 +27,7 @@ public class MenuManager {
     Menu menu;
     
     public Menu defaultMenu(){
+        /*
         Ingredient coffeeBean = new Ingredient("Coffee Beans", 20, "g");
         Ingredient duckLeg = new Ingredient("Leg of Duck", 1, "leg");
         Ingredient potato = new Ingredient("Potato", 500, "g");
@@ -109,7 +110,8 @@ public class MenuManager {
         
         menu = new Menu(dishList);
         return menu;
-        
+                */
+        return null; 
     }
     
     //this method creates an ingredient object
@@ -187,7 +189,7 @@ public class MenuManager {
                     String itemName=itemRs.getString("ingredient_name");
                     list.add(itemName);
                 }
-                supplier=new Supplier(supplierName, list, supplierType,supplierDesc);
+                supplier=new Supplier(id, supplierName, list, supplierType,supplierDesc);
             }
         }
         catch(Exception e)

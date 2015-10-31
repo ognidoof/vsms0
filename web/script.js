@@ -32,7 +32,7 @@ function addRowToTable()
   ingredient.id = 'ingredient' + iteration;
   ingredient.size = 40;
   ingredient.placeholder = "ingredient";
-  
+  ingredient.required = true;
   
   //ingredient.onkeypress = keyPressTest;
   cell2.appendChild(ingredient);
@@ -46,17 +46,19 @@ function addRowToTable()
   quantity.placeholder = "amount";
   quantity.min = "0";
   quantity.step = "1";
-  
+  quantity.required = true;
   cell3.appendChild(quantity) ; 
     
   // select cell
-    var cell4 = row.insertCell(3);
+  var cell4 = row.insertCell(3);
   var units = document.createElement('input');
   units.type = 'text';
   units.name = 'units' + iteration;
   units.id = 'units' + iteration;
   units.size = 10;
   units.placeholder = "unit";
+  units.required = true;
+  
   cell4.appendChild(units) ; 
   
  
