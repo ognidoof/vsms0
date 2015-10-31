@@ -123,7 +123,7 @@
                                                 Ingredient ingredient = iter.next();
                                                 Supplier supplier = tempMap.get(ingredient);
                                         %>
-                                        <li><%=ingredient.getName()%> <b class="quantity"><%=ingredient.getQuantity()%></b> <i class="result"></i></li>
+                                        <li><%=ingredient.getName()%> <b class="quantity"><%=ingredient.getQuantity()%> <b class="unit"><%=ingredient.getUnit()%></b> <i class="result"></i></li>
                                             <%
                                                 }
                                             %>
