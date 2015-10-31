@@ -58,7 +58,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>Web Experiment</h1>
-                <a href="welcome.jsp" class="btn btn-primary btn-lg">Begin Test</a>
+                <a href="LoginMain.jsp" class="btn btn-primary btn-lg">Begin Test</a>
 
             </div>
         </div>
