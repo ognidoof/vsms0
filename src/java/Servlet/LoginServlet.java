@@ -6,6 +6,7 @@
 package Servlet;
 
 import DAO.UserDAO;
+import Entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -53,7 +54,7 @@ public class LoginServlet {
                 request.setAttribute("errMsg", null);
             }else if(vendor == null && supplier != null){
                 //redirect to supplier home
-                url = "SupplierMain.jsp";
+                url = "ChatSupplier.jsp";
                 session.setAttribute("currentVendor", supplier);
                 request.setAttribute("errMsg", null);
             }else{
@@ -71,7 +72,7 @@ public class LoginServlet {
     private Vendor loginVendor(String username, String password){
         boolean check = false;
         
-        Vendor v = userDAO.retrieve(username);
+        Vendor v = userDAO.retrieveVendor(username);
         
         if(v != null){
             String checkPW = v.getPassword();
@@ -90,7 +91,7 @@ public class LoginServlet {
     private Supplier loginSupplier(String username, String password){
         boolean check = false;
         
-        Supplier s = userDAO.retrieve(username);
+        Supplier s = userDAO.retrieveSupplier(username);
         
         if(s != null){
             String checkPW = s.getPassword();
