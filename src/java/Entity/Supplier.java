@@ -23,7 +23,7 @@ public class Supplier {
     private String password;
     //needed for login
     
-    public Supplier(String supName, List items, String category, String desc){
+    public Supplier(String id, String supName, List items, String category, String desc){
         this.supName=supName;
         this.items=items;
         this.category=category;
