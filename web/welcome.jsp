@@ -44,43 +44,87 @@
 
                 <div class="user"><h2> Christina</h2></div> <br/>
 
-
-                <div class="tile">
-                    <div class="tile-content slide-left">
-                        <div class="slide">
-                            <img src="pictures/url.jpg" alt="Mountain View" style="width:inherit; height:inherit;">
-                        </div>
-                        <div class="slide-over">
-                            View Menu
-                            Managing Menu
-                            Creating New Recipes
-                        </div>
+                <div class="row">
+                <p> 
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <div class="tile-large">
+                        <a href="MenuDish.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                            <div class="tile-content slide-up">
+                                <div class="slide">
+                                    <img src="pictures/icon-profile.png" alt="Mountain View" style="width:inherit; height:inherit;">
+                                </div>
+                                <div class="slide-over">
+                                    Edit Profile
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-
-
-
-                <div class="tile">
-                    <div class="tile-content slide-left">
-                        <div class="slide">
-                            <img src="pictures/url.jpg" alt="Mountain View" style="width:inherit; height:inherit;">
-                        </div>
-                        <div class="slide-over">
-                            View Menu
-                            Managing Menu
-                            Creating New Recipes
-                        </div>
+                </p>
+                <p>
+                <div class="col-md-4">
+                    <div class="tile-large">
+                        <a href="MenuDish.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                            <div class="tile-content slide-up">
+                                <div class="slide">
+                                    <img src="pictures/url.jpg" alt="Menu" style="width:inherit; height:inherit;">
+                                </div>
+                                <div class="slide-over">
+                                    View Menu
+                                    Managing Menu
+                                    Creating New Recipes
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
+                <div class="col-md-2"></div>
+                </p>
+                
+                </div>
+                    
+                    
+                    
+                <p>
+
+                <div class="tile-large">
+                    <a href="OrderChoice.jsp" style="display:block;height:inherit; width:inherit; text-decoration: none;"> 
+                        <div class="tile-content slide-up">
+                            <div class="slide">
+                                <img src="pictures/url.jpg" alt="Mountain View" style="width:inherit; height:inherit;">
+                            </div>
+                            <div class="slide-over">
+                                Making an Order
+                                View Order History
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                </p> 
+
+                <p>
+
+                <div class="tile-large">
+                    <a href="SupplierSearch.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                        <div class="tile-content slide-up">
+                            <div class="slide">
+
+                                <img src="pictures/url.jpg" alt="Menu" style="width:inherit; height:inherit;">
+
+                            </div>
+                            <div class="slide-over">
+                                Supplier
+
+                            </div>
+                        </div>
+                    </a>     
+                </div>
+
+                </p> 
 
 
-
-
-
-                <p><a class="btn btn-danger btn-lg" href="#" role="button">User Accounts &raquo;</a></p>
-                <p><a class="btn btn-primary btn-lg" href="MenuDish.jsp" role="button">Menu &raquo;</a></p>
-                <p><a class="btn btn-primary btn-lg" href="OrderChoice.jsp" role="button">Orders &raquo;</a></p>
-                <p><a class="btn btn-primary btn-lg" href="SupplierSearch.jsp" role="button">Suppliers &raquo;</a></p>
 
                 <p><a class="btn btn-danger btn-small, toRight" href="index.jsp" role="button">Reset to default</a></p>
 
