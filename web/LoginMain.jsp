@@ -34,7 +34,7 @@
                 -->
                 <input type="text" value="username" placeholder="Enter username"></br>
                 <input type="text" value="password" placeholder="Enter password"></br>
-                <input type="submit" value="submit1">
+                <input type="submit" value="Submit">
             </form>
         </div>
         <!--
