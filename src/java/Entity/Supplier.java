@@ -17,12 +17,24 @@ public class Supplier {
     private String category;
     private String desc;
     
+    //needed for login
+    private String username;
+    private String password;
+    //needed for login
+    
     public Supplier(String supName, List items, String category, String desc){
         this.supName=supName;
         this.items=items;
         this.category=category;
         this.desc=desc;
     }
+    
+    //needed for login
+    public Supplier(String username, String password){
+        this.username=username;
+        this.password=password;
+    }
+    //needed for login
     
     public String getSupName(){
         return supName;
@@ -40,6 +52,14 @@ public class Supplier {
         return desc;
     }
     
+    public String getUsername(){
+        return username;
+    }
+    
+    public String getPassword(){
+        return password;
+    }
+    
     public void setName(String supName){
         this.supName=supName;
     }
@@ -54,6 +74,14 @@ public class Supplier {
     
     public void setDesc(String desc){
         this.desc=desc;
+    }
+    
+    public void setUsername(String username){
+        this.username = username;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
     }
 }
 
