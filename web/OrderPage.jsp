@@ -172,9 +172,9 @@
                         while(iter.hasNext()){
                             
                             Ingredient ingredient=iter.next();
-                            //OrderItem tempItem=new OrderItem(ingredient.getName(),(ingredient.getQuantity())*ingredientQuantityNum+"",ingredient.getUnit());
-                            OrderItem tempItem=new OrderItem();
+                            //OrderItem tempItem=new OrderItem();
                             Supplier supplier=tempMap.get(ingredient);
+                            OrderItem tempItem=new OrderItem(ingredient.getName(),(ingredient.getQuantity())*ingredientQuantityNum+"","0",ingredient.getUnit(),supplier.getId());
                            
                             String supplierName="";
                             if(supplier!=null){
@@ -205,7 +205,8 @@
                     Iterator<String> stringIter=keySet.iterator();
                     while(stringIter.hasNext()){
                         String supName=stringIter.next();
-                        Order tempOrder=new Order((OrderDAO.getOrderNum()+""),supName,(ArrayList<OrderItem>)outputMap.get(supName));
+                        Order tempOrder=new Order((OrderDAO.getOrderNum()+""),"0",(ArrayList<OrderItem>)outputMap.get(supName));
+                        OrderDAO.saveOrderToDatabase(tempOrder);
                         orderList.add(tempOrder);
                     }
                     
@@ -242,7 +243,7 @@
                             <div class="panel-heading"><h4>Order #<%=tempOrder.getOrderId()%></h4></div>
                             <div class="panel-body"> 
                                 <h3><%//=tempOrder.getSupplier()%></h3>
-                                <h5>Price:<%=tempOrder.getTotalPrice()%></h5>
+                                
                                 <ul>
                                     <li ><%=tempItemList.get(0).getName()%> ... <%=tempItemList.get(0).getQuantity()%><%="  "+tempItemList.get(0).getUnit()%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>
                                     <li >
