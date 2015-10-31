@@ -1,8 +1,3 @@
-<%-- 
-    Document   : SupplierCatalogue
-    Created on : 12 Oct, 2015, 11:47:15 PM
-    Author     : Joel
---%>
 
 <%@page import="java.util.Iterator"%>
 <%@page import="Entity.Ingredient"%>
@@ -70,7 +65,7 @@
                 %>
                 <h1>Create Dish</h1>
                 <h2>Dish Name:</h2>
-                <form name="RecipeCreation" method="get" action="MenuDish.jsp" data-parsley-validate >
+                <form name="RecipeCreation" method="get" action="MenuDish.jsp">
                     <input class="inputs" type="text" name="dishName" placeholder="Name of Dish" required/>
                     
                     <!-- This is where the ingredients print-->
@@ -89,11 +84,12 @@
                     </table>
 
 
-
+                    <p>
 
                     <a data-toggle="modal" class="btn btn-success" data-target="#myModal" >ADD Ingredient +</a>
 
                         <input class="btn btn-danger btn-small" type="button" value="Remove - " onclick="removeRowFromTable();" />
+                        </p>
                     <p class="toRight">
                         <input class="btn btn-primary btn-lg" type="submit" value="Save" onclick="validateRow(this.form);" />
                         <a href="MenuDish.jsp" class="btn btn-primary btn-lg">Back</a>
@@ -346,9 +342,12 @@
 
                     var cell2 = row.insertCell(1);
                     var quantity = document.createElement('input');
-                    quantity.type = 'text';
+                    quantity.type = 'number';
                     quantity.name = 'quantity' + iteration;
                     quantity.id = 'quantity' + iteration;
+                    quantity.min = '0';
+                    quantity.step = '1';
+                    quantity.required = true;
                     // quantity.size = 40;
                     quantity.placeholder = "quantity";
                     cell2.appendChild(quantity);
