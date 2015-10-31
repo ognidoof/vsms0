@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author TC
  */
+/*
 public class SearchDAO {
 
     public ArrayList<Supplier> Search(String inputStr) {
@@ -52,3 +53,4 @@ public class SearchDAO {
     }
 
 }
+*/

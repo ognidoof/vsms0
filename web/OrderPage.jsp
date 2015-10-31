@@ -1,10 +1,11 @@
-<%@page import="Manager.OrderDAO"%>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
     <head>
+        <%@page import="Manager.OrderDAO"%>
         <%@page import = "java.util.*" %>
         <%@page import = "Entity.*" %>
         <meta charset="utf-8">
@@ -143,6 +144,7 @@
                     Menu menu = (Menu) session.getAttribute("menu");
                     ArrayList<Dish> dishList = (ArrayList<Dish>) menu.getDishList();
                     ArrayList<Order> orderList=(ArrayList<Order>)session.getAttribute("orders");
+                    //ArrayList<String> nameList=new ArrayList<String>();
                     int count=0;
                     HashMap<String, ArrayList<OrderItem>> outputMap=new HashMap<String, ArrayList<OrderItem>>();
                     
@@ -205,9 +207,13 @@
                     Iterator<String> stringIter=keySet.iterator();
                     while(stringIter.hasNext()){
                         String supName=stringIter.next();
+                        //nameList.add(supName);
+                        //nameList.add("string");
                         Order tempOrder=new Order((OrderDAO.getOrderNum()+""),"0",(ArrayList<OrderItem>)outputMap.get(supName));
+                        tempOrder.setSupplier(supName);
                         OrderDAO.saveOrderToDatabase(tempOrder);
                         orderList.add(tempOrder);
+                        
                     }
                     
                     //get dish from form
@@ -242,7 +248,7 @@
                         <div class="panel panel-default col-sm-5" onclick="location.href = 'RegularOrderDetail.jsp?num=<%=i%>';">
                             <div class="panel-heading"><h4>Order #<%=tempOrder.getOrderId()%></h4></div>
                             <div class="panel-body"> 
-                                <h3><%//=tempOrder.getSupplier()%></h3>
+                                <h3>Supplier: <%=tempOrder.getSupplier()%></h3>
                                 
                                 <ul>
                                     <li ><%=tempItemList.get(0).getName()%> ... <%=tempItemList.get(0).getQuantity()%><%="  "+tempItemList.get(0).getUnit()%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>

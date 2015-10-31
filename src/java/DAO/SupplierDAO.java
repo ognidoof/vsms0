@@ -3,15 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Manager;
+package DAO;
 
-import Entity.Dish;
-import Entity.Menu;
 import Entity.Supplier;
-import Manager.ConnectionManager;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +16,7 @@ import java.util.List;
 public class SupplierDAO {
     
     //public static List<Supplier>supArray = new ArrayList<Supplier>();
-    /*
+    
     public List<Supplier> retrieveAll(){
         List<Supplier> supArray = new ArrayList<Supplier>();
     
@@ -66,23 +60,22 @@ public class SupplierDAO {
         String d4 = "Animal Farm! Animal Animal Animals! \n Description: Where the pigs farm. Offering discounts on horse meat and beef. \n Items Sold: We have poultry ranging from kampong chicken to flying pigs!!";
         String d5 = "Only a Matter of Thyme!\n Description: Time waits for no one. Delivery across thyme and space.  \n Items Sold: Time";
         
-                
+        /*     
         Supplier s1 = new Supplier("FreshFruitz", i1, "western", d1);
         Supplier s2 = new Supplier("FreshFoodz", i2, "asian", d2);
         Supplier s3 = new Supplier("FreshSaladz", i3, "fusion", d3);
         Supplier s4 = new Supplier("Animal Farm", i4, "western", d4);
         Supplier s5 = new Supplier("Only a Matter of Thyme", i5, "spices", d5);
-        
+        */
+        /*
         supArray.add(s1);
         supArray.add(s2);
         supArray.add(s3);
         supArray.add(s4);
         supArray.add(s5);
-        
+        */
         return supArray;
-    
     }
-    */
     
     public Supplier getSupplier(String supName, List<Supplier> supArray){
             Supplier sup = null;
@@ -94,46 +87,4 @@ public class SupplierDAO {
             }
         return sup;
     }
-    
-    public static ArrayList<Supplier> favouriteSuppliers(){
-        String vendorID="1";//session.getAttribute("vendorID");
-        ArrayList<Supplier> favouriteList=new ArrayList<Supplier>();
-        Connection conn = null;
-        PreparedStatement statement = null;
-        ResultSet rs = null;
-        String query = "";
-        try{
-            conn = ConnectionManager.getConnection();
-            query = "select * from favourite_supplier where vendor_id=?";
-             //where vendor_id=?
-            statement = conn.prepareStatement(query);
-            statement.setString(1,vendorID);
-            rs = statement.executeQuery();
-            while(rs.next()){
-                String supplier_id=rs.getString("supplier_id");
-                favouriteList.add(MenuManager.getSupplierById(supplier_id));
-            }
-            //Menu menu=new Menu(dishList);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            if(statement != null)
-            {
-                try
-                {
-                    statement.close();
-                }
-                catch(Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            return favouriteList;
-        } 
-    }
 }
-
