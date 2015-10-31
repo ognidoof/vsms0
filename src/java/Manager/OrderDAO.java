@@ -305,6 +305,7 @@ public class OrderDAO {
                     
                     OrderItem tempItem=new OrderItem(ingredientName,quantity,price,unit,supplier);
                     tempOrder.addOrderItem(tempItem);
+                    tempOrder.setSupplier(supplier);
                 }
                 orderList.add(tempOrder);
       
