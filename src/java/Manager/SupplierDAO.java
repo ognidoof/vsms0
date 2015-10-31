@@ -22,7 +22,7 @@ import java.util.List;
 public class SupplierDAO {
     
     //public static List<Supplier>supArray = new ArrayList<Supplier>();
-    
+    /*
     public List<Supplier> retrieveAll(){
         List<Supplier> supArray = new ArrayList<Supplier>();
     
@@ -80,6 +80,7 @@ public class SupplierDAO {
         supArray.add(s5);
         
         return supArray;
+    */
     }
     
     public Supplier getSupplier(String supName, List<Supplier> supArray){
