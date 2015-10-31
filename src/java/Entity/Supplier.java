@@ -16,6 +16,7 @@ public class Supplier {
     private List items;
     private String category;
     private String desc;
+    private String id;
     
     //needed for login
     private String username;
@@ -27,6 +28,11 @@ public class Supplier {
         this.items=items;
         this.category=category;
         this.desc=desc;
+        this.id=id;
+    }
+    
+    public String getId(){
+        return this.id;
     }
     
     //needed for login
@@ -76,12 +82,18 @@ public class Supplier {
         this.desc=desc;
     }
     
+
+    public void setId(String id){
+        this.id=id;
+    }
+
     public void setUsername(String username){
         this.username = username;
     }
     
     public void setPassword(String password){
         this.password = password;
+
     }
 }
 
