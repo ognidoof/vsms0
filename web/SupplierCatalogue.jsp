@@ -4,6 +4,7 @@
     Author     : Joel
 --%>
 
+<%@page import="Manager.MenuManager"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Entity.Ingredient"%>
 <%@page import="java.util.HashMap"%>
@@ -57,16 +58,17 @@
             <div class="container">
 
                 <%
-                    SupplierDAO sDAO = new SupplierDAO();
-                    List<Supplier> supList2 = sDAO.retrieveAll();
-                    Supplier toDisplay = sDAO.getSupplier(send, supList2);
+                    //SupplierDAO sDAO = new SupplierDAO();
+                    //List<Supplier> supList2 = sDAO.retrieveAll();
+                    Supplier toDisplay = MenuManager.getSupplierById(send);//sDAO.getSupplier(send, supList2);
                 %>
                 <h1><%= toDisplay.getSupName()%></h1>
                 <%
                     List<String> items = toDisplay.getItems();
+                    %><%//items.size()%><%
                     for (String item : items) {
-                        out.println("<a  data-toggle=\"modal\" data-target=\"#myModal\">" + item + "</a><br>");
-
+                        out.println("<a  data-toggle=\"modal\" data-target=\"#myModal\">" + item  + "</a><br>");
+                        
                         //Print out the modal menu
                         try {
                             Menu menu = (Menu) session.getAttribute("menu");
