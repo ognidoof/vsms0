@@ -241,7 +241,8 @@
 
 
 
-            <script>$('#linkPrompt').on('show.bs.modal', function (e) {
+            <script>
+                $('#linkPrompt').on('show.bs.modal', function (e) {
                     var $supplierIngredient = e.relatedTarget.id;
                     var array = $supplierIngredient.split('_');
                     // document.getElementById("quantity") = array[0];
