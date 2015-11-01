@@ -5,8 +5,8 @@
 
 
 <% MenuManager menuManager = new MenuManager();
-    Menu menu = menuManager.populateMenu();//defaultMenu();
-
+    Menu menu = menuManager.populateMenu("1");//defaultMenu();
+    MenuManager.createConnection();   
     session.setAttribute("menu", menu);
     session.setAttribute("orders", OrderDAO.populateOrder());
     //session.setAttribute("orders", OrderDAO.populateOrder());
