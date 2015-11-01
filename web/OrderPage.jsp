@@ -204,16 +204,18 @@
                     }
                             
                     Set<String> keySet=outputMap.keySet();
+                    
                     Iterator<String> stringIter=keySet.iterator();
+                    
                     while(stringIter.hasNext()){
                         String supName=stringIter.next();
                         //nameList.add(supName);
                         //nameList.add("string");
                         Order tempOrder=new Order((OrderDAO.getOrderNum()+""),"0",(ArrayList<OrderItem>)outputMap.get(supName));
                         tempOrder.setSupplier(supName);
-                        OrderDAO.saveOrderToDatabase(tempOrder);
+                        OrderDAO.saveOrderToDatabase(tempOrder,"1");
                         orderList.add(tempOrder);
-                        
+                        %><%//tempOrder==null%><%
                     }
                     
                     //get dish from form
