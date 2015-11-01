@@ -75,7 +75,7 @@
                 }else{
                     for (Supplier found : slist2){
             %>
-            <p><Strong> <a href="SupplierView.jsp?id=<%= found.getSupName() %>"><%= found.getSupName() %></a> </Strong></p>
+            <p><Strong> <a href="SupplierView.jsp?id=<%= found.getId() %>"><%= found.getSupName() %></a> </Strong></p>
             <p> <%= found.getDesc() %> </p><br/>
             <%        
                     }
