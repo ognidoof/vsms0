@@ -4,6 +4,7 @@
     Author     : Joel
 --%>
 
+<%@page import="Manager.MenuManager"%>
 <%@page import="java.util.List"%>
 <%@page import="DAO.SupplierDAO"%>
 <%@page import="Entity.Supplier"%>
@@ -54,9 +55,9 @@
             
             <div class="container">
                 <%
-                    SupplierDAO sDAO = new SupplierDAO();
-                    List<Supplier> supList = sDAO.retrieveAll();
-                    Supplier toDisplay = sDAO.getSupplier(id, supList);
+                    //SupplierDAO sDAO = new SupplierDAO();
+                   // List<Supplier> supList = sDAO.retrieveAll();
+                    Supplier toDisplay = MenuManager.getSupplierById(id);//sDAO.getSupplier(id, supList);
                 %>
                 <h1><%= toDisplay.getSupName()%></h1>
                 <div>
@@ -77,7 +78,7 @@
                                 </form>
                             </td>
                             --%>
-                            <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierCatalogue.jsp?send=<%= toDisplay.getSupName()%>';" value="Catalogue" />
+                            <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierCatalogue.jsp?send=<%= toDisplay.getId()%>';" value="Catalogue" />
                             </p>
                         </table>
                          
