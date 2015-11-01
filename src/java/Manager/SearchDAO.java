@@ -73,4 +73,36 @@ public class SearchDAO {
 
         return resultsList;
     }
+    
+    public ArrayList<Supplier> SearchByIngredient(String inputStr) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        //PreparedStatement itemStatement = null;
+        
+        ResultSet rs = null;
+        //ResultSet itemRs = null;
+        
+        String query="";
+        Supplier s = null;
+
+        ArrayList<Supplier> resultsList = new ArrayList<>();
+        
+        try{
+            conn = ConnectionManager.getConnection();
+
+            pstmt = conn.prepareStatement("SELECT distinct supplier_id FROM ingredient WHERE lower(ingredient_name) LIKE" + "'%" + inputStr.toLowerCase() + "%' OR lower(ingredient_name) SOUNDS LIKE '%" +inputStr.toLowerCase() +"%'");
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                String supplier_id=rs.getString("supplier_id");
+                resultsList.add(MenuManager.getSupplierById(supplier_id));
+            }
+            
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return resultsList;
+    }
+    
 }
