@@ -13,19 +13,28 @@ and open the template in the editor.
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" size="40" href="welcome.jsp">VSMS</a>
+            <a class="navbar-brand" size="40" href="welcome.jsp"><img src="pictures/Home.png" alt="My Account" style="width:30px; height:30px;"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" role="form">
-                <a class="btn btn-danger btn-lg" href="#" role="button">My Account &raquo;</a>
-                
-                <a class="btn btn-primary btn-lg" href="OrderPage.jsp" role="button">Make Regular Order &raquo;</a>
-              
-                <a class="btn btn-primary btn-lg" href="EmergencyOrder.jsp" role="button">Make Emergency Order &raquo;</a>
 
-                <a class="btn btn-primary btn-lg" href="Recipe.jsp" role="button">Create Dish &raquo;</a>
-                
-               
+                <ul>
+
+                    <li>
+                        <a class="btn btn-primary btn-block" href="#" role="button">My Account &raquo;</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-primary btn-block" href="OrderPage.jsp" role="button">Make Regular Order &raquo;</a>
+                    </li>
+                    <li>
+
+                        <a class="btn btn-primary btn-block" href="EmergencyOrder.jsp" role="button">Make Emergency Order &raquo;</a>
+                    </li>
+                    <li>
+
+                        <a class="btn btn-primary btn-block" href="Recipe.jsp" role="button">Create Dish &raquo;</a>
+                    </li>
+
             </form>
         </div><!--/.navbar-collapse -->
     </div>
