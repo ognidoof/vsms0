@@ -25,17 +25,22 @@
         </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        
+     
     </head>
     <body>
+        <div id="menu">
+        </div>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
         <!--Insertion of menu, ref: script.js-->
-        <div id="menu">
-        </div>
+        
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
