@@ -36,23 +36,79 @@
 
             // LISTEN FOR KEYPRESS EVENT
 
-
-            messageField.keypress(function(e) {
+ messageField.keypress(function(e) {
                 if (e.keyCode == 13) {
                     //FIELD VALUES
                     var username = nameField.val();
                     var message = messageField.val();
 
-                    //SAVE DATA TO FIREBASE AND EMPTY FIELD
-                    messagesRef.push({sender: "Only a Matter of Thyme", receiver: "Christina", text: message});
-                    messageField.val('');
+                    //if it is an order, the message will start with "-". List down all the possible order
+                    try {
+                        if (message.charAt(0) == "-") {
+                            //split the message
+                            var messageSplit = message.split(" ");
 
-                    //Type"Clear" to remove the message
-                    if (message == "clear") {
-                        messagesRef.remove();
+                            //Type"Clear" to remove the message
+                            if (messageSplit[0] == "-clear") {
+                                messagesRef.remove();
+                                window.location.reload();
+                            } else if (messageSplit[0] == "-reply") {
+                                //e.g: ("-reply S3452321H yes") to respond yes to order S3462321H
+                                //get key to get a certain order command in firebase
+                                var key = messageSplit[1]
+                                //get reply to update this key in firebase
+                                var reply = messageSplit[2]
+
+                                //if the messagesplit is larger than 3 and the key and reply if null
+                                if (messageSplit.length > 3 || key == null || reply == null) {
+                                    throw new Exception("");
+                                }
+                                //if reply is yes then change the order condition of the database to yes
+                                //if reply is no then reject the order condition
+                                //if reply is other then give exception
+                                if (reply == "yes") {
+                                    messagesRef.child(key).child("ordercondition").set("Approved");
+                                    message = "The " + key + " order has been accepted";
+                                } else if (reply == "no") {
+                                    messagesRef.child(key).child("ordercondition").set("Rejected");
+                                    message = "The " + key + " order has been rejected";
+                                } else {
+                                    throw new Exception("command is invalid");
+                                }
+                                //SAVE DATA TO FIREBASE AND EMPTY FIELD
+                                messagesRef.push({sender: "Only a Matter of Thyme", receiver: "Christina", text: message});
+                                messageField.val('');
+
+
+                                //put the last snapshot into snapshot content for testing
+                                var content = $('#snapshotcontent');
+                                messagesRef.orderByValue().on("value", function(snapshot) {
+                                    snapshot.forEach(function(data) {
+                                        if (data.key() == key) {
+                                            content.append("The order key" + data.key() + " has become " + data.val().ordercondition);
+                                        }
+                                    });
+                                });
+                            }
+                            else {
+                                throw new Exception("command is invalid");
+                            }
+
+                        }
+                        else {
+                            //SAVE DATA TO FIREBASE AND EMPTY FIELD
+                            messagesRef.push({sender: "Only a Matter of Thyme", receiver: "Christina", text: message});
+                            messageField.val('');
+                        }
+                    } catch (err) {
+                        //SAVE DATA TO FIREBASE AND EMPTY FIELD
+                        messagesRef.push({sender: "Only a Matter of Thyme", receiver: "Christina", text: "Sorry your command is invalid"});
+                        messageField.val('');
                     }
                 }
-            });
+
+            }
+            );
 
             // Add a callback that is triggered for each chat message.
             messagesRef.limitToLast(10).on('child_added', function(snapshot) {
@@ -61,18 +117,24 @@
                 var sender = data.sender || "anonymous";
                 var receiver = data.receiver;
                 var message = data.text;
-
+                var key = data.key;
+                var ordercondition = data.ordercondition;
                 //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-                var messageElement = $("<li>");
+                //var messageElement = $("<li>");
+                //messageElement.text(message).prepend(senderElement);      
+                //var receiverElement = $("<i class='chat-name'></i>");
+
                 var senderElement = $("<strong class='chat-name'></strong>");
-                var receiverElement = $("<i class='chat-name'></i>");
                 senderElement.text(sender);
-
-                messageElement.text(message).prepend(senderElement);
-
                 //ADD MESSAGE only if sender and receiver are relevant
                 if (sender === "Only a Matter of Thyme" && receiver === "Christina" || sender === "Christina" && receiver === "Only a Matter of Thyme") {
-                    messageList.append(messageElement)
+                    messageList.append(senderElement)
+                    messageList.append(message)
+                    messageList.append("<li>")
+                    messageList.append("Order key: " + key)
+                    messageList.append("<li>")
+                    messageList.append(ordercondition)
+                    messageList.append("<li>")
                 }
 
                 //SCROLL TO BOTTOM OF MESSAGE LIST
