@@ -45,144 +45,142 @@
                 <div class="user"><h2> Christina</h2></div> <br/>
 
                 <div class="row">
-                    <p> 
-                    <div class="col-md-4">
+
+                    <div class="col-xs-4">
                         <div class="tile-large">
-                            <a href="MenuDish.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
-                                <div class="tile-content slide-up">
+                            <a href="#" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                                <div class="tile-content slide-up-2">
                                     <div class="slide">
-                                        <img src="pictures/icon-profile.png" alt="Mountain View" style="width:inherit; height:inherit;">
+                                        <img src="pictures/My Account.png" alt="My Account" style="width:inherit; height:inherit;">
                                     </div>
-                                    <div class="slide-over">
-                                        Edit Profile
+                                   
+                                        <div class="slide-over">
+                                            <img src="pictures/My Account Slide.png" alt="My Account Slide" style="width:inherit; height:inherit;">
+                                        
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    </p>
+                    <div class="col-xs-2"></div>
+                        <div class="col-xs-4">
+                            <div class="tile-large">
+                                <a href="MenuDish.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                                    <div class="tile-content slide-up-2">
+                                        <div class="slide">
+                                            <img src="pictures/Menu.png" alt="Menu" style="width:inherit; height:inherit;">
+                                        </div>
+                                        <div class="slide-over">
+                                           <img src="pictures/Menu Slide.png" alt="Menu Slide" style="width:inherit; height:inherit;">
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2"></div>
+                    </div>
+
+
+
                     <p>
-                    <div class="col-md-4">
-                        <div class="tile-large">
-                            <a href="MenuDish.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
-                                <div class="tile-content slide-up">
-                                    <div class="slide">
-                                        <img src="pictures/url.jpg" alt="Menu" style="width:inherit; height:inherit;">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="tile-large">
+                                <a href="OrderChoice.jsp" style="display:block;height:inherit; width:inherit; text-decoration: none;"> 
+                                    <div class="tile-content slide-up-2">
+                                        <div class="slide">
+                                            <img src="pictures/Order.png" alt="Order Icon" style="width:inherit; height:inherit;">
+                                        </div>
+                                        <div class="slide-over">
+                                            <img src="pictures/Order Slide.png" alt="Order Slide" style="width:inherit; height:inherit;">
+                                        </div>
                                     </div>
-                                    <div class="slide-over">
-                                        View Menu
-                                        Managing Menu
-                                        Creating New Recipes
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
+
                         </div>
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-4">
+                            <div class="tile-large">
+                                <a href="SupplierSearch.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                                    <div class="tile-content slide-up-2">
+                                        <div class="slide">
+
+                                            <img src="pictures/Supplier.png" alt="Suppluer" style="width:inherit; height:inherit;">
+
+                                        </div>
+                                        <div class="slide-over">
+                                            <img src="pictures/Supplier Slide.png" alt="Supplier Slide" style="width:inherit; height:inherit;">
+
+                                        </div>
+                                    </div>
+                                </a>     
+                            </div>
+                        </div>
+                        <div class="col-xs-2"></div>
                     </div>
-                    </p>
+                    </p> 
+
+
+
+
+
 
                 </div>
+            </div>
 
-
-
-                <p>
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <div class="tile-large">
-                            <a href="OrderChoice.jsp" style="display:block;height:inherit; width:inherit; text-decoration: none;"> 
-                                <div class="tile-content slide-up">
-                                    <div class="slide">
-                                        <img src="pictures/url.jpg" alt="Mountain View" style="width:inherit; height:inherit;">
-                                    </div>
-                                    <div class="slide-over">
-                                        Making an Order
-                                        View Order History
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="col-md-4">
-                        <div class="tile-large">
-                            <a href="SupplierSearch.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
-                                <div class="tile-content slide-up">
-                                    <div class="slide">
-
-                                        <img src="pictures/url.jpg" alt="Menu" style="width:inherit; height:inherit;">
-
-                                    </div>
-                                    <div class="slide-over">
-                                        Supplier
-
-                                    </div>
-                                </div>
-                            </a>     
-                        </div>
-                    </div>
+            <div class="container">
+                <!-- Example row of columns -->
+                <!-- <div class="row">
+                 <div class="col-md-4">
+                   <h2>Heading</h2>
+                   <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                   <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                 </div>
+                 <div class="col-md-4">
+                   <h2>Heading</h2>
+                   <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                   <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                 </div>
-                </p> 
-
-
-
-                <p><a class="btn btn-danger btn-small, toRight" href="index.jsp" role="button">Reset to default</a></p>
-
-
+                 <div class="col-md-4">
+                   <h2>Heading</h2>
+                   <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                   <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                 </div>-->
 
             </div>
-        </div>
 
-        <div class="container">
-            <!-- Example row of columns -->
-            <!-- <div class="row">
-             <div class="col-md-4">
-               <h2>Heading</h2>
-               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-               <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-             </div>
-             <div class="col-md-4">
-               <h2>Heading</h2>
-               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-               <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-             <div class="col-md-4">
-               <h2>Heading</h2>
-               <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-               <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-             </div>-->
-
-        </div>
-
-        <hr>
+            <hr>
 
 
-        <footer>
-            <p>&copy; Lalaland 2099</p>
-        </footer>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
+            <footer>
+                <p>&copy; Lalaland 2099</p>
+            </footer>
+        </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
 
-    <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
 
-    <script src="js/main.js"></script>
+        <script src="js/main.js"></script>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-        (function (b, o, i, l, e, r) {
-            b.GoogleAnalyticsObject = l;
-            b[l] || (b[l] =
-                    function () {
-                        (b[l].q = b[l].q || []).push(arguments)
-                    });
-            b[l].l = +new Date;
-            e = o.createElement(i);
-            r = o.getElementsByTagName(i)[0];
-            e.src = '//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e, r)
-        }(window, document, 'script', 'ga'));
-        ga('create', 'UA-XXXXX-X', 'auto');
-        ga('send', 'pageview');
-    </script>
-</body>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function (b, o, i, l, e, r) {
+                b.GoogleAnalyticsObject = l;
+                b[l] || (b[l] =
+                        function () {
+                            (b[l].q = b[l].q || []).push(arguments)
+                        });
+                b[l].l = +new Date;
+                e = o.createElement(i);
+                r = o.getElementsByTagName(i)[0];
+                e.src = '//www.google-analytics.com/analytics.js';
+                r.parentNode.insertBefore(e, r)
+            }(window, document, 'script', 'ga'));
+            ga('create', 'UA-XXXXX-X', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
 </html>
 
