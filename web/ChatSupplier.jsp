@@ -141,5 +141,6 @@
                 messageList[0].scrollTop = messageList[0].scrollHeight;
             });
         </script>
+        <a href="SupplierOrderPage.jsp">View Past Orders</a>
     </body>
 </html>
