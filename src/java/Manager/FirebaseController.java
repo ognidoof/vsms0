@@ -16,11 +16,11 @@ public class FirebaseController {
 
     public static void main(String[] args) {
         ArrayList<OrderItem> itemList = new ArrayList<OrderItem>();
-        itemList.add(new OrderItem("peanut","5", "23", "pieces", "FreshFoodz"));
-        itemList.add(new OrderItem("chips","1", "10", "bags", "FreshFoodz"));
-        Order order1 = new Order("43","Christina", "0", "FreshFoodz", itemList);
+        itemList.add(new OrderItem("peanut", "5", "23", "pieces", "FreshFoodz"));
+        itemList.add(new OrderItem("chips", "1", "10", "bags", "FreshFoodz"));
+        Order order1 = new Order("43", "Christina", "0", "FreshFoodz", itemList);
 
-        Order order2 = new Order("50","Christina", "", "Only a Matter of Thyme", itemList);
+        Order order2 = new Order("50", "Christina", "", "Only a Matter of Thyme", itemList);
         ArrayList<Order> orderList = new ArrayList<Order>();
         orderList.add(order1);
         orderList.add(order2);
@@ -88,7 +88,6 @@ public class FirebaseController {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
-
             @Override
             public void onCancelled() {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -99,8 +98,9 @@ public class FirebaseController {
         for (Order order : orderList) {
 
             //Start sending order
-            String message = "<li>Order sent!!!";
-            message += "<li>Order ID: "+order.getOrderId();
+            String message = "<font color=\"red\">";
+            message += "<li>Order sent!!!";
+            message += "<li>Order ID: " + order.getOrderId();
             message += "<li> ----------------------------------";
             ArrayList<OrderItem> orderItemList = order.getOrderItem();
             int i = 0;
@@ -109,12 +109,13 @@ public class FirebaseController {
                 String itemName = orderItem.getName();
                 String itemQuantity = orderItem.getQuantity();
                 String itemUnit = orderItem.getUnit();
-                message += "<li>item " + i + ": " + itemName + " " + itemUnit + " " + itemQuantity;
+                message += "<li>item " + i + ": " + itemName + " " + itemQuantity + " " + itemUnit;
             }
             message += "<li>Please answer -reply {order key} {\"yes\" to approve or \"no\" to reject>}";
 
+            message += "</font >";
             Map<String, String> post1 = new HashMap<String, String>();
-            post1.put("orderid",order.getOrderId());
+            post1.put("orderid", order.getOrderId());
             post1.put("receiver", order.getSupplier());
             post1.put("sender", order.getVendor());
             post1.put("text", message);
