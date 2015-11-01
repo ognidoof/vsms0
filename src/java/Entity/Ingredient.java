@@ -12,13 +12,17 @@ package Entity;
  */
 public class Ingredient {
     private String name;
+    private String ingID;
     private int quantity;
     private String unit;
+    private String supID;
 
-    public Ingredient(String name, int quantity, String unit) {
+    public Ingredient(String name, String ingID, int quantity, String unit, String supID) {
         this.name = name;
+        this.ingID = ingID;
         this.quantity = quantity;
         this.unit = unit;
+        this.supID = supID;
     }
 
     public String getName() {
@@ -27,6 +31,10 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getingID(){
+        return this.ingID;
     }
 
     public int getQuantity() {
@@ -43,6 +51,11 @@ public class Ingredient {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+    
+    public String getSupID(){
+        
+        return supID;
     }
     
 }

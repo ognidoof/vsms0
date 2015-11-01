@@ -14,14 +14,20 @@ import java.util.HashMap;
  * @author Benjamin
  */
 public class Dish {
+    private String dID;
     private String name;
     private HashMap<Ingredient, Supplier> ingredientList;
 
-    public Dish(String name, HashMap<Ingredient, Supplier> ingredientList) {
+    public Dish(String dID, String name, HashMap<Ingredient, Supplier> ingredientList) {
+        this.dID = dID;
         this.name = name;
         this.ingredientList = ingredientList;
     }
-
+    
+    public String getDishID(){
+        return dID;
+    }
+    
     public String getName() {
         return name;
     }
