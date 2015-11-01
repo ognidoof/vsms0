@@ -95,8 +95,8 @@ public class SupplierDAO {
         return sup;
     }
     
-    public static ArrayList<Supplier> favouriteSuppliers(){
-        String vendorID="1";//session.getAttribute("vendorID");
+    public static ArrayList<Supplier> favouriteSuppliers(String id){
+        String vendorID=id;
         ArrayList<Supplier> favouriteList=new ArrayList<Supplier>();
         Connection conn = null;
         PreparedStatement statement = null;

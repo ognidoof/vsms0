@@ -17,12 +17,12 @@
 <!DOCTYPE html>
 
 <%
-    Menu menu = (Menu) session.getAttribute("menu");
+    Menu menu = MenuManager.populateMenu("1");
     int last = 0;
     int append = 1;
     boolean check = true;
     String dishName = request.getParameter("dishName");
-    Menu m1 = (Menu) session.getAttribute("menu");
+    Menu m1 = MenuManager.populateMenu("1");
 
     if (dishName != null) {
         HashMap<Ingredient, Supplier> map = new HashMap<Ingredient, Supplier>();
@@ -137,9 +137,13 @@
                                             HashMap<Ingredient, Supplier> dIList = d.getIngredientList();
                                             Set<Ingredient> ingredientSet = dIList.keySet();
                                             Iterator<Ingredient> iter = ingredientSet.iterator();
-
+                                            //boolean block=false;
+                                            //iter.next();
+                                            //Ingredient test=iter.next();
+                                            %><%//dIList==null%><%
                                             while (iter.hasNext()) {
                                                 Ingredient i = iter.next();
+                                                if(i!=null){
                                         %>
 
                                         <tbody>
@@ -152,6 +156,7 @@
 
 
                                         <%
+                                                }
                                             }
                                         %>
                                     </table>
@@ -164,7 +169,7 @@
                             }
                         } else {
                         %>
-                        <p>No recipes found</p>
+                        <p>No recipes found<%=menu==null%></p>
                         <%
                             }
                         %>
