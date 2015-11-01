@@ -14,10 +14,10 @@
 <%
     String id = (String) request.getParameter("id");
     String resent=(String)request.getParameter("resent");
-    if(resent.equals(true)){
+    if(resent!=null&&resent.equals("true")){
         SupplierDAO.saveAsFavouriteSupplier(id,"1");
     }
-    if(resent.equals(false)){
+    if(resent!=null&&resent.equals("false")){
         SupplierDAO.deleteFavouriteSupplier(id,"1");
     }
 %>
