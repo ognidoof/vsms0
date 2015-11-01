@@ -84,7 +84,7 @@ public class SupplierDAO {
     }
     */
     
-    public Supplier getSupplier(String supName, List<Supplier> supArray){
+    public static Supplier getSupplier(String supName, List<Supplier> supArray){
             Supplier sup = null;
             
             for(Supplier toSearch : supArray){
@@ -135,5 +135,108 @@ public class SupplierDAO {
             return favouriteList;
         } 
     }
+    
+    public static void saveAsFavouriteSupplier(String supplierId, String vendorId){
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String query = "";
+        
+        String vendor_id=vendorId;
+        String supplier_id=supplierId;
+        //get supplier ID? or retrieve from arraylist?
+        
+        try
+        {
+            conn = ConnectionManager.getConnection();
+            query = "INSERT INTO favourite_supplier " +"(vendor_id,supplier_id) VALUES(?,?)";
+             //where vendor_id=?
+            statement = conn.prepareStatement(query);
+            statement.setString(1,vendor_id);
+            statement.setString(2,supplier_id);
+            statement.executeUpdate();
+            
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(statement != null)
+            {
+                try
+                {
+                    statement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }                
+            }
+        }
+    }
+    
+    public static void deleteFavouriteSupplier(String supplierId, String vendorId){
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String query = "";
+        
+        String vendor_id=vendorId;
+        String supplier_id=supplierId;
+        //get supplier ID? or retrieve from arraylist?
+        
+        try
+        {
+            conn = ConnectionManager.getConnection();
+            query = "Delete from favourite_supplier where vendor_id=? and supplier_id=?";
+             //where vendor_id=?
+            statement = conn.prepareStatement(query);
+            statement.setString(1,vendor_id);
+            statement.setString(2,supplier_id);
+            statement.executeUpdate();
+            
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(statement != null)
+            {
+                try
+                {
+                    statement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }                
+            }
+        }
+    }
+    
 }
 
