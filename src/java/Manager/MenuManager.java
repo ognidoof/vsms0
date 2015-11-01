@@ -24,6 +24,7 @@ import java.util.Set;
 public class MenuManager {
     
     Menu menu;
+    public static Connection publicConn;
     
 //    public Menu defaultMenu(){
 //        
@@ -185,15 +186,24 @@ public class MenuManager {
 //        }
 //    }
     
+    public static void createConnection(){
+        try{
+            publicConn=ConnectionManager.getConnection();
+        }catch(Exception e){
+            
+        }
+        
+    }
+    
     //this method creates an ingredient object
-    public Ingredient getIngredient(String ingredient_id, String supplierId, String quantity) {
+    public static Ingredient getIngredient(String ingredient_id, String supplierId, String quantity) {
         Ingredient toReturn = null;
         Connection conn = null;
         PreparedStatement ingStatement = null;
         ResultSet ingRs = null;
         String ingQuery = "";
         try {
-            conn = ConnectionManager.getConnection();
+            conn = publicConn;
             ingQuery = "select * from ingredient where supplier_id=? and ingredient_id=?";
             //where vendor_id=?
             ingStatement = conn.prepareStatement(ingQuery);
@@ -234,7 +244,7 @@ public class MenuManager {
         String supQuery = "";
         String itemQuery = "";
         try {
-            conn = ConnectionManager.getConnection();
+            conn = publicConn;
             supQuery = "select * from supplier where supplier_id=?";
             //where vendor_id=?
             supStatement = conn.prepareStatement(supQuery);
@@ -276,7 +286,7 @@ public class MenuManager {
         }
     }
 
-    public HashMap<Ingredient, Supplier> populateIngredientList(String dishId, String vendorId) {
+    public static HashMap<Ingredient, Supplier> populateIngredientList(String dishId, String vendorId) {
         HashMap<Ingredient, Supplier> ingredientMap = new HashMap<Ingredient, Supplier>();
         Connection conn = null;
         PreparedStatement recipeStatement = null;
@@ -284,7 +294,7 @@ public class MenuManager {
         String recipeQuery = "";
         try {
             //HashMap<String, String> ingList = getIngrNameList();
-            conn = ConnectionManager.getConnection();
+            conn = publicConn;
             recipeQuery = "select * from recipe where dish_id=? and vendor_id=?";
             //where vendor_id=?
             recipeStatement = conn.prepareStatement(recipeQuery);
@@ -314,8 +324,8 @@ public class MenuManager {
         }
     }
 
-    public Menu populateMenu() {
-        String vendorID = "1";//session.getAttribute("vendorID");
+    public static Menu populateMenu(String id) {
+        String vendorID = id;//session.getAttribute("vendorID");
         ArrayList<Dish> dishList = new ArrayList<Dish>();
         Connection conn = null;
         PreparedStatement dishStatement = null;
@@ -349,7 +359,7 @@ public class MenuManager {
         }
     }
 
-    public void insertDish(Dish d, String vID) {
+    public static void insertDish(Dish d, String vID) {
         Connection conn = null;
         PreparedStatement dishStatement = null;
         PreparedStatement ingreStatement = null;
