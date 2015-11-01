@@ -125,14 +125,14 @@ public class OrderDAO {
     }
     
     
-    public static void saveOrderToDatabase(Order order){
+    public static void saveOrderToDatabase(Order order,String id){
         Connection conn = null;
         PreparedStatement statement = null;
         ResultSet rs = null;
         String query = "";
         
         String order_id=order.getOrderId();
-        String vendor_id="1";//session.getAttribute("vendorID");
+        String vendor_id=id;//session.getAttribute("vendorID");
         String total_price=order.getTotalPrice();
         ArrayList<OrderItem> itemList=order.getOrderItem();
         

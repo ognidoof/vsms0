@@ -71,7 +71,7 @@
                         
                         //Print out the modal menu
                         try {
-                            Menu menu = (Menu) session.getAttribute("menu");
+                            Menu menu = MenuManager.populateMenu("1");//(Menu) session.getAttribute("menu");
                             ArrayList<Dish> dishList = menu.getDishList();
 
                 %>

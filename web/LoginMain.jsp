@@ -22,6 +22,8 @@
             
         <%
             if(currentVendor == null && currentSupplier == null){
+                out.println(errorMsg);
+            }
         %>
         <div>
             <!--<p>Supplier Login</p>-->
@@ -46,8 +48,6 @@
             </form>
         </div>
         -->
-        <%
-            }  
-        %>
+        
     </body>
 </html>

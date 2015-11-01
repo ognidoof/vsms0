@@ -1,3 +1,4 @@
+<%@page import="Manager.MenuManager"%>
 <%@page import="Entity.Ingredient"%>
 <%@page import="Entity.Supplier"%>
 <%@page import="java.util.Iterator"%>
@@ -29,7 +30,7 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <%
-            Menu menu = (Menu) session.getAttribute("menu");
+            Menu menu = MenuManager.populateMenu("1");//(Menu) session.getAttribute("menu");
             ArrayList<Dish> dishList = (ArrayList<Dish>) menu.getDishList();
 
         %>
@@ -66,7 +67,7 @@
                 <form name="OrderForm" action="OrderPage.jsp" method="get" data-parsley-validate>
                     <p class="size"><h3>  Order Deadline <input class="inputs" type="text" name="deadline" required/></h3></br>
 </p>
-                    <%                    for (int j = 0; j < dishList.size(); j++) {
+                    <%      for (int j = 0; j < dishList.size(); j++) {
                             Dish tempDish = dishList.get(j);
                             HashMap<Ingredient, Supplier> tempMap = tempDish.getIngredientList();
                             Set<Ingredient> kSet = tempMap.keySet();
