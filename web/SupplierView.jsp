@@ -14,8 +14,11 @@
 <%
     String id = (String) request.getParameter("id");
     String resent=(String)request.getParameter("resent");
-    if(resent!=null){
+    if(resent.equals(true)){
         SupplierDAO.saveAsFavouriteSupplier(id,"1");
+    }
+    if(resent.equals(false)){
+        SupplierDAO.deleteFavouriteSupplier(id,"1");
     }
 %>
 <html lang="en">
@@ -82,6 +85,7 @@
                                 </form>
                             </td>
                             --%>
+                            <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierView.jsp?id=<%= toDisplay.getId()%>&resent=false';" value="Delete from Favourites" />
                             <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierView.jsp?id=<%= toDisplay.getId()%>&resent=true';" value="Add to Favourites" />
                             <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierCatalogue.jsp?send=<%= toDisplay.getId()%>';" value="Catalogue" />
                             </p>
