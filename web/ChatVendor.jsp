@@ -53,26 +53,34 @@
                 }
             });
 
-            // Add a callback that is triggered for each chat message.
+            // Add a callback that is triggered for each chat message created.
             messagesRef.limitToLast(10).on('child_added', function(snapshot) {
                 //GET DATA
                 var data = snapshot.val();
                 var sender = data.sender || "anonymous";
                 var receiver = data.receiver;
                 var message = data.text;
-
+                var key = data.key;
+                var ordercondition = data.ordercondition;
+                var orderid = data.orderid;
                 //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-                var messageElement = $("<li>");
+                //var messageElement = $("<li>");
+                //messageElement.text(message).prepend(senderElement);      
+                //var receiverElement = $("<i class='chat-name'></i>");
+
                 var senderElement = $("<strong class='chat-name'></strong>");
-                var receiverElement = $("<i class='chat-name'></i>");
                 senderElement.text(sender);
-
-                messageElement.text(message).prepend(senderElement);
-
-                 //ADD MESSAGE only if sender and receiver are relevant
+                //ADD MESSAGE only if sender and receiver are relevant
                 if (sender === "FreshFoodz" && receiver === "Christina" || sender === "Christina" && receiver === "FreshFoodz") {
-                    messageList.append(messageElement)
+                    messageList.append(senderElement)
+                    messageList.append(message)                    
+                    messageList.append("<li>")
+                    if(key!=null){
+                        messageList.append("Order key: " + key)
+                    }
+                    messageList.append("<li>")
                 }
+
                 //SCROLL TO BOTTOM OF MESSAGE LIST
                 messageList[0].scrollTop = messageList[0].scrollHeight;
             });
