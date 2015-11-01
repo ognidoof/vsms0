@@ -14907,7 +14907,7 @@ input[type=button].link:active,input[type=button].link:hover,input[type=reset].l
     left: 0;
     overflow: hidden;
     top: 0;
-    width: 100%;
+    width: inherit;
 }
 .tile-container
 {

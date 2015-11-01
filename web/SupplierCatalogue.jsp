@@ -65,7 +65,7 @@
                 <h1><%= toDisplay.getSupName()%></h1>
                 <%
                     List<String> items = toDisplay.getItems();
-                    %><%//items.size()%><%
+                    %><%=items.size()%><%
                     for (String item : items) {
                         out.println("<a  data-toggle=\"modal\" data-target=\"#myModal\">" + item  + "</a><br>");
                         
@@ -75,31 +75,42 @@
                             ArrayList<Dish> dishList = menu.getDishList();
 
                 %>
+                
                 <!-- Modal -->
+               
                 <div class="modal fade" id="myModal" role="dialog">
+                    <%=dishList.size()%>  
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                             <div class="modal-header">
+                               
                                 <button  type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Dish Lists</h4>
                             </div>
+                            
                             <div class="modal-body">
+                                
                                 <%for (Dish dish : dishList) {%>
                                 <div class="panel-group" id="accordion">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
+                                                
                                                 <a data-toggle="collapse" data-parent="#accordion" href="#<%=dish.getName().replaceAll("\\s", "")%>">
                                                     <%=dish.getName()%></a>
                                             </h4>
+                                            
                                         </div>
                                         <div id="<%=dish.getName().replaceAll("\\s", "")%>" class="panel-collapse collapse in">
                                             <div class="panel-body">
                                                 <ul>
                                                     <%
+                                                    
                                                         HashMap<Ingredient, Supplier> ingredientMap = dish.getIngredientList();
                                                         Iterator iter = ingredientMap.keySet().iterator();
+                                                         
                                                         while (iter.hasNext()) {
+                                                           
                                                             Ingredient ingredient = (Ingredient) iter.next();
                                                             Supplier supplier = ingredientMap.get(ingredient);
                                                             if (supplier == null) {
