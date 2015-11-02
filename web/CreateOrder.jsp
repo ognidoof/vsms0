@@ -64,8 +64,7 @@
                 <!--<p>You have <a href="#">1 new message!</a></p>-->
 
 
-                <form name="OrderForm" action="OrderPage.jsp" method="get" data-parsley-validate>
-                    <p class="size"><h3>  Order Deadline <input class="inputs" type="text" name="deadline" required/></h3></br>
+                <form name="OrderForm" action="OrderPage.jsp" method="get">
 </p>
                     <%      for (int j = 0; j < dishList.size(); j++) {
                             Dish tempDish = dishList.get(j);
@@ -79,8 +78,9 @@
                         <table>
                         <!-- Title + Input textbox-->
                         <tr><td>
-                        <p id="<%=tempDish.getName()%>" > <%=tempDish.getName()%> 
-                            Qty: 
+                       
+                                <h5>   <p id="<%=tempDish.getName()%>" > <%=tempDish.getName()%> 
+                                        Qty: </h5>
                             </td>
                             <td ><input class="inputs, toRight"  type="number" name="<%="quantity" + j%>" required data-parsley-type="integer" min="0" data-parsley-min="0"/>
                             <input type="hidden" name="<%="dish" + j%>" value="<%=tempDish.getName()%>">
@@ -93,21 +93,21 @@
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title">
+                                <h5 class="panel-title">
 
 
                                     <%
                                         if (tempDish.getName().contains(" ")) {
                                     %>
                                     <a data-toggle="collapse" class="collapsed" href="#<%=j%>" id="<%=tempDish.getName()%>"><%=tempDish.getName()%> Ingredients</a>
-                                </h4>
+                                </h5>
                             </div>
                             <div id="<%=j%>" class="panel-collapse collapse"> 
                                 <%
                                 } else {
                                 %>
-                                <a data-toggle="collapse" href="#<%=tempDish.getName() + 1%>" id="<%=tempDish.getName()%>"><%=tempDish.getName()%></a>
-                                </h4>
+                                <a data-toggle="collapse" class="collapsed" href="#<%=tempDish.getName() + 1%>" id="<%=tempDish.getName()%>"><%=tempDish.getName()%> Ingredients</a>
+                                </h5>
                             </div>
                             <div id="<%=tempDish.getName() + 1%>" class="panel-collapse collapse"> 
                                 <%}
