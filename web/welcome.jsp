@@ -47,7 +47,7 @@
             <div class="container">
                 <h1>Welcome,<br/> </h1>
 
-                <div class="user"><h2> To the train rekt</h2></div> <br/>
+                <div class="user"><h2> To the Train Rekt</h2></div> <br/>
 
                 <div class="row">
 
