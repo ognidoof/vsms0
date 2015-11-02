@@ -1,4 +1,6 @@
-
+<%@page import="Entity.Supplier"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Manager.*"%>
 <html>
     <head>
         <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
@@ -11,22 +13,29 @@
         #chat{
             margin-top: 100px;
         }
-        
+
         .list-group-item:active{
-              background-color: blue; 
+            background-color: blue; 
         }
-        
+
     </style>
-    
+
     <body>
         <%@include file="menu.jsp"%>
-
+        <%
+            //SupplierDAO supplierDao = new SupplierDAO();
+            ArrayList<Supplier> supplierList = SupplierDAO.favouriteSuppliers("1");//session.getId());
+        %>
         <form action="ChatVendor.jsp" method="GET" id="chat">
             <input type="hidden" value="FreshFoodz" name="hiddenvalue" id="hiddenvalue"></input>
-            <ul class="list-group">
-                <li class="list-group-item"><h1>Contact Lists</h1></li>
-                <li class="list-group-item" name="FreshFoodz" onclick="submitFunction('FreshFoodz')" ><h3>FreshFoodz</h3></li>
-                <li class="list-group-item" name="Only A Matter of Thyme" onclick="submitFunction('Only A Matter of Thyme')"><h3>Only A Matter of Thyme Chat</h3></li>                
+
+            <ul class ="list-group">
+                <li class ="list-group-item"><h1>Contact Lists</h1></li>
+                    <% for (Supplier supplier : supplierList) {
+                            String supName = supplier.getSupName();
+                    %>
+                <li class ="list-group-item" name="<%=supName%>" onclick="submitFunction('<%=supName%>')" ><h3><%=supName%></h3></li>
+                        <%}%>
             </ul>
         </form>
         <script>
@@ -36,5 +45,4 @@
             }
         </script>
     </body>
-
-</html> 
+</html>
