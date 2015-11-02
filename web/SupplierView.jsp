@@ -12,14 +12,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%
-    String id = (String) request.getParameter("id");
-    String resent=(String)request.getParameter("resent");
-    if(resent!=null&&resent.equals("true")){
-        SupplierDAO.saveAsFavouriteSupplier(id,"1");
+<%    String id = (String) request.getParameter("id");
+    String resent = (String) request.getParameter("resent");
+    if (resent != null && resent.equals("true")) {
+        SupplierDAO.saveAsFavouriteSupplier(id, "1");
     }
-    if(resent!=null&&resent.equals("false")){
-        SupplierDAO.deleteFavouriteSupplier(id,"1");
+    if (resent != null && resent.equals("false")) {
+        SupplierDAO.deleteFavouriteSupplier(id, "1");
     }
 %>
 <html lang="en">
@@ -60,13 +59,13 @@
 
 
         <div class="jumbotron">
-            
+
             <div class="container">
                 <%
                     //SupplierDAO sDAO = new SupplierDAO();
-                   // List<Supplier> supList = sDAO.retrieveAll();
+                    // List<Supplier> supList = sDAO.retrieveAll();
                     Supplier toDisplay = MenuManager.getSupplierById(id);//sDAO.getSupplier(id, supList);
-                %>
+%>
                 <h1><%= toDisplay.getSupName()%></h1>
                 <div>
                     <p> <%= toDisplay.getDesc()%> </p></br>
@@ -86,40 +85,59 @@
                                 </form>
                             </td>
                             --%>
-                            
-                            
+
+
                             <p>
-                            <a data-toggle="modal" class="btn btn-primary btn-lg" data-target="#myModal" >Add to Favourites +</a>
-                            <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierCatalogue.jsp?send=<%= toDisplay.getId()%>';" value="View Catalogue" />
+                                <a data-toggle="modal" class="btn btn-primary btn-lg" data-target="#myModal" >Add to Favourites +</a>
+                                <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierCatalogue.jsp?send=<%= toDisplay.getId()%>';" value="View Catalogue" />
                             </p>
                         </table>
-                         
-                                <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Website</button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#websiteModal">Website</button>
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Favourite Supplier</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Add Supplier to Favourites?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierView.jsp?id=<%= toDisplay.getId()%>&resent=true';" value="Add to Favourites" />
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Favourite Supplier</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Add Supplier to Favourites?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierView.jsp?id=<%= toDisplay.getId()%>&resent=true';" value="Add to Favourites" />
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="websiteModal" role="dialog">
+                            <div class="modal-dialog">
 
-                    </div>
-                </div>
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Under Construction!</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Please pardon us as this section is currently under construction!</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
 
-            
+                            </div>
+                        </div>               
+
                     </div>    
                 </div>
             </div>

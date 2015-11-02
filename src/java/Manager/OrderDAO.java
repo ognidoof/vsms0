@@ -308,7 +308,7 @@ public class OrderDAO {
         {
             //Retrieves from database all orders relevant to the current person logged in(know this via vendor id)
             conn = ConnectionManager.getConnection();
-            query = "select * from `order`where vendor_id=?";
+            query = "select * from `order`where vendor_id=? ORDER BY ABS(order_id) ASC";
              //where vendor_id=?
             statement = conn.prepareStatement(query);
             statement.setString(1,vendorID);

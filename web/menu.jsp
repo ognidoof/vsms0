@@ -20,7 +20,7 @@ and open the template in the editor.
             <form class="navbar-form navbar-right" role="form">
 
 
-                        <a class="btn btn-primary btn-block" href="#" role="button">My Account &raquo;</a>
+                        <a class="btn btn-primary btn-block" href="Account.jsp" role="button">My Account &raquo;</a>
                     
                         <a class="btn btn-primary btn-block" href="OrderPage.jsp" role="button">Make Regular Order &raquo;</a>
                
