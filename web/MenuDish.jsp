@@ -128,7 +128,7 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#<%=ref%>">
-                                        <%=name%> <%=dID%>
+                                        Dish #<%=dID%> : <%=name%> 
                                     </a>
                                 </h4>
                             </div><!--/.panel-heading -->

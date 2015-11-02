@@ -24,8 +24,6 @@ and open the template in the editor.
                     
                         <a class="btn btn-primary btn-block" href="OrderPage.jsp" role="button">Make Regular Order &raquo;</a>
                
-                        <a class="btn btn-primary btn-block" href="EmergencyOrder.jsp" role="button">Make Emergency Order &raquo;</a>
-                    
                         <a class="btn btn-primary btn-block" href="Recipe.jsp" role="button">Create Dish &raquo;</a>
                         
                         <a class="btn btn-primary btn-block" href="ChatList.jsp" role="button">Supplier Chat &raquo;</a>

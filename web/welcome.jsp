@@ -4,6 +4,13 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <%@page import="Manager.OrderDAO"%>
+    
+    <%
+        
+        String username = OrderDAO.getVendorNameById((String) session.getAttribute("currentVendor"));
+    %>
+    
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -48,7 +55,7 @@
             <div class="container">
                 <h1>Welcome,<br/> </h1>
 
-                <div class="user"><h2> To the Train Rekt</h2></div> <br/>
+                <div class="user"><h2><%=username%></h2></div> <br/>
 
                 <div class="row">
 
