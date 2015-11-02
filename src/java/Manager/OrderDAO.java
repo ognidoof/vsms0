@@ -67,6 +67,59 @@ public class OrderDAO {
                     return orderList;
     }
     */
+    public static String getVendorNameById(String id){
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        String query = "";
+        
+        String vendor_id=id; 
+        String name="";
+        try
+        {
+            query = "select * from vendor where vendor_id=?";
+             //where vendor_id=?
+            statement = conn.prepareStatement(query);
+            statement.setString(1,id);
+            rs = statement.executeQuery();
+            while(rs.next()){
+                name=rs.getString("vendor_name");
+                
+            }
+            
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(statement != null)
+            {
+                try
+                {
+                    statement.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }                
+            }
+        }
+        return name;
+    }
+    
+    
     public static void saveOrderItemToDatabase(OrderItem orderItem, String order_id,String vendor_id){
         Connection conn = null;
         PreparedStatement statement = null;
