@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-xs-4">
                             <div class="tile-large">
-                                <a href="OrderChoice.jsp" style="display:block;height:inherit; width:inherit; text-decoration: none;"> 
+                                <a href="OrderPage.jsp" style="display:block;height:inherit; width:inherit; text-decoration: none;"> 
                                     <div class="tile-content slide-up-2">
                                         <div class="slide">
                                             <img src="pictures/Order.png" alt="Order Icon" style="width:inherit; height:inherit;">
