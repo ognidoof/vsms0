@@ -99,7 +99,7 @@
                                     <%
                                         if (tempDish.getName().contains(" ")) {
                                     %>
-                                    <a data-toggle="collapse" href="#<%=j%>" id="<%=tempDish.getName()%>"><%=tempDish.getName()%> Ingredients</a>
+                                    <a data-toggle="collapse" class="collapsed" href="#<%=j%>" id="<%=tempDish.getName()%>"><%=tempDish.getName()%> Ingredients</a>
                                 </h4>
                             </div>
                             <div id="<%=j%>" class="panel-collapse collapse"> 
