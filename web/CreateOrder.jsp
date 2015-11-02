@@ -136,7 +136,10 @@
                     </div>
                     <!-- PANEL ENDS HERE-->
                     <%}%>
-                    <input class="btn btn-primary btn-sm" type="submit" value="Save"/>
+                    <p>
+                    <input class="btn btn-success btn-lg" type="submit" value="Send Order"/>
+                    <a href="OrderPage.jsp" class="btn btn-primary btn-lg">Back</a>
+                    </p>
                 </form>
             </div>
         </div>
