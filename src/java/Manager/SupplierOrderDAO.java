@@ -133,6 +133,14 @@ public class SupplierOrderDAO {
         }
         return orderList;
     }
-
+    public Order returnOrderBasedOnID (ArrayList<Order> orderList,String id){
+        Order returnOrder = null;
+        for(Order order:orderList){
+            if(order.getOrderId().equals(id)){
+                returnOrder=order;
+            }
+        }
+        return returnOrder ; 
+    }
     
 }
