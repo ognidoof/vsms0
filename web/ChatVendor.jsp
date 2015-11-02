@@ -1,4 +1,4 @@
-<%@include file="protect.jsp"%>
+
 <%@page import="Manager.OrderDAO"%>
 <html>
     <head>

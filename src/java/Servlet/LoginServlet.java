@@ -44,6 +44,10 @@ public class LoginServlet extends HttpServlet {
             String supplier_id = loginSupplier(username, password);
             String vendor_id = loginVendor(username, password);
             
+            //hard code supplier for now "FreshFoodz"
+            if (username.equals("FreshFoodz")){
+                supplier_id = "FreshFoodz";
+            }
             //destination
             String url = "LoginMain.jsp";
             

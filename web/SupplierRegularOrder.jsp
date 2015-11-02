@@ -1,10 +1,15 @@
-<%@include file="protect.jsp"%>
+
 <%@page import="Entity.OrderItem"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entity.Order"%>
 <%@page import="Entity.Order"%>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+
+
+
+
+
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->

@@ -1,6 +1,5 @@
 
 <%@page import="Manager.SupplierOrderDAO"%>
-<%@include file="protect.jsp"%>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -36,7 +35,7 @@
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
         <script>
-            $(function () {
+            $(function() {
                 $("#datepicker").datepicker();
             });
         </script>
@@ -61,14 +60,11 @@
                 <h1>Past Orders</h1>
                 <%
                     String currentSupplierID = (String) session.getAttribute("currentSupplier");
-                    //out.println(currentSupplierID);//1
-                    ArrayList<Order> supplierOrders = SupplierOrderDAO.getRelevantOrders(currentSupplierID);
-                    System.out.println("Supplier orders are: "+supplierOrders.size());
-                    for(Order order : supplierOrders){
-                        System.out.println( order.getOrderId());
-                    }
 
-                    HashMap<String, ArrayList<OrderItem>> orderlists = SupplierOrderDAO.getActualOrders(supplierOrders);
+                    //out.println(currentSupplierID);//1
+                    ArrayList<Order> supplierOrders = SupplierOrderDAO.getRelevantOrders("1");
+                    System.out.println("Supplier orders are: " + supplierOrders.size());
+
                 %>
 
                 <div class="well">
@@ -77,33 +73,27 @@
                 <div class="container-fluid">
                     <div class="row">
                         <%
-                            Iterator iter = orderlists.keySet().iterator();
-                            while (iter.hasNext()) {
-                                String orderid = (String) iter.next();
-                                ArrayList<OrderItem> orderItems = orderlists.get(orderid);
-
-//                        
-//                        for(Map.Entry<String, ArrayList<OrderItem>> entry : orderlists.entrySet()){
-//                            String orderid = entry.getKey();
-//                            ArrayList<OrderItem> orderItems = entry.getValue(); 
-//                            System.out.println(orderid);
-%>
-                        <div class="panel panel-default col-sm-5" onclick="location.href = 'SupplierRegularOrder.jsp?num=<%=orderid%>';">
-                            <div class="panel-heading"><h4>Order #<%= orderid%></h4></div>
+                            for (Order order : supplierOrders) {
+                                String id = order.getOrderId();
+                                ArrayList<OrderItem> orderItems = order.getOrderItem();
+                        %>
+                        <div class="panel panel-default col-sm-5" onclick="location.href = 'SupplierRegularOrder.jsp?num=<%=id%>';">
+                            <div class="panel-heading"><h4>Order ID <%=id%></h4></div>
                             <div class="panel-body">   
                                 <ul>
                                     <%
                                         int i = 0;
                                         for (OrderItem orderItem : orderItems) {
+                                            System.out.println("The order item is " + orderItem);
                                             i++;
-                                            if (i > 2) {
+                                            if (i <= 2) {
                                                 String name = orderItem.getName();
                                                 String quantity = orderItem.getQuantity();
                                                 String unit = " " + orderItem.getUnit();
                                     %>
                                     <li ><%=name%> ... <%=quantity%><%=unit%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>
                                         <%}
-                                       }%>
+                                            }%>
                                     <li >...</li>
                                 </ul>
                             </div>
@@ -118,7 +108,7 @@
         <hr>
 
         <footer>
-            <p>&copy; Ognidoof 2015</p>
+            <p>&copy; Lalaland 2099</p>
         </footer>
      <!-- /container -->        
 

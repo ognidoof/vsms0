@@ -1,4 +1,4 @@
-<%@include file="protect.jsp"%>
+
 <html>
     <head>
         <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
@@ -16,7 +16,7 @@
             <header>Supplier Chat (https://vsms.firebaseio.com/)</header>
 
             <div class='chat-toolbar'>
-                Sending to: <h3>Christina</h3>
+                Sending to: <h3>Bob's Bakery And Bistro</h3>
             </div>
 
             <ul id='messages' class="chat-messages"></ul>
@@ -76,7 +76,7 @@
                                     throw new Exception("command is invalid");
                                 }
                                 //SAVE DATA TO FIREBASE AND EMPTY FIELD
-                                messagesRef.push({sender: "FreshFoodz", receiver: "Christina", text: message});
+                                messagesRef.push({sender: "FreshFoodz", receiver: "Bob's Bakery And Bistro", text: message});
                                 messageField.val('');
 
                                 //if you would like to display all or related id data
@@ -97,12 +97,12 @@
                         }
                         else {
                             //SAVE DATA TO FIREBASE AND EMPTY FIELD
-                            messagesRef.push({sender: "FreshFoodz", receiver: "Christina", text: message});
+                            messagesRef.push({sender: "FreshFoodz", receiver: "Bob's Bakery And Bistro", text: message});
                             messageField.val('');
                         }
                     } catch (err) {
                         //SAVE DATA TO FIREBASE AND EMPTY FIELD
-                        messagesRef.push({sender: "FreshFoodz", receiver: "Christina", text: "Sorry your command is invalid"});
+                        messagesRef.push({sender: "FreshFoodz", receiver: "Bob's Bakery And Bistro", text: "Sorry your command is invalid"});
                         messageField.val('');
                     }
                 }
@@ -128,7 +128,7 @@
                 var senderElement = $("<strong class='chat-name'></strong>");
                 senderElement.text(sender);
                 //ADD MESSAGE only if sender and receiver are relevant
-                if (sender === "FreshFoodz" && receiver === "Christina" || sender === "Christina" && receiver === "FreshFoodz") {
+                if (sender === "FreshFoodz" && receiver === "Bob's Bakery And Bistro" || sender === "Bob's Bakery And Bistro" && receiver === "FreshFoodz") {
                     messageList.append(senderElement)
                     messageList.append(message)
                     messageList.append("<li>")
