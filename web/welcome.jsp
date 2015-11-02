@@ -53,7 +53,7 @@
 
                     <div class="col-xs-4">
                         <div class="tile-large">
-                            <a href="#" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                            <a href="Account.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
                                 <div class="tile-content slide-up-2">
                                     <div class="slide">
                                         <img src="pictures/My Account.png" alt="My Account" style="width:inherit; height:inherit;">
