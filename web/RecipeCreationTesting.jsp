@@ -8,6 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entity.Supplier"%>
 <%@page import="Manager.SupplierDAO"%>
+<%@page import="Manager.MenuManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -60,12 +61,13 @@
 
                 <%
                     SupplierDAO sDAO = new SupplierDAO();
+                    
                     List<Supplier> supList2 = SupplierDAO.favouriteSuppliers("1");//sDAO.retrieveAll();
                    // Supplier toDisplay = sDAO.getSupplier("FreshFruitz", supList2);
                 %>
                 <h1>Create Dish</h1>
                 <h2>Dish Name:</h2>
-                <form name="RecipeCreation" method="get" action="MenuDish.jsp">
+                <form name="RecipeCreation" method="post" action="MenuDish.jsp">
                     <input class="inputs" type="text" name="dishName" placeholder="Name of Dish" required/>
                     
                     <!-- This is where the ingredients print-->
@@ -132,13 +134,14 @@
                                                         while (iter.hasNext()) {
                                                            // counter++;
                                                             String ingredient = (String) iter.next();
+                                                            //String ingID = MenuManager.getIngredientByName(ingredient);
                                                     %>
 
 
                                                     <!--
                                MODAL IS CALLED HERE!!!"
                                                     -->
-                                                    <button type= "button" id="<%=s.getSupName()%>_<%=ingredient%>_<%=ingredient + "'s unit"%> "  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button><br/>
+                                                    <button type= "button" id="<%=s.getSupName()%>@<%=s.getId()%>_<%=ingredient%>_<%=ingredient + "'s unit"%> "  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button><br/>
                                                     
 
                                                     <%
@@ -364,6 +367,8 @@
                     element.id = 'element' + iteration;
                     element.value = item
                     cell4.appendChild(element);
+                    
+                    
 
 
                 }

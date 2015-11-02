@@ -230,6 +230,39 @@ public class MenuManager {
         }
     }
     
+    //NINJA
+        public static String getIngredientByName(String ingredient_name) {
+        Ingredient toReturn = null;
+        Connection conn = null;
+        PreparedStatement ingStatement = null;
+        ResultSet ingRs = null;
+        String ingQuery = "";
+        String ingID = "";
+        try {
+            conn = publicConn;
+            ingQuery = "select * from ingredient where ingredient_name=?";
+            //where vendor_id=?
+            ingStatement = conn.prepareStatement(ingQuery);
+            ingStatement.setString(1, ingredient_name);
+            ingRs = ingStatement.executeQuery();
+            
+            while (ingRs.next()) {
+                ingID = ingRs.getString("ingredient_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ingStatement != null) {
+                try {
+                    ingStatement.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return ingID;
+        }
+    }
+    
     public static Supplier getSupplierById(String id) {
         Supplier supplier = null;
         ArrayList<String> list = new ArrayList<String>();
@@ -337,7 +370,7 @@ public class MenuManager {
         String dishQuery = "";
         try {
             conn = ConnectionManager.getConnection();
-            dishQuery = "SELECT * from dish WHERE vendor_id=? ORDER BY dish_id";
+            dishQuery = "SELECT * from dish WHERE vendor_id=? ORDER BY ABS(dish_id) ASC";
             //where vendor_id=?
             dishStatement = conn.prepareStatement(dishQuery);
             dishStatement.setString(1, vendorID);
@@ -399,6 +432,7 @@ public class MenuManager {
                     ingreStatement.setString(3, q);
                     ingreStatement.setString(4, vID);
                     ingreStatement.setString(5, i.getSupID());
+                    ingreStatement.executeUpdate();
                 }
             }
 

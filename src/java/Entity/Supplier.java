@@ -102,5 +102,9 @@ public class Supplier {
     public void addIngredientId(ArrayList<String> idList){
         this.idList=idList;
     }
+    
+    public ArrayList<String> getIDList(){
+        return idList;
+    }
 }
 

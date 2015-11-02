@@ -17,24 +17,35 @@
 <!DOCTYPE html>
 
 <%
-    Menu menu = MenuManager.populateMenu("1");
+    String currentVendor = (String) session.getAttribute("currentVendor");
+    Menu menu = MenuManager.populateMenu(currentVendor);
     int last = 0;
-    int append = 1;
+    int append = 0;
     boolean check = true;
     String dishName = request.getParameter("dishName");
-    Menu m1 = MenuManager.populateMenu("1");
+    //Menu menu = MenuManager.populateMenu("1");
 
     if (dishName != null) {
         HashMap<Ingredient, Supplier> map = new HashMap<Ingredient, Supplier>();
-        if (m1 != null) {
-            ArrayList<Dish> dlist = m1.getDishList();
+        if (menu != null) {
+            ArrayList<Dish> dlist = menu.getDishList();
             last = Integer.parseInt(dlist.get(dlist.size() - 1).getDishID());
         }
         while (check) {
 
-            String ingredient = request.getParameter("ingredient" + append);
-            if (ingredient != null) {
+            String element = request.getParameter("element" + append);
+            String[] elePart;
+            if(element!=null){
+            //if (!ingPart[0].toString().equals(null)) {
                 //out.println(ingredient);
+                elePart = element.split("_");
+                String[] supPart = elePart[0].split("@");
+                String supName = supPart[0];
+                String supID = supPart[1];
+                
+                String ingName = elePart[1];
+                String ingID = MenuManager.getIngredientByName(ingName);
+                                        
                 String quantity = request.getParameter("quantity" + append);
                 String units = request.getParameter("units" + append);
                 //out.println(quantity);
@@ -46,7 +57,7 @@
                     units = "pieces";
                 }
                 int qty = Integer.parseInt(quantity);
-                Ingredient ing = new Ingredient(ingredient, "0", qty, units, "0");
+                Ingredient ing = new Ingredient(ingName, ingID, qty, units, supID);
                 map.put(ing, null);
             } else {
                 check = false;
@@ -57,10 +68,11 @@
         String l = last + "";
         Dish newDish = new Dish(l, dishName, map);
         MenuManager menuMan = new MenuManager();
-        menuMan.insertDish(newDish, "1");
         ArrayList<Dish> dishList = menu.getDishList();
         dishList.add(newDish);
         menu.setDishList(dishList);
+        menuMan.insertDish(newDish, "1");
+        
     }
 
 %>
@@ -101,8 +113,8 @@
 
                     <div class="panel-group" id="accordion">
 
-                        <%                            if (m1 != null) {
-                                ArrayList<Dish> dlist = m1.getDishList();
+                        <%                            if (menu != null) {
+                                ArrayList<Dish> dlist = menu.getDishList();
                                 last = Integer.parseInt(dlist.get(dlist.size() - 1).getDishID());
                                 int count = 0;
                                 for (Dish d : dlist) {
