@@ -43,48 +43,56 @@
         <!--Insertion of menu, ref: script.js-->
         <div id="menu">
         </div>
-<%
-    String inputStr = request.getParameter("supName");
-    //SupplierDAO sDAO = new SupplierDAO();
-    SearchDAO sDAO = new SearchDAO();
-    List<Supplier> slist = sDAO.Search(inputStr);
-%>
+        <%
+            String inputStr = request.getParameter("supName");
+            //SupplierDAO sDAO = new SupplierDAO();
+            SearchDAO sDAO = new SearchDAO();
+            List<Supplier> slist = sDAO.Search(inputStr);
+        %>
 
-<div class="jumbotron">
+        <div class="jumbotron">
             <div class="container">
-        <div><h2>Supplier Search Results</h2></div><br/>
-            <div>
-        </div>
-        <div>
-            <%
-                String supName = request.getParameter("supName");
-                String items = request.getParameter("items");
-                String category = request.getParameter("category");
-                
-                List<Supplier> slist2 = new ArrayList<Supplier>();
-                
-                for(Supplier s : slist){
-                    String storedName = s.getSupName();
-                    if(storedName.toLowerCase().contains(supName.toLowerCase())){
-                        slist2.add(s);
-                    }
-                }
-                
-                if(slist2 == null){
-                    out.println("No results found.");
-                }else{
-                    for (Supplier found : slist2){
-            %>
-            <p><Strong> <a href="SupplierView.jsp?id=<%= found.getId() %>"><%= found.getSupName() %></a> </Strong></p>
-            <p> <%= found.getDesc() %> </p><br/>
-            <%        
-                    }
-                }
-            %>
+                <div><h2><b>Supplier Search Results</b></h2></div><br/>
+                <div>
+                </div>
+                <div>
 
-        </div>
+
+
+                    <%
+                        String supName = request.getParameter("supName");
+                        String items = request.getParameter("items");
+                        String category = request.getParameter("category");
+
+                        List<Supplier> slist2 = new ArrayList<Supplier>();
+
+                        for (Supplier s : slist) {
+                            String storedName = s.getSupName();
+                            if (storedName.toLowerCase().contains(supName.toLowerCase())) {
+                                slist2.add(s);
+                            }
+                        }
+
+                        if (slist2 == null) {
+                            out.println("No results found.");
+                        } else {
+                            for (Supplier found : slist2) {
+                    %>
+                    <a  href="SupplierView.jsp?id=<%= found.getId()%>" class="panel panel-default col-sm-5" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                        <p><div class="panel-heading">
+                            <Strong><h3><%= found.getSupName()%></h3>
+                        </div></Strong></p>
+
+                        <p> <%= found.getDesc()%> </p><br/>
+                        <%
+
+                                }
+                            }
+                        %>
+                    </a>
+                </div>
             </div>
-</div>
+        </div>
         <!--
         <div>
             <h4><strong><a href="SupplierFreshFruitz.jsp">Fresh Fruitz</a></strong></h4><br>

@@ -18,23 +18,15 @@ and open the template in the editor.
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" role="form">
 
-                <ul>
 
-                    <li>
                         <a class="btn btn-primary btn-block" href="#" role="button">My Account &raquo;</a>
-                    </li>
-                    <li>
+                    
                         <a class="btn btn-primary btn-block" href="OrderPage.jsp" role="button">Make Regular Order &raquo;</a>
-                    </li>
-                    <li>
-
+               
                         <a class="btn btn-primary btn-block" href="EmergencyOrder.jsp" role="button">Make Emergency Order &raquo;</a>
-                    </li>
-                    <li>
-
+                    
                         <a class="btn btn-primary btn-block" href="Recipe.jsp" role="button">Create Dish &raquo;</a>
-                    </li>
-
+               
             </form>
         </div><!--/.navbar-collapse -->
     </div>

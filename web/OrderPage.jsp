@@ -31,9 +31,9 @@
         <script type="text/javascript" src="parsley.js"></script>
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        
+
         <script>
-            $(function() {
+            $(function () {
                 $("#datepicker").datepicker();
             });
         </script>
@@ -82,7 +82,7 @@
                                                 <span class="help-block">Insert your order deadline here</span>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- inline forms -->
                                         <div class="form-group" method="get" action="">
                                             <div class="col-xs-4">
@@ -139,124 +139,121 @@
 
                     </div>
                 </div>
-                
+
                 <%
                     Menu menu = (Menu) session.getAttribute("menu");
                     ArrayList<Dish> dishList = (ArrayList<Dish>) menu.getDishList();
-                    ArrayList<Order> orderList=(ArrayList<Order>)session.getAttribute("orders");
+                    ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute("orders");
                     //ArrayList<String> nameList=new ArrayList<String>();
-                    int count=0;
-                    HashMap<String, ArrayList<OrderItem>> outputMap=new HashMap<String, ArrayList<OrderItem>>();
-                    
+                    int count = 0;
+                    HashMap<String, ArrayList<OrderItem>> outputMap = new HashMap<String, ArrayList<OrderItem>>();
+
                         //String ingredient = request.getParameter("quantity1");
-                       // String dish = request.getParameter("dish1");
-                        //String deadline = request.getParameter("deadline");
-                    
-                    while(request.getParameter("quantity"+count)!=null){
-                        
+                    // String dish = request.getParameter("dish1");
+                    //String deadline = request.getParameter("deadline");
+                    while (request.getParameter("quantity" + count) != null) {
+
                         //Dish tempDish=(Dish)session.getAttribute("attribute"+count);
-                        String dish=request.getParameter("dish"+count);
-                        String ingredientQuantity = request.getParameter("quantity"+count);
-                        Double ingredientQuantityNum=Double.parseDouble(ingredientQuantity);
-                        Dish tempDish=null;
-                        
-                        for(int j=0;j<dishList.size();j++){
-                            Dish verify=dishList.get(j);
-                            if(verify.getName().equals(dish)){
-                                tempDish=verify;
+                        String dish = request.getParameter("dish" + count);
+                        String ingredientQuantity = request.getParameter("quantity" + count);
+                        Double ingredientQuantityNum = Double.parseDouble(ingredientQuantity);
+                        Dish tempDish = null;
+
+                        for (int j = 0; j < dishList.size(); j++) {
+                            Dish verify = dishList.get(j);
+                            if (verify.getName().equals(dish)) {
+                                tempDish = verify;
                             }
                         }
-                        
-                        HashMap<Ingredient,Supplier> tempMap=tempDish.getIngredientList();
-                        Set<Ingredient> kSet=tempMap.keySet();
-                        Iterator<Ingredient> iter=kSet.iterator();
-                        
-                        while(iter.hasNext()){
-                            
-                            Ingredient ingredient=iter.next();
+
+                        HashMap<Ingredient, Supplier> tempMap = tempDish.getIngredientList();
+                        Set<Ingredient> kSet = tempMap.keySet();
+                        Iterator<Ingredient> iter = kSet.iterator();
+
+                        while (iter.hasNext()) {
+
+                            Ingredient ingredient = iter.next();
                             //OrderItem tempItem=new OrderItem();
-                            Supplier supplier=tempMap.get(ingredient);
-                            OrderItem tempItem=new OrderItem(ingredient.getName(),(ingredient.getQuantity())*ingredientQuantityNum+"","0",ingredient.getUnit(),supplier.getId());
-                           
-                            String supplierName="";
-                            if(supplier!=null){
-                                supplierName=supplier.getSupName();
+                            Supplier supplier = tempMap.get(ingredient);
+                            OrderItem tempItem = new OrderItem(ingredient.getName(), (ingredient.getQuantity()) * ingredientQuantityNum + "", "0", ingredient.getUnit(), supplier.getId());
+
+                            String supplierName = "";
+                            if (supplier != null) {
+                                supplierName = supplier.getSupName();
+                            } else {
+                                supplierName = "Awesome Foodz";
                             }
-                            else{
-                                supplierName="Awesome Foodz";
-                            }
-                            
-                            
-                            if(outputMap.containsKey(supplierName)){
+
+                            if (outputMap.containsKey(supplierName)) {
                                 outputMap.get(supplierName).add(tempItem);
-                            }else{
-                                ArrayList<OrderItem> tempItemList=new ArrayList<OrderItem>();
+                            } else {
+                                ArrayList<OrderItem> tempItemList = new ArrayList<OrderItem>();
                                 tempItemList.add(tempItem);
-                                outputMap.put(supplierName,tempItemList);
+                                outputMap.put(supplierName, tempItemList);
                             }
-                                      
+
                         }
-                        
-                              
+
                         count++;
                         //int number=(Integer)session.getAttribute("attribute"+count);
-                    
+
                     }
-                            
-                    Set<String> keySet=outputMap.keySet();
-                    
-                    Iterator<String> stringIter=keySet.iterator();
-                    
-                    while(stringIter.hasNext()){
-                        String supName=stringIter.next();
+
+                    Set<String> keySet = outputMap.keySet();
+
+                    Iterator<String> stringIter = keySet.iterator();
+
+                    while (stringIter.hasNext()) {
+                        String supName = stringIter.next();
                         //nameList.add(supName);
                         //nameList.add("string");
-                        Order tempOrder=new Order((OrderDAO.getOrderNum()+""),"0",(ArrayList<OrderItem>)outputMap.get(supName));
+                        Order tempOrder = new Order((OrderDAO.getOrderNum() + ""), "0", (ArrayList<OrderItem>) outputMap.get(supName));
                         tempOrder.setSupplier(supName);
-                        OrderDAO.saveOrderToDatabase(tempOrder,"1");
+                        OrderDAO.saveOrderToDatabase(tempOrder, "1");
                         orderList.add(tempOrder);
-                        %><%//tempOrder==null%><%
-                    }
-                    
+                %><%//tempOrder==null%><%
+                            }
+
                     //get dish from form
-                    //Dish dish=request.getParameter("Dish");
-                    //dish is a hashmap of Key ingredient value supplier
-                   // HashMap<String,String> tempMap=new HashMap<String, String>();
-                   //Set<String> kSet=tempMap.keySet();
-                    //Iterator<String> iter=kSet.iterator();
-                    //while(iter.hasNext()){
-                        //String ingredient=iter.next();
-                       // String supplier=tempMap.get(ingredient);
-                        
+                            //Dish dish=request.getParameter("Dish");
+                            //dish is a hashmap of Key ingredient value supplier
+                            // HashMap<String,String> tempMap=new HashMap<String, String>();
+                            //Set<String> kSet=tempMap.keySet();
+                            //Iterator<String> iter=kSet.iterator();
+                            //while(iter.hasNext()){
+                            //String ingredient=iter.next();
+                            // String supplier=tempMap.get(ingredient);
                    // }
-                    //if(request.getParameter("deadline")!=null){
-                    //    OrderItem item9=new OrderItem(request.getParameter("item"),Double.parseDouble(request.getParameter("maximumprice")),Double.parseDouble(request.getParameter("quantity")),request.getParameter("unit"));
-                    //    ArrayList<OrderItem> itemList5=new ArrayList<OrderItem>();
-                    //    itemList5.add(item9);
-                    //    Order order5=new Order("999",request.getParameter("deadline"),"Fast Foods",itemList5);
-                    //    orderList.add(order5);
-                    //}   
-                %>
+                            //if(request.getParameter("deadline")!=null){
+                            //    OrderItem item9=new OrderItem(request.getParameter("item"),Double.parseDouble(request.getParameter("maximumprice")),Double.parseDouble(request.getParameter("quantity")),request.getParameter("unit"));
+                            //    ArrayList<OrderItem> itemList5=new ArrayList<OrderItem>();
+                            //    itemList5.add(item9);
+                            //    Order order5=new Order("999",request.getParameter("deadline"),"Fast Foods",itemList5);
+                            //    orderList.add(order5);
+                            //}   
+%>
                 <div class="well">
-                                            <p>Pending Orders <%=orderList.size()%></p>
-                                        </div>
+                    <p>Pending Orders <%=orderList.size()%></p>
+                </div>
                 <div class="container-fluid">
                     <div class="row">
-                        <% 
-                           for(int i=orderList.size()-1;i>=0;i--){ 
-                           Order tempOrder=orderList.get(i);
-                           ArrayList<OrderItem> tempItemList=tempOrder.getOrderItem();
+                        <%
+                            for (int i = orderList.size() - 1; i >= 0; i--) {
+                                Order tempOrder = orderList.get(i);
+                                ArrayList<OrderItem> tempItemList = tempOrder.getOrderItem();
                         %>
                         <div class="panel panel-default col-sm-5" onclick="location.href = 'RegularOrderDetail.jsp?num=<%=i%>';">
-                            <div class="panel-heading"><h4>Order #<%=tempOrder.getOrderId()%></h4></div>
+                            <div class="panel-heading">
+                                <h4>Order #<%=tempOrder.getOrderId()%></h4>
+                            </div>
                             <div class="panel-body"> 
                                 <h3>Supplier: <%=tempOrder.getSupplier()%></h3>
-                                
+
                                 <ul>
-                                    <li ><%=tempItemList.get(0).getName()%> ... <%=tempItemList.get(0).getQuantity()%><%="  "+tempItemList.get(0).getUnit()%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>
+                                    <li ><%=tempItemList.get(0).getName()%> ... <%=tempItemList.get(0).getQuantity()%><%="  " + tempItemList.get(0).getUnit()%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>
                                     <li >
                                         <% if(tempItemList.size()>=2){%>
-                                        <%=tempItemList.get(1).getName()%> ... <%=tempItemList.get(1).getQuantity()%><%="  "+tempItemList.get(1).getUnit()%><%//"  $"+tempItemList.get(1).getPrice()%><%//"  Supplier:"+tempItemList.get(1).getSupplier()%>
+                                        <%=tempItemList.get(1).getName()%> ... <%=tempItemList.get(1).getQuantity()%><%="  " + tempItemList.get(1).getUnit()%><%//"  $"+tempItemList.get(1).getPrice()%><%//"  Supplier:"+tempItemList.get(1).getSupplier()%>
                                         <%}%>
                                     </li>
                                     <li >...</li>
@@ -267,7 +264,7 @@
                     </div>
                 </div>
 
-                    
+
 
 
 
