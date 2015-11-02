@@ -15,7 +15,7 @@
     </head>
     <body>
        <% MenuManager menuManager = new MenuManager();
-        Menu menu = menuManager.defaultMenu();
+        //Menu menu = menuManager.defaultMenu();
          %>
         <h1>Hello World!</h1>
     </body>

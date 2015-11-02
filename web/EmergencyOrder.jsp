@@ -1,3 +1,4 @@
+<%@include file="protect.jsp"%>
 <%@page import="Manager.OrderDAO"%>
 <%@page import="Entity.Order"%>
 <!doctype html>
@@ -234,7 +235,7 @@
                                         <hr>
 
                                         <footer>
-                                            <p>&copy; Lalaland 2099</p>
+                                            <p>&copy; Ognidoof 2015</p>
                                         </footer>
                                         </div> <!-- /container -->        
 

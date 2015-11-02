@@ -4,6 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<%@include file="protect.jsp"%>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -28,6 +29,8 @@ and open the template in the editor.
                         <a class="btn btn-primary btn-block" href="Recipe.jsp" role="button">Create Dish &raquo;</a>
                         
                         <a class="btn btn-primary btn-block" href="ChatList.jsp" role="button">Supplier Chat &raquo;</a>
+                        
+                        <a class="btn btn-primary btn-block" href="logout.jsp" role="button">Log Out &raquo;</a>
                
             </form>
         </div><!--/.navbar-collapse -->

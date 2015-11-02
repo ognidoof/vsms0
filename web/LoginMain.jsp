@@ -43,20 +43,22 @@
 
             <div class="container">
                 <img src="pictures/logo final.png" alt="Logo" style="width:80% ">
-               
+
                 <h1>Welcome to VSMS</h1>
-                
+
                 <%
                     String currentVendor = (String) session.getAttribute("currentVendor");
                     String currentSupplier = (String) session.getAttribute("currentSupplier");
-                    String errorMsg = (String) request.getAttribute("errorMsg");
+                    String errorMsg = (String) request.getParameter("errorMsg");
+                    String succMsg = (String) request.getParameter("succMsg");
                 %>
 
                 <%
-                    if (errorMsg != null) {
-                        if (currentVendor == null && currentSupplier == null) {
-                            out.println(errorMsg);
-                        }
+                    if (errorMsg == null) {
+                        errorMsg = "";
+                    }
+                    if (succMsg == null) {
+                        succMsg = "";
                     }
                 %>
                 <div>
@@ -67,9 +69,12 @@
                         <input type="text" value="supplierName" placeholder="Enter username"></br>
                         <input type="text" value="supplierPw" placeholder="Enter password"></br>
                         -->
-                        <input class="inputs" type="text" name="username" placeholder="Enter username" required="true"></br>
-                        <input class="inputs" type="password" name="password" placeholder="Enter password" required="true"></br>
+                        <p><input class="inputs" type="text" name="username" placeholder="Enter username" required="true"></p>
+                        <p><input class="inputs" type="password" name="password" placeholder="Enter password" required="true"></p>
+                        <p class="logFail"><%=errorMsg%></p>
+                        <p class="logSucc"><%=succMsg%></p>
                         <input class="btn-primary btn-lg" type="submit" value="Login">
+
                     </form>
                 </div>
                 <!--

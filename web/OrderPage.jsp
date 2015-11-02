@@ -1,4 +1,4 @@
-
+<%@include file="protect.jsp"%>
 <%@page import="Manager.FirebaseController"%>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -280,7 +280,7 @@
         <hr>
 
         <footer>
-            <p>&copy; Lalaland 2099</p>
+            <p>&copy; Ognidoof 2015</p>
         </footer>
     </div> <!-- /container -->        
 

@@ -1,3 +1,4 @@
+<%@include file="protect.jsp"%>
 <%-- 
     Document   : SupplierCatalogue
     Created on : 12 Oct, 2015, 11:47:15 PM

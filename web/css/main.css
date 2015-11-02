@@ -84,6 +84,14 @@ p.success {
     color: #40BB5D;
 }
 
+p.logSucc {
+    color: #40BB5D;
+}
+
+p.logFail {
+    color: red;
+}
+
 .inputs{
 
     display: block;

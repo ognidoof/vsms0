@@ -3,7 +3,7 @@
     Created on : 13 Oct, 2015, 9:04:16 AM
     Author     : Benjamin
 --%>
-
+<%@include file="protect.jsp"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashMap"%>
@@ -71,7 +71,7 @@
         ArrayList<Dish> dishList = menu.getDishList();
         dishList.add(newDish);
         menu.setDishList(dishList);
-        menuMan.insertDish(newDish, "1");
+        menuMan.insertDish(newDish, currentVendor);
         
     }
 
@@ -195,7 +195,7 @@
     </div>
     <div>
         <footer>
-            <p>&copy; Lalaland 2099</p>
+            <p>&copy; Ognidoof 2015</p>
         </footer>
     </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>

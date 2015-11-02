@@ -3,6 +3,7 @@
     Created on : 12 Oct, 2015, 11:29:49 PM
     Author     : Joel
 --%>
+<%@include file="protect.jsp"%>
 
 <%@page import="Manager.MenuManager"%>
 <%@page import="java.util.List"%>

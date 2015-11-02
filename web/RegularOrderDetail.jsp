@@ -1,3 +1,4 @@
+<%@include file="protect.jsp"%>
 <%@page import="Entity.OrderItem"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entity.Order"%>
@@ -249,7 +250,7 @@
         <hr>
 
         <footer>
-            <p>&copy; Lalaland 2099</p>
+            <p>&copy; Ognidoof 2015</p>
         </footer> <!-- /container -->        
 
 

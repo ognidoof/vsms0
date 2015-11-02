@@ -1,3 +1,4 @@
+<%@include file="protect.jsp"%>
 <%@page import="Entity.Supplier"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Manager.*"%>

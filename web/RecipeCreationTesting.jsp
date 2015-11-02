@@ -1,4 +1,4 @@
-
+<%@include file="protect.jsp"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Entity.Ingredient"%>
 <%@page import="java.util.HashMap"%>
