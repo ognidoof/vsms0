@@ -53,9 +53,10 @@ public class UserDAO {
             conn = ConnectionManager.getConnection();
             
             //Parse the SQL query and execute it
-            sql = "SELECT * FROM " + TBLNAME + " WHERE supplier_username = ?";
+            sql = "SELECT * FROM " + TBLNAME + " WHERE supplier_username = ? and supplier_password = ? ";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
+            stmt.setString(2, password);
 
             rs = stmt.executeQuery();
             
@@ -94,9 +95,10 @@ public class UserDAO {
             //creates the connection to database
             conn = ConnectionManager.getConnection();
             //Parse the SQL query and execute it
-            sql = "SELECT * FROM " + TBLNAME + " WHERE vendor_username = ?";
+            sql = "SELECT * FROM " + TBLNAME + " WHERE vendor_username = ? and vendor_password = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
+            stmt.setString(2, password);
 
             rs = stmt.executeQuery();
             
