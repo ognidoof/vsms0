@@ -6,13 +6,20 @@
 
 <%@page import="Manager.MenuManager"%>
 <%@page import="java.util.List"%>
-<%@page import="DAO.SupplierDAO"%>
+<%@page import="Manager.SupplierDAO"%>
 <%@page import="Entity.Supplier"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <%
     String id = (String) request.getParameter("id");
+    String resent=(String)request.getParameter("resent");
+    if(resent!=null&&resent.equals("true")){
+        SupplierDAO.saveAsFavouriteSupplier(id,"1");
+    }
+    if(resent!=null&&resent.equals("false")){
+        SupplierDAO.deleteFavouriteSupplier(id,"1");
+    }
 %>
 <html lang="en">
 
@@ -78,6 +85,9 @@
                                 </form>
                             </td>
                             --%>
+                            <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierView.jsp?id=<%= toDisplay.getId()%>&resent=false';" value="Delete from Favourites" />
+                            
+                            <a data-toggle="modal" class="btn btn-primary btn-lg" data-target="#myModal" >Add to Favourites +</a>
                             <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierCatalogue.jsp?send=<%= toDisplay.getId()%>';" value="Catalogue" />
                             </p>
                         </table>
@@ -93,12 +103,13 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Under Construction!</h4>
+                                <h4 class="modal-title">Favourite Supplier</h4>
                             </div>
                             <div class="modal-body">
-                                <p>Please pardon us as this section is currently under construction!</p>
+                                <p>Add Supplier to Favourites?</p>
                             </div>
                             <div class="modal-footer">
+                                <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierView.jsp?id=<%= toDisplay.getId()%>&resent=true';" value="Add to Favourites" />
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>

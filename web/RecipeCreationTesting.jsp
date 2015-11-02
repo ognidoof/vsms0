@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entity.Supplier"%>
-<%@page import="DAO.SupplierDAO"%>
+<%@page import="Manager.SupplierDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -60,7 +60,7 @@
 
                 <%
                     SupplierDAO sDAO = new SupplierDAO();
-                    List<Supplier> supList2 = sDAO.retrieveAll();
+                    List<Supplier> supList2 = SupplierDAO.favouriteSuppliers("1");//sDAO.retrieveAll();
                    // Supplier toDisplay = sDAO.getSupplier("FreshFruitz", supList2);
                 %>
                 <h1>Create Dish</h1>
@@ -241,7 +241,8 @@
 
 
 
-            <script>$('#linkPrompt').on('show.bs.modal', function (e) {
+            <script>
+                $('#linkPrompt').on('show.bs.modal', function (e) {
                     var $supplierIngredient = e.relatedTarget.id;
                     var array = $supplierIngredient.split('_');
                     // document.getElementById("quantity") = array[0];

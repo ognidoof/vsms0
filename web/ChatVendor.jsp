@@ -7,15 +7,17 @@
         <link rel ="stylesheet" type ="text/css" href="css/bootstrap.min.css">
     </head>
     <body>
-
+        <%
+            String supplierName = request.getParameter("hiddenvalue");
+            System.out.println(supplierName);
+         %>
         <!-- CHAT MARKUP -->
         <H1>Welcome Christina</h1>
         <div class="chat chat-container">
             <header>Vendor Chat (https://vsms.firebaseio.com/)</header>
 
             <div class='chat-toolbar'>
-                Sending to: 
-                <input id='nameInput' type='text'>
+                Sending to: <%=supplierName%>
             </div>
 
             <ul id='messages' class="chat-messages"></ul>
@@ -32,14 +34,13 @@
 
             // REGISTER DOM ELEMENTS
             var messageField = $('#messageInput');
-            var nameField = $('#nameInput');
             var messageList = $('#messages');
             
             // LISTEN FOR KEYPRESS EVENT
             messageField.keypress(function(e) {
                 if (e.keyCode == 13) {
                     //FIELD VALUES
-                    var receiver = nameField.val();
+                    var receiver = "<%=supplierName%>";
                     var message = messageField.val();
 
                     //SAVE DATA TO FIREBASE AND EMPTY FIELD
@@ -71,7 +72,7 @@
                 var senderElement = $("<strong class='chat-name'></strong>");
                 senderElement.text(sender);
                 //ADD MESSAGE only if sender and receiver are relevant
-                if (sender === "FreshFoodz" && receiver === "Christina" || sender === "Christina" && receiver === "FreshFoodz") {
+                if (sender === "<%=supplierName%>" && receiver === "Christina" || sender === "Christina" && receiver === "<%=supplierName%>") {
                     messageList.append(senderElement)
                     messageList.append(message)                    
                     messageList.append("<li>")
