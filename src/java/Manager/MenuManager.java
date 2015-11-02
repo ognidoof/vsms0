@@ -233,6 +233,7 @@ public class MenuManager {
     public static Supplier getSupplierById(String id) {
         Supplier supplier = null;
         ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> idList = new ArrayList<String>();
         Connection conn = null;
 
         PreparedStatement supStatement = null;
@@ -261,9 +262,12 @@ public class MenuManager {
                 itemRs = itemStatement.executeQuery();
                 while (itemRs.next()) {
                     String itemName = itemRs.getString("ingredient_name");
+                    String itemId=itemRs.getString("ingredient_id");
                     list.add(itemName);
+                    idList.add(itemId);
                 }
                 supplier=new Supplier(id, supplierName, list, supplierType,supplierDesc);
+                supplier.addIngredientId(idList);
             }
         } catch (Exception e) {
             e.printStackTrace();

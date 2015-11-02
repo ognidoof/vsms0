@@ -47,13 +47,13 @@
             <div class="container">
                 <h1>Welcome,<br/> </h1>
 
-                <div class="user"><h2> Christina</h2></div> <br/>
+                <div class="user"><h2> To the Train Rekt</h2></div> <br/>
 
                 <div class="row">
 
                     <div class="col-xs-4">
                         <div class="tile-large">
-                            <a href="#" style="display:block; height:inherit; width:inherit; text-decoration: none;">
+                            <a href="Account.jsp" style="display:block; height:inherit; width:inherit; text-decoration: none;">
                                 <div class="tile-content slide-up-2">
                                     <div class="slide">
                                         <img src="pictures/My Account.png" alt="My Account" style="width:inherit; height:inherit;">
@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-xs-4">
                             <div class="tile-large">
-                                <a href="OrderChoice.jsp" style="display:block;height:inherit; width:inherit; text-decoration: none;"> 
+                                <a href="OrderPage.jsp" style="display:block;height:inherit; width:inherit; text-decoration: none;"> 
                                     <div class="tile-content slide-up-2">
                                         <div class="slide">
                                             <img src="pictures/Order.png" alt="Order Icon" style="width:inherit; height:inherit;">

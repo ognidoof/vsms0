@@ -117,7 +117,7 @@ public class FirebaseController {
             Map<String, String> post1 = new HashMap<String, String>();
             post1.put("orderid", order.getOrderId());
             post1.put("receiver", order.getSupplier());
-            post1.put("sender", order.getVendor());
+            post1.put("sender", OrderDAO.getVendorNameById("1"));
             post1.put("text", message);
             post1.put("ordercondition", "pending");
             Firebase postRef = ref.push();

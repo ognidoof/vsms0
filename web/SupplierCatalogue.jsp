@@ -63,11 +63,12 @@
                     Supplier toDisplay = MenuManager.getSupplierById(send);//sDAO.getSupplier(send, supList2);
                 %>
                 <h1><%= toDisplay.getSupName()%></h1>
+                <h3>Ingredients Sold:</h3>
                 <%
                     List<String> items = toDisplay.getItems();
-                    %><%=items.size()%><%
+                    
                     for (String item : items) {
-                        out.println("<a  data-toggle=\"modal\" data-target=\"#myModal\">" + item  + "</a><br>");
+                        out.println("<a  class=\"btn btn-default btn-lg btn-block\" data-toggle=\"modal\" data-target=\"#myModal\">" + item  + "</a><br>");
                         
                         //Print out the modal menu
                         try {
@@ -79,7 +80,7 @@
                 <!-- Modal -->
                
                 <div class="modal fade" id="myModal" role="dialog">
-                    <%=dishList.size()%>  
+                    
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -96,12 +97,12 @@
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                                 
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#<%=dish.getName().replaceAll("\\s", "")%>">
+                                                <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#<%=dish.getName().replaceAll("\\s", "")%>">
                                                     <%=dish.getName()%></a>
                                             </h4>
                                             
                                         </div>
-                                        <div id="<%=dish.getName().replaceAll("\\s", "")%>" class="panel-collapse collapse in">
+                                        <div id="<%=dish.getName().replaceAll("\\s", "")%>" class="panel-collapse collapse">
                                             <div class="panel-body">
                                                 <ul>
                                                     <%
@@ -114,7 +115,8 @@
                                                             Ingredient ingredient = (Ingredient) iter.next();
                                                             Supplier supplier = ingredientMap.get(ingredient);
                                                             if (supplier == null) {
-                                                    %><li><b><%=ingredient.getName()%></b><a data-toggle="modal" data-target="#linkPrompt">Link</a></li><%
+                                                    %><li><b><%=ingredient.getName()%></b>
+                                                        <a data-toggle="modal" data-target="#linkPrompt">Link</a></li><%
                                                     } else {
                                                             %><li><b><%=ingredient.getName()%></b><font color="red"><%=supplier.getSupName()%></font></li><%
                                                                     }

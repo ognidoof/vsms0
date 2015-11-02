@@ -1,3 +1,4 @@
+<%@page import="Manager.OrderDAO"%>
 <html>
     <head>
         <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
@@ -10,9 +11,9 @@
         <%
             String supplierName = request.getParameter("hiddenvalue");
             System.out.println(supplierName);
+            String vendorName = OrderDAO.getVendorNameById("1");
          %>
         <!-- CHAT MARKUP -->
-        <H1>Welcome Christina</h1>
         <div class="chat chat-container">
             <header>Vendor Chat (https://vsms.firebaseio.com/)</header>
 
@@ -36,15 +37,16 @@
             var messageField = $('#messageInput');
             var messageList = $('#messages');
             
-            // LISTEN FOR KEYPRESS EVENT
+            // LISTEN FOR KEYPRESS EVENT 
             messageField.keypress(function(e) {
                 if (e.keyCode == 13) {
                     //FIELD VALUES
                     var receiver = "<%=supplierName%>";
+                    var sender = "<%=vendorName%>"
                     var message = messageField.val();
 
                     //SAVE DATA TO FIREBASE AND EMPTY FIELD
-                    messagesRef.push({sender: "Christina", receiver: receiver, text: message});
+                    messagesRef.push({sender: "<%=vendorName%>", receiver: receiver, text: message});
                     messageField.val('');
 
                     //Type"Clear" to remove the message
@@ -72,7 +74,7 @@
                 var senderElement = $("<strong class='chat-name'></strong>");
                 senderElement.text(sender);
                 //ADD MESSAGE only if sender and receiver are relevant
-                if (sender === "<%=supplierName%>" && receiver === "Christina" || sender === "Christina" && receiver === "<%=supplierName%>") {
+                if (sender === "<%=supplierName%>" && receiver === "<%=vendorName%>" || sender === "<%=vendorName%>" && receiver === "<%=supplierName%>") {
                     messageList.append(senderElement)
                     messageList.append(message)                    
                     messageList.append("<li>")

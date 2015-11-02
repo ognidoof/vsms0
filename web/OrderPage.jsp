@@ -1,4 +1,5 @@
 
+<%@page import="Manager.FirebaseController"%>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -144,6 +145,7 @@
                     Menu menu = (Menu) session.getAttribute("menu");
                     ArrayList<Dish> dishList = (ArrayList<Dish>) menu.getDishList();
                     ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute("orders");
+                    ArrayList<Order> chatList=new ArrayList<Order>();
                     //ArrayList<String> nameList=new ArrayList<String>();
                     int count = 0;
                     HashMap<String, ArrayList<OrderItem>> outputMap = new HashMap<String, ArrayList<OrderItem>>();
@@ -211,8 +213,10 @@
                         tempOrder.setSupplier(supName);
                         OrderDAO.saveOrderToDatabase(tempOrder, "1");
                         orderList.add(tempOrder);
+                        chatList.add(tempOrder);
                 %><%//tempOrder==null%><%
                             }
+                    FirebaseController.sendOrderListToChat(chatList);
 
                     //get dish from form
                             //Dish dish=request.getParameter("Dish");
@@ -232,8 +236,8 @@
                             //    orderList.add(order5);
                             //}   
 %>
-                <div class="well">
-                    <p>Pending Orders <%=orderList.size()%></p>
+                <div class="well" style="height:70px">
+                    <p><%=orderList.size()%> Pending Orders </p>
                 </div>
                 <div class="container-fluid">
                     <div class="row">

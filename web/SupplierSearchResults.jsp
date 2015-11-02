@@ -52,7 +52,7 @@
 
         <div class="jumbotron">
             <div class="container">
-                <div><h2><b>Supplier Search Results</b></h2></div><br/>
+                <div><h2>Supplier Search Results</h2></div><br/>
                 <div>
                 </div>
                 <div>

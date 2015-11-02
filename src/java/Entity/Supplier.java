@@ -5,6 +5,7 @@
  */
 package Entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class Supplier {
     private String category;
     private String desc;
     private String id;
+    private ArrayList<String> idList;
     
     //needed for login
     private String username;
@@ -29,6 +31,7 @@ public class Supplier {
         this.category=category;
         this.desc=desc;
         this.id=id;
+        idList=new ArrayList<String>();
     }
     
     public String getId(){
@@ -94,6 +97,10 @@ public class Supplier {
     public void setPassword(String password){
         this.password = password;
 
+    }
+    
+    public void addIngredientId(ArrayList<String> idList){
+        this.idList=idList;
     }
 }
 
