@@ -77,6 +77,7 @@ public class OrderDAO {
         String name="";
         try
         {
+            conn=ConnectionManager.getConnection();
             query = "select * from vendor where vendor_id=?";
              //where vendor_id=?
             statement = conn.prepareStatement(query);
