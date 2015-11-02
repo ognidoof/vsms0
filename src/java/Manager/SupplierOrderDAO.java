@@ -61,7 +61,8 @@ public class SupplierOrderDAO {
                 String ingredientName = rsSup.getString("ingredient_name");
                 String price = rsSup.getString("price");
                 String quantity = rsSup.getString("quantity");
-                
+                //
+                //OrderItem orderitem = new OrderItem(ingredientName, quantity, price, "1", sup_id);
                 //query ingredients db to get units
                 queryIng = "SELECT * FROM `ingredient` WHERE ingredient_name=?";
                 statementIngredient = conn.prepareStatement(queryIng);
@@ -75,6 +76,7 @@ public class SupplierOrderDAO {
                 
                 //create orderitem
                 OrderItem orderitem = new OrderItem(ingredientName, quantity, price, ingredientUnit, sup_id);
+                
                 orderItems.add(orderitem);
                 
                 //getting total price
@@ -89,6 +91,12 @@ public class SupplierOrderDAO {
                 
                 Order tempOrder = new Order(orderId, totalPrice, orderItems);
                 orderList.add(tempOrder);
+            }
+            for(Order or : orderList){
+                System.out.println(or.getOrderId());
+            }
+            for(OrderItem item :orderItems){
+            System.out.println(item.getName());
             }
 
         }catch(Exception e){
@@ -123,24 +131,85 @@ public class SupplierOrderDAO {
             }            
         }        
         //return count;
-
+        //orderList = getActualOrderLists(orderList);
+//        System.out.println("The orderList is " +orderList);
         return orderList;
     }
-}
-    /*
-    public static ArrayList<Order> getActualOrderLists (ArrayList<Order> unorderedOrders){
-        ArrayList<Order> toReturn = new ArrayList<Order>();
-        for(Order o : unorderedOrders){
-            String orderid = o.getOrderId();
-            for(Order order2 : unorderedOrders){
-                String orderid2 = order2.getOrderId();
-                if(orderid.equals(orderid2)){
-                    toReturn.add(order2);
-                    unorderedOrders.remove(order2);
+    public static HashMap<String, ArrayList<OrderItem>> getActualOrders(ArrayList<Order> unordered){
+        System.out.println("Unordered is "+unordered);
+        HashMap<String, ArrayList<OrderItem>> map = new HashMap<String, ArrayList<OrderItem>>();
+        
+//        ArrayList<OrderItem> conCat = new ArrayList<OrderItem>();
+//        ArrayList<OrderItem> orderitems = new ArrayList<OrderItem>();
+//       
+//         for(Order currentOrder : unordered){
+//            String currentId = currentOrder.getOrderId();
+//            orderitems = currentOrder.getOrderItem();
+//            
+//            if(toReturn.size() == 0){
+//                toReturn.put(currentId, orderitems);
+//            }
+//            
+//            conCat = toReturn.get(currentId);
+//            
+//            if(!(toReturn.containsKey(currentId))){
+//                toReturn.put(currentId, orderitems);
+//            }else{
+//                for(OrderItem orderitem : orderitems){
+//                    conCat.add(orderitem);
+//                    System.out.println(orderitem.getName()+orderitem.getName());
+//                }
+//            }
+            ArrayList<OrderItem> orderItemList = new ArrayList<OrderItem>();
+           
+            Collections.sort(unordered,new Comparator<Order>(){
+                public int compare(Order o1, Order o2){
+                    return Integer.compare(Integer.parseInt(o1.getOrderId()),Integer.parseInt(o2.getOrderId()));
                 }
+            });
+            System.out.println("The unordered is "+unordered);
+            String tempId ="1";
+            for (Order currentOrder:unordered){
+                String currentId = currentOrder.getOrderId();
+                System.out.println(currentId);
+                ArrayList<OrderItem> currentItemList = currentOrder.getOrderItem();
+                System.out.println("The currentItemList "+currentItemList);
+                for(OrderItem orderItem : currentItemList){
+                    orderItemList.add(orderItem);
+                }
+                if(!tempId.equals(currentId)){
+                    map.put(tempId,orderItemList);
+                    System.out.println("The current id is "+currentId);
+                    System.out.println("The temp id is "+tempId);
+                    System.out.println("The orderList is "+orderItemList);
+                    orderItemList.clear();
+                    System.out.println("The orderlist after cleared is "+orderItemList);
+                }
+                tempId = currentId;
+            }
+            
+            map.put(tempId, orderItemList);
+           
+            
+        
+        return map;
+    }
+}   
+    /*
+    public static ArrayList<Order> getActualOrderLists(ArrayList<Order> unordered){
+        ArrayList<Order> toReturn = new ArrayList<Order>();
+        for(Order currentOrder : unordered){
+            String currentId = currentOrder.getOrderId();
+            ArrayList<OrderItem> orderitems = currentOrder.getOrderItem();
+            unordered.remove(currentOrder);
+            for(Order current2 : unordered){
+               String currentId2 = current2.getOrderId();
+               if(currentId.equals(currentId2)){
+                   ArrayList<OrderItem> orderitems2 = currentOrder.getOrderItem();
+                   for(OrderItem )
+                   orderitems.add();
+               }
             }
         }
-        
-        return toReturn;
-    }
-    */   
+    */  
+        //return toReturn;

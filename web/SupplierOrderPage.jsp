@@ -33,9 +33,9 @@
         <script type="text/javascript" src="parsley.js"></script>
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        
+
         <script>
-            $(function() {
+            $(function () {
                 $("#datepicker").datepicker();
             });
         </script>
@@ -54,50 +54,55 @@
         </div>
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        
+
         <div class="jumbotron">
             <div class="container">
                 <h1>Past Orders</h1>
                 <%
-                    String currentSupplierID = (String)session.getAttribute("currentSupplier");
+                    String currentSupplierID = (String) session.getAttribute("currentSupplier");
                     //out.println(currentSupplierID);//1
                     ArrayList<Order> supplierOrders = SupplierOrderDAO.getRelevantOrders(currentSupplierID);
-                    /*
-                    if(supplierOrders!=null){
-                        out.println(supplierOrders.size());//0
+                    System.out.println("Supplier orders are: "+supplierOrders.size());
+                    for(Order order : supplierOrders){
+                        System.out.println( order.getOrderId());
                     }
-                    */
-                    //ArrayList<Order> orderedOrders = SupplierOrderDAO.getActualOrderLists(supplierOrders);
+
+                    HashMap<String, ArrayList<OrderItem>> orderlists = SupplierOrderDAO.getActualOrders(supplierOrders);
                 %>
-                
+
                 <div class="well">
-                    <p>Past Orders <%= supplierOrders.size()%></p>
+                    <p>Past Orders </p>
                 </div>
                 <div class="container-fluid">
                     <div class="row">
-                        <% 
-                        /*
-                           for(int i=orderList.size()-1;i>=0;i--){ 
-                           Order tempOrder=orderList.get(i);
-                           ArrayList<OrderItem> tempItemList=tempOrder.getOrderItem();
-                        */
-                        for(int i=supplierOrders.size()-1;i>=0;i--){ 
-                           
-                           Order o = supplierOrders.get(i);
-                           ArrayList<OrderItem> orderItems = o.getOrderItem();
-                        %>
-                        <div class="panel panel-default col-sm-5" onclick="location.href = 'SupplierRegularOrder.jsp?num=<%=i%>';">
-                            <div class="panel-heading"><h4>Order #<%=o.getOrderId()%></h4></div>
-                            <div class="panel-body"> 
-                                
-                                
+                        <%
+                            Iterator iter = orderlists.keySet().iterator();
+                            while (iter.hasNext()) {
+                                String orderid = (String) iter.next();
+                                ArrayList<OrderItem> orderItems = orderlists.get(orderid);
+
+//                        
+//                        for(Map.Entry<String, ArrayList<OrderItem>> entry : orderlists.entrySet()){
+//                            String orderid = entry.getKey();
+//                            ArrayList<OrderItem> orderItems = entry.getValue(); 
+//                            System.out.println(orderid);
+%>
+                        <div class="panel panel-default col-sm-5" onclick="location.href = 'SupplierRegularOrder.jsp?num=<%=orderid%>';">
+                            <div class="panel-heading"><h4>Order #<%= orderid%></h4></div>
+                            <div class="panel-body">   
                                 <ul>
-                                    <li ><%=orderItems.get(0).getName()%> ... <%=orderItems.get(0).getQuantity()%><%="  "+orderItems.get(0).getUnit()%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>
-                                    <li >
-                                        <% if(orderItems.size()>=2){%>
-                                        <%=orderItems.get(1).getName()%> ... <%=orderItems.get(1).getQuantity()%><%="  "+orderItems.get(1).getUnit()%><%//"  $"+tempItemList.get(1).getPrice()%><%//"  Supplier:"+tempItemList.get(1).getSupplier()%>
-                                        <%}%>
-                                    </li>
+                                    <%
+                                        int i = 0;
+                                        for (OrderItem orderItem : orderItems) {
+                                            i++;
+                                            if (i > 2) {
+                                                String name = orderItem.getName();
+                                                String quantity = orderItem.getQuantity();
+                                                String unit = " " + orderItem.getUnit();
+                                    %>
+                                    <li ><%=name%> ... <%=quantity%><%=unit%><%//"  $"+tempItemList.get(0).getPrice()%><%//"  Supplier:"+tempItemList.get(0).getSupplier()%></li>
+                                        <%}
+                                       }%>
                                     <li >...</li>
                                 </ul>
                             </div>
@@ -105,12 +110,6 @@
                         <%}%>
                     </div>
                 </div>
-
-                    
-
-
-
-
             </div>
         </div>
 

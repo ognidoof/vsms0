@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
             }else if(vendor_id == null && supplier_id != null){
                 //redirect to supplier home
                 url = "ChatSupplier.jsp";
-                session.setAttribute("currentVendor", supplier_id);
+                session.setAttribute("currentSupplier", supplier_id);
                 request.setAttribute("errMsg", null);
             }else{
                 request.setAttribute("errMsg", "Invalid E-mail or Password entered.");
