@@ -1,7 +1,7 @@
 <%
-    String cven = (String) session.getAttribute("currentVendor");
+    String cv = (String) session.getAttribute("currentVendor");
 
-    if (cven == null) {
+    if (cv == null) {
         response.sendRedirect("LoginMain.jsp?errorMsg=Please login to continue.");
         return;
     }
