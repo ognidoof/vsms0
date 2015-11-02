@@ -85,8 +85,7 @@
                                 </form>
                             </td>
                             --%>
-                            <p> <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierView.jsp?id=<%= toDisplay.getId()%>&resent=false';" value="Delete from Favourites" />
-                            </p>
+                            
                             
                             <p>
                             <a data-toggle="modal" class="btn btn-primary btn-lg" data-target="#myModal" >Add to Favourites +</a>
