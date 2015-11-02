@@ -236,8 +236,8 @@
                             //    orderList.add(order5);
                             //}   
 %>
-                <div class="well">
-                    <p>Pending Orders <%=orderList.size()%></p>
+                <div class="well" style="height:70px">
+                    <p><%=orderList.size()%> Pending Orders </p>
                 </div>
                 <div class="container-fluid">
                     <div class="row">
