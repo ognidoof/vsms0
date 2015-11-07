@@ -1,3 +1,4 @@
+<%@page import="Manager.MenuManager"%>
 <%@include file="protect.jsp"%>
 <%@page import="Manager.FirebaseController"%>
 <!doctype html>
@@ -142,7 +143,7 @@
                 </div>
 
                 <%
-                    Menu menu = (Menu) session.getAttribute("menu");
+                    Menu menu = MenuManager.populateMenu("1");
                     ArrayList<Dish> dishList = (ArrayList<Dish>) menu.getDishList();
                     ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute("orders");
                     ArrayList<Order> chatList=new ArrayList<Order>();
@@ -154,7 +155,7 @@
                     // String dish = request.getParameter("dish1");
                     //String deadline = request.getParameter("deadline");
                     while (request.getParameter("quantity" + count) != null) {
-
+                        
                         //Dish tempDish=(Dish)session.getAttribute("attribute"+count);
                         String dish = request.getParameter("dish" + count);
                         String ingredientQuantity = request.getParameter("quantity" + count);
@@ -170,10 +171,10 @@
 
                         HashMap<Ingredient, Supplier> tempMap = tempDish.getIngredientList();
                         Set<Ingredient> kSet = tempMap.keySet();
+                        
                         Iterator<Ingredient> iter = kSet.iterator();
 
                         while (iter.hasNext()) {
-
                             Ingredient ingredient = iter.next();
                             //OrderItem tempItem=new OrderItem();
                             Supplier supplier = tempMap.get(ingredient);
