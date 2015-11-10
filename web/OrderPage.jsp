@@ -165,7 +165,7 @@
                             if (verify.getName().equals(dish)) {
                                 tempDish = verify;
                             }
-                        }
+                        }                        
 
                         if (tempDish != null) {
                             HashMap<Ingredient, Supplier> tempMap = tempDish.getIngredientList();
