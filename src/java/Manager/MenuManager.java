@@ -22,10 +22,10 @@ import java.util.Set;
  * @author Benjamin
  */
 public class MenuManager {
-    
+
     Menu menu;
     public static Connection publicConn;
-    
+
 //    public Menu defaultMenu(){
 //        
 //        Ingredient coffeeBean = new Ingredient("Coffee Beans", 20, "g");
@@ -67,7 +67,6 @@ public class MenuManager {
 //        String d3 = "Only a Matter of Thyme!\n Description: Time waits for no one. Delivery across thyme and space.  \n Items Sold: Time";
 //
 //    Menu menu;
-
 //    public Menu defaultMenu(){
 //        Ingredient coffeeBean = new Ingredient("Coffee Beans", 20, "g");
 //        Ingredient duckLeg = new Ingredient("Leg of Duck", 1, "leg");
@@ -153,9 +152,7 @@ public class MenuManager {
 //        return menu;
 //        
 //    }
-    
     //FOR WHEN QUERYING FOR EACH INGREDIENT NAME WILL LAG
-    
 //    public HashMap<String, String> getIngrNameList(){
 //        HashMap<String, String> ingreNameList = null;
 //        
@@ -185,16 +182,15 @@ public class MenuManager {
 //            return ingreNameList;
 //        }
 //    }
-    
-    public static void createConnection(){
-        try{
-            publicConn=ConnectionManager.getConnection();
-        }catch(Exception e){
-            
+    public static void createConnection() {
+        try {
+            publicConn = ConnectionManager.getConnection();
+        } catch (Exception e) {
+
         }
-        
+
     }
-    
+
     //this method creates an ingredient object
     public static Ingredient getIngredient(String ingredient_id, String supplierId, String quantity) {
         Ingredient toReturn = null;
@@ -229,9 +225,9 @@ public class MenuManager {
             return toReturn;
         }
     }
-    
+
     //NINJA
-        public static String getIngredientByName(String ingredient_name) {
+    public static String getIngredientByName(String ingredient_name) {
         Ingredient toReturn = null;
         Connection conn = null;
         PreparedStatement ingStatement = null;
@@ -245,7 +241,7 @@ public class MenuManager {
             ingStatement = conn.prepareStatement(ingQuery);
             ingStatement.setString(1, ingredient_name);
             ingRs = ingStatement.executeQuery();
-            
+
             while (ingRs.next()) {
                 ingID = ingRs.getString("ingredient_id");
             }
@@ -262,7 +258,39 @@ public class MenuManager {
             return ingID;
         }
     }
-    
+
+    public static String getIngredientUnitByName(String ingredient_name) {
+        Ingredient toReturn = null;
+        Connection conn = null;
+        PreparedStatement ingStatement = null;
+        ResultSet ingRs = null;
+        String ingQuery = "";
+        String ingUnit = "";
+        try {
+            conn = publicConn;
+            ingQuery = "select unit from ingredient where ingredient_name=?";
+            //where vendor_id=?
+            ingStatement = conn.prepareStatement(ingQuery);
+            ingStatement.setString(1, ingredient_name);
+            ingRs = ingStatement.executeQuery();
+
+            while (ingRs.next()) {
+                ingUnit = ingRs.getString("unit");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ingStatement != null) {
+                try {
+                    ingStatement.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return ingUnit;
+        }
+    }
+
     public static Supplier getSupplierById(String id) {
         Supplier supplier = null;
         ArrayList<String> list = new ArrayList<String>();
@@ -295,11 +323,11 @@ public class MenuManager {
                 itemRs = itemStatement.executeQuery();
                 while (itemRs.next()) {
                     String itemName = itemRs.getString("ingredient_name");
-                    String itemId=itemRs.getString("ingredient_id");
+                    String itemId = itemRs.getString("ingredient_id");
                     list.add(itemName);
                     idList.add(itemId);
                 }
-                supplier=new Supplier(id, supplierName, list, supplierType,supplierDesc);
+                supplier = new Supplier(id, supplierName, list, supplierType, supplierDesc);
                 supplier.addIngredientId(idList);
             }
         } catch (Exception e) {
@@ -342,7 +370,7 @@ public class MenuManager {
                 String ingredientID = recipeRs.getString("ingredient_id");
                 String quantity = recipeRs.getString("quantity");
                 String supplier = recipeRs.getString("supplier_id");
-                
+
                 Ingredient ingredient = getIngredient(ingredientID, supplier, quantity);
                 Supplier sup = getSupplierById(supplier);
                 ingredientMap.put(ingredient, sup);

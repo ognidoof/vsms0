@@ -134,14 +134,14 @@
                                                         while (iter.hasNext()) {
                                                            // counter++;
                                                             String ingredient = (String) iter.next();
-                                                            //String ingID = MenuManager.getIngredientByName(ingredient);
+                                                            String unit = MenuManager.getIngredientUnitByName(ingredient);
                                                     %>
 
 
                                                     <!--
                                MODAL IS CALLED HERE!!!"
                                                     -->
-                                                    <button type= "button" id="<%=s.getSupName()%>@<%=s.getId()%>_<%=ingredient%>_<%=ingredient + "'s unit"%> "  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button><br/>
+                                                    <button type= "button" id="<%=s.getSupName()%>@<%=s.getId()%>_<%=ingredient%>_<%=unit%>"  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button><br/>
                                                     
 
                                                     <%
