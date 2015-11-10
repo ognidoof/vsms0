@@ -8,6 +8,8 @@ package Servlet;
 import DAO.UserDAO;
 import Entity.Supplier;
 import Entity.Vendor;
+import Entity.*;
+import Manager.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -26,8 +28,7 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
 
     UserDAO userDAO = new UserDAO();
-    
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,56 +44,61 @@ public class LoginServlet extends HttpServlet {
 
             String supplier_id = loginSupplier(username, password);
             String vendor_id = loginVendor(username, password);
-            
+
             //hard code supplier for now "FreshFoodz"
-            if (username.equals("FreshFoodz")){
+            if (username.equals("FreshFoodz")) {
                 supplier_id = "FreshFoodz";
             }
             //destination
             String url = "LoginMain.jsp";
-            
-            if(vendor_id == null && supplier_id == null){
+
+            if (vendor_id == null && supplier_id == null) {
                 //redirect to login page with error
                 request.setAttribute("errMsg", "Invalid E-mail or Password entered.");
-            }else if(vendor_id != null && supplier_id ==null){
+            } else if (vendor_id != null && supplier_id == null) {
                 //redirect to vendor home
                 url = "welcome.jsp";
                 session.setAttribute("currentVendor", vendor_id);
                 request.setAttribute("errMsg", null);
-            }else if(vendor_id == null && supplier_id != null){
+                //MenuManager menuManager = new MenuManager();
+                Menu menu = MenuManager.populateMenu(vendor_id);//defaultMenu();
+                MenuManager.createConnection();
+                session.setAttribute("menu", menu);
+                session.setAttribute("orders", OrderDAO.populateOrder());
+                //session.setAttribute("orders", OrderDAO.populateOrder());
+                session.setAttribute("eorders", OrderDAO.populateEmergencyOrder());
+            } else if (vendor_id == null && supplier_id != null) {
                 //redirect to supplier home
                 url = "ChatSupplier.jsp";
                 session.setAttribute("currentSupplier", supplier_id);
                 request.setAttribute("errMsg", null);
-            }else{
+            } else {
                 request.setAttribute("errMsg", "Invalid E-mail or Password entered.");
             }
             //redirects to respective page
             RequestDispatcher view = request.getRequestDispatcher(url);
             view.forward(request, response);
-            
+
         } finally {
             out.close();
         }
     }
-    
-    private String loginVendor(String username, String password){
+
+    private String loginVendor(String username, String password) {
         //boolean check = false;
-        
+
         String v_id = userDAO.retrieveVendor(username, password);
-        
+
         return v_id;
     }
-    
-    private String loginSupplier(String username, String password){
+
+    private String loginSupplier(String username, String password) {
         //boolean check = false;
-        
+
         String s_id = userDAO.retrieveSupplier(username, password);
-       
+
         return s_id;
     }
-
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

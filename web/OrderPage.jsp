@@ -1,5 +1,6 @@
 <%@include file="protect.jsp"%>
 <%@page import="Manager.FirebaseController"%>
+<%@page import="Manager.MenuManager"%>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -142,6 +143,10 @@
                 </div>
 
                 <%                    Menu menu = (Menu) session.getAttribute("menu");
+                    if (menu == null) {
+                        MenuManager menuManager = new MenuManager();
+                        menu = menuManager.populateMenu(session.getAttribute("currentVendor").toString());
+                    }
                     ArrayList<Dish> dishList = (ArrayList<Dish>) menu.getDishList();
                     ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute("orders");
                     ArrayList<Order> chatList = new ArrayList<Order>();
@@ -165,7 +170,7 @@
                             if (verify.getName().equals(dish)) {
                                 tempDish = verify;
                             }
-                        }                        
+                        }
 
                         if (tempDish != null) {
                             HashMap<Ingredient, Supplier> tempMap = tempDish.getIngredientList();
@@ -236,7 +241,7 @@
                     //    Order order5=new Order("999",request.getParameter("deadline"),"Fast Foods",itemList5);
                     //    orderList.add(order5);
                     //}   
-                %>
+%>
                 <div class="well" style="height:70px">
                     <p><%=orderList.size()%> Pending Orders </p>
                 </div>
