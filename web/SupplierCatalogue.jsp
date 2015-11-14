@@ -131,7 +131,7 @@
                                 <%}%>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
                             </div>
 
                         </div>
@@ -166,7 +166,7 @@
                                             <label class="col-md-4 control-label" for="send"></label>
                                             <div class="col-md-8">
                                                 <button type="button" class="btn btn-success" data-dismiss="modal">Link</button>
-                                                <button id="cancel" name="cancel" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                <button id="cancel" name="cancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -178,5 +178,6 @@
                 </div>
             </div>
         </div>
+                
     </body>
 </html>

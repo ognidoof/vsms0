@@ -42,9 +42,9 @@
         <div class="jumbotron">
 
             <div class="container">
-                <img src="pictures/logo final.png" alt="Logo" style="width:80% ">
+                <img src="pictures/REKT logo.png" alt="Logo" style="width:80% ">
 
-                <h1>Welcome to VSMS</h1>
+
 
                 <%
                     String currentVendor = (String) session.getAttribute("currentVendor");
@@ -77,16 +77,7 @@
 
                     </form>
                 </div>
-                <!--
-                <div> 
-                    <p>Vendor Login</p>
-                    <form action ="LoginServlet" method="POST">
-                        <input type="text" value="vendorName" placeholder="Enter username"></br>
-                        <input type="text" value="vendorrPw" placeholder="Enter password"></br>
-                        <input type="submit" value="submit2">
-                    </form>
-                </div>
-                -->
+                <%@include file="footer.jsp"%>
             </div>
         </div>
     </body>

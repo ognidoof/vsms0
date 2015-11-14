@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <input  class="btn btn-primary btn-lg" type="button" onclick="location.href = 'SupplierView.jsp?id=<%= toDisplay.getId()%>&resent=true';" value="Add to Favourites" />
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
 
@@ -142,5 +142,6 @@
                 </div>
             </div>
         </div>
+                                        
     </body>
 </html>

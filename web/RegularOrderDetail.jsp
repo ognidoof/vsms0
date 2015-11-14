@@ -57,10 +57,9 @@
         <div id="menu"> </div>
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <% 
-            ArrayList<Order> orderList=(ArrayList<Order>)session.getAttribute("orders");
-            int num=Integer.parseInt(request.getParameter("num"));
-            Order display=orderList.get(num);
+        <%            ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute("orders");
+            int num = Integer.parseInt(request.getParameter("num"));
+            Order display = orderList.get(num);
         %>                
         <div class="jumbotron">
             <div class="container">
@@ -211,36 +210,36 @@
                 <div class="table-responsive table-condensed">   
                     <table class="table table-condensed" style="margin:1em">
                         <tr>
-                             <th>No.</th>
+                            <th>No.</th>
                             <th>Item</th>
                             <!--<th>Price</th>-->
                             <th>Quantity</th>
                             <th>Units</th>
-                         
+
                             <th>Supplier</th>
                             <!--<th>Edit?</th>-->
                             <!--<th>Delete?</th>-->
                         </tr>
-                        
+
                         <%
-                            ArrayList<OrderItem> itemList=display.getOrderItem();
-                            for(int i=0;i<itemList.size();i++){
-                                OrderItem tempItem=itemList.get(i);
-                            
+                            ArrayList<OrderItem> itemList = display.getOrderItem();
+                            for (int i = 0; i < itemList.size(); i++) {
+                                OrderItem tempItem = itemList.get(i);
+
                         %>
                         <tr>
-                            <th><%=i+1%></th>
+                            <th><%=i + 1%></th>
                             <td><%=tempItem.getName()%></td>
                             <!--<td>$<%//tempItem.getPrice()%></td>-->
                             <td><%=tempItem.getQuantity()%></td>
                             <td><%=tempItem.getUnit()%></td>
-                            
+
                             <td><%=tempItem.getSupplier()%></td>
                             <!--<td><a class="btn btn-primary btn-sm" id ="edit" href="#" role="button">Edit</a></td>-->
                             <!--<td><a data-toggle="modal" data-target="#deletePrompt" class="btn btn-danger btn-sm" id ="button2" href="#" role="button">Delete</a></td>-->
                         </tr>
                         <%}%>
-                        
+
                     </table>
                 </div>
             </div>
@@ -248,11 +247,7 @@
 
 
         <hr>
-
-        <footer>
-            <p>&copy; Ognidoof 2015</p>
-        </footer> <!-- /container -->        
-
+        <%@include file="footer.jsp"%>
 
     </body>
 </html>

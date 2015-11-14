@@ -45,5 +45,6 @@
                 document.getElementById("chat").submit();
             }
         </script>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

@@ -72,8 +72,7 @@
                 </div>
                 <div class="container-fluid">
                     <div class="row">
-                        <%
-                            for (Order order : supplierOrders) {
+                        <%                            for (Order order : supplierOrders) {
                                 String id = order.getOrderId();
                                 ArrayList<OrderItem> orderItems = order.getOrderItem();
                         %>
@@ -106,12 +105,7 @@
 
 
         <hr>
+        <%@include file="footer.jsp"%>
 
-        <footer>
-            <p>&copy; Lalaland 2099</p>
-        </footer>
-     <!-- /container -->        
-
-
-</body>
+    </body>
 </html>

@@ -18,7 +18,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-        
+
         <style>
             body {
                 padding-top: 50px;
@@ -45,19 +45,20 @@ and open the template in the editor.
 
         <div class="jumbotron">
             <div class="container">
-        <div> 
-            <h2>Supplier Advanced Search</h2>
-        </div>
-        <div>
-            <form method="post" action="SupplierSearchResults.jsp">
-                <br>Name</br>
-                <input type="text" name="supName">  
-                <br>Items sold</br>
-                <input type="text" name="items">
-                <br>Categories</br>
-                <input type="text" name="category">
-                <input type="submit" value="Go!">
-            </form>
-        </div>
-    </body>
-</html>
+                <div> 
+                    <h2>Supplier Advanced Search</h2>
+                </div>
+                <div>
+                    <form method="post" action="SupplierSearchResults.jsp">
+                        <br>Name</br>
+                        <input type="text" name="supName">  
+                        <br>Items sold</br>
+                        <input type="text" name="items">
+                        <br>Categories</br>
+                        <input type="text" name="category"><br><br>
+                        <input type="submit" class="btn btn-success btn-lg" value="Go!">
+                    </form>
+                </div>
+                <%@include file="footer.jsp"%>
+                </body>
+                </html>

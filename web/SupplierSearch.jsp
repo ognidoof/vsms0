@@ -7,8 +7,8 @@ and open the template in the editor.
 <%@include file="protect.jsp"%>
 <html>
     <head>
-        
-        
+
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -18,7 +18,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-        
+
         <style>
             body {
                 padding-top: 50px;
@@ -67,12 +67,15 @@ and open the template in the editor.
                         <input class="inputs" type="text" name="supName"> 
                         <input type="hidden" name="items" value="chaff">
                         <input type="hidden" name="category" value="flare">
-                        <input class="btn btn-default btn-m" type="submit" value="Go!">
+                        <br>
+                        <input class="btn btn-success btn-lg" type="submit" value="Go!">
+                        <br><br>
                     </form>
                     <!--<button type="button" onclick="SupAdvSearch.html">Advanced Search</button>-->
                     <a href ="SupplierAdvSearch.jsp">Advanced Search</a>
                 </div>
             </div>
         </div>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

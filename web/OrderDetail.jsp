@@ -247,9 +247,7 @@
 
         <hr>
 
-        <footer>
-            <p>&copy; Ognidoof 2015</p>
-        </footer> <!-- /container -->        
+<%@include file="footer.jsp"%>     
 
 
     </body>

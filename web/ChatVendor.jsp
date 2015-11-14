@@ -13,7 +13,7 @@
             String supplierName = request.getParameter("hiddenvalue");
             System.out.println(supplierName);
             String vendorName = OrderDAO.getVendorNameById("1");
-         %>
+        %>
         <!-- CHAT MARKUP -->
         <div class="chat chat-container">
             <header>Vendor Chat (https://vsms.firebaseio.com/)</header>
@@ -37,7 +37,7 @@
             // REGISTER DOM ELEMENTS
             var messageField = $('#messageInput');
             var messageList = $('#messages');
-            
+
             // LISTEN FOR KEYPRESS EVENT 
             messageField.keypress(function(e) {
                 if (e.keyCode == 13) {
@@ -77,9 +77,9 @@
                 //ADD MESSAGE only if sender and receiver are relevant
                 if (sender === "<%=supplierName%>" && receiver === "<%=vendorName%>" || sender === "<%=vendorName%>" && receiver === "<%=supplierName%>") {
                     messageList.append(senderElement)
-                    messageList.append(message)                    
+                    messageList.append(message)
                     messageList.append("<li>")
-                    if(key!=null){
+                    if (key != null) {
                         messageList.append("Order key: " + key)
                     }
                     messageList.append("<li>")
@@ -89,5 +89,6 @@
                 messageList[0].scrollTop = messageList[0].scrollHeight;
             });
         </script>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

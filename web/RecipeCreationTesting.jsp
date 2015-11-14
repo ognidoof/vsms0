@@ -11,8 +11,7 @@
 <%@page import="Manager.MenuManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    String send = "FreshFruitz";
+<%    String send = "FreshFruitz";
 %>
 
 
@@ -42,12 +41,12 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src = "bootstrap/js/bootstrap.js"></script>
-        
-        
-        
+
+
+
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
-        
+
 
     </head>
 
@@ -61,15 +60,15 @@
 
                 <%
                     SupplierDAO sDAO = new SupplierDAO();
-                    
+
                     List<Supplier> supList2 = SupplierDAO.favouriteSuppliers("1");//sDAO.retrieveAll();
-                   // Supplier toDisplay = sDAO.getSupplier("FreshFruitz", supList2);
+                    // Supplier toDisplay = sDAO.getSupplier("FreshFruitz", supList2);
                 %>
                 <h1>Create Dish</h1>
                 <h2>Dish Name:</h2>
                 <form name="RecipeCreation" method="post" action="MenuDish.jsp">
                     <input class="inputs" type="text" name="dishName" placeholder="Name of Dish" required/>
-                    
+
                     <!-- This is where the ingredients print-->
 
                     <!-- Hiding this for now***
@@ -78,7 +77,7 @@
                     -->
 
 
-                    <table id="ingredientTable" style='border-collapse: separate; border-spacing: 10px 10px;'>
+                    <table class="table" id="ingredientTable" style='border-collapse: separate; border-spacing: 10px 10px;'>
                         <tr><br/></tr>
                         <tr>
                             <th> <h3>Ingredients</h3></th><th><h3>Quantity</h3></th><th><h3>Units</h3></th>
@@ -86,16 +85,16 @@
                     </table>
 
 
-                    <p>
+                    <div class="col-lg-6 col-lg-offset-3 text-center">
 
-                    <a data-toggle="modal" class="btn btn-success" data-target="#myModal" >ADD Ingredient +</a>
-
-                        <input class="btn btn-danger btn-small" type="button" value="Remove - " onclick="removeRowFromTable();" />
-                        </p>
-                    <p class="toRight">
-                        <input class="btn btn-primary btn-lg" type="submit" value="Save" onclick="validateRow(this.form);" />
-                        <a href="MenuDish.jsp" class="btn btn-primary btn-lg">Back</a>
-                    </p>
+                        <a data-toggle="modal" class="btn btn-success btn-lg pull-left" data-target="#myModal" >ADD+  </a>  
+                        <input class="btn btn-danger btn-lg pull-left" style="margin-left:10px"type="button" value="Remove - " onclick="removeRowFromTable();" />
+                    </div>
+                    <br><br><br>
+                    <div class="col-lg-6 col-lg-offset-3 text-center">
+                        <input class="btn btn-primary btn-block" type="submit" value="Save" onclick="validateRow(this.form);" />
+                        <a href="MenuDish.jsp" class="btn btn-primary btn-block">Back</a>
+                    </div>
                 </form>
 
                 <%
@@ -105,7 +104,7 @@
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog modal-sm">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button  type="button" class="close" data-dismiss="modal">&times;</button>
@@ -126,28 +125,24 @@
                                         <div id="<%=s.getSupName().replaceAll("\\s", "")%>" class="panel-collapse collapse">
 
                                             <div class="panel-body">
-                                                <ul>
-                                                    <%
-                                                        ArrayList<String> ingredientList = (ArrayList<String>) s.getItems();
-                                                        Iterator iter = ingredientList.iterator();
-                                                        //int counter = 0;
-                                                        while (iter.hasNext()) {
-                                                           // counter++;
-                                                            String ingredient = (String) iter.next();
-                                                            String unit = MenuManager.getIngredientUnitByName(ingredient);
-                                                    %>
+
+                                                <%
+                                                    ArrayList<String> ingredientList = (ArrayList<String>) s.getItems();
+                                                    Iterator iter = ingredientList.iterator();
+                                                    //int counter = 0;
+                                                    while (iter.hasNext()) {
+                                                        // counter++;
+                                                        String ingredient = (String) iter.next();
+                                                        String unit = MenuManager.getIngredientUnitByName(ingredient);
+                                                %>
+
+                                                <button type= "button" id="<%=s.getSupName()%>@<%=s.getId()%>_<%=ingredient%>_<%=unit%>"  data-toggle="modal" data-target="#linkPrompt" class="btn btn-default btn-block left"><%=ingredient%></button><br/>
 
 
-                                                    <!--
-                               MODAL IS CALLED HERE!!!"
-                                                    -->
-                                                    <button type= "button" id="<%=s.getSupName()%>@<%=s.getId()%>_<%=ingredient%>_<%=unit%>"  data-toggle="modal" data-target="#linkPrompt"><%=ingredient%></button><br/>
-                                                    
+                                                <%
+                                                    }
+                                                %>
 
-                                                    <%
-                                                        }
-                                                    %>
-                                                </ul>
                                             </div>
 
                                         </div>
@@ -245,7 +240,7 @@
 
 
             <script>
-                $('#linkPrompt').on('show.bs.modal', function (e) {
+                $('#linkPrompt').on('show.bs.modal', function(e) {
                     var $supplierIngredient = e.relatedTarget.id;
                     var array = $supplierIngredient.split('_');
                     // document.getElementById("quantity") = array[0];
@@ -265,11 +260,11 @@
                     }
                 }, {
                     me: {
-                        callback: function () {
+                        callback: function() {
                             // get the stack, but drop the "Error" and this particular line
                             var stack = (new Error()).stack.split('\n').slice(2);
                             // now search until we're outside of the bind.js library
-                            stack = stack.filter(function (line) {
+                            stack = stack.filter(function(line) {
                                 return line.indexOf('bind.min.js') === -1 &&
                                         line.indexOf('(native)') === -1;
                             }).shift();
@@ -296,7 +291,7 @@
 
                     'me.ingredients': {
                         dom: '#ingredients',
-                        transform: function (ingredient) {
+                        transform: function(ingredient) {
 
                             array = ingredient.name.split("_");
 
@@ -316,7 +311,7 @@
 
 // helper to dump the object in a <pre>
                 function escape(s) {
-                    return (s || '').replace(/[<>]/g, function (m) {
+                    return (s || '').replace(/[<>]/g, function(m) {
                         return {
                             '<': '&lt;',
                             '>': '&gt;',
@@ -367,8 +362,8 @@
                     element.id = 'element' + iteration;
                     element.value = item
                     cell4.appendChild(element);
-                    
-                    
+
+
 
 
                 }
@@ -381,8 +376,6 @@
                 }
 
             </script>  
-
-
 
     </body>
 </html>

@@ -16,8 +16,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%
-    String currentVendor = (String) session.getAttribute("currentVendor");
+<%    String currentVendor = (String) session.getAttribute("currentVendor");
     Menu menu = MenuManager.populateMenu(currentVendor);
     int last = 0;
     int append = 0;
@@ -35,17 +34,17 @@
 
             String element = request.getParameter("element" + append);
             String[] elePart;
-            if(element!=null){
-            //if (!ingPart[0].toString().equals(null)) {
+            if (element != null) {
+                //if (!ingPart[0].toString().equals(null)) {
                 //out.println(ingredient);
                 elePart = element.split("_");
                 String[] supPart = elePart[0].split("@");
                 String supName = supPart[0];
                 String supID = supPart[1];
-                
+
                 String ingName = elePart[1];
                 String ingID = MenuManager.getIngredientByName(ingName);
-                                        
+
                 String quantity = request.getParameter("quantity" + append);
                 String units = request.getParameter("units" + append);
                 //out.println(quantity);
@@ -72,7 +71,7 @@
         dishList.add(newDish);
         menu.setDishList(dishList);
         menuMan.insertDish(newDish, currentVendor);
-        
+
     }
 
 %>
@@ -151,9 +150,9 @@
                                             //iter.next();
                                             //Ingredient test=iter.next();
                                         %><%//dIList==null%><%
-                                                while (iter.hasNext()) {
-                                                    Ingredient i = iter.next();
-                                                    if (i != null) {
+                                            while (iter.hasNext()) {
+                                                Ingredient i = iter.next();
+                                                if (i != null) {
                                         %>
 
                                         <tbody>
@@ -194,9 +193,7 @@
         </div>
     </div>
     <div>
-        <footer>
-            <p>&copy; Ognidoof 2015</p>
-        </footer>
+        <%@include file="footer.jsp"%>
     </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
 
@@ -206,10 +203,10 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-        (function (b, o, i, l, e, r) {
+        (function(b, o, i, l, e, r) {
             b.GoogleAnalyticsObject = l;
             b[l] || (b[l] =
-                    function () {
+                    function() {
                         (b[l].q = b[l].q || []).push(arguments)
                     });
             b[l].l = +new Date;

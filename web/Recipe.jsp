@@ -25,7 +25,7 @@
         </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
-        
+
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
@@ -58,7 +58,7 @@
 
 
                     <input class="inputs" type="text" size="30" name="dishName" placeholder="Dish Name" required/><br/>
-                    
+
 
                     <table id="tblSample">
                         <tr><br/></tr><tr>
@@ -69,7 +69,7 @@
                             <td><input type="text" name="ingredient1"
                                        id="ingredient" size="40" placeholder="ingredient"  required/>&nbsp</td>
                             <td>
-                               <input type="number" name="quantity1"
+                                <input type="number" name="quantity1"
                                        id="quantity" size="10" placeholder="amount" min="0" step="1" required />&nbsp
                             </td>
                             <td>
@@ -125,5 +125,6 @@
                             ga('create', 'UA-XXXXX-X', 'auto');
                             ga('send', 'pageview');
     </script>
+    <%@include file="footer.jsp"%>
 </body>
 </html>

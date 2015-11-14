@@ -68,7 +68,7 @@
                     </div><!--/.panel-heading -->
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
-                           <!--<p class="hist-supplier-green">Supplier: F.O.O.D Inc.</p>-->
+                            <!--<p class="hist-supplier-green">Supplier: F.O.O.D Inc.</p>-->
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -174,10 +174,7 @@
         </div>
 
         <hr>
-
-        <footer>
-            <p>&copy; Ognidoof 2015</p>
-        </footer>
+        <%@include file="footer.jsp"%>
     </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
 
@@ -187,10 +184,10 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-        (function (b, o, i, l, e, r) {
+        (function(b, o, i, l, e, r) {
             b.GoogleAnalyticsObject = l;
             b[l] || (b[l] =
-                    function () {
+                    function() {
                         (b[l].q = b[l].q || []).push(arguments)
                     });
             b[l].l = +new Date;

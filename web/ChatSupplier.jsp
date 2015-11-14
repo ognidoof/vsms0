@@ -132,7 +132,7 @@
                     messageList.append(senderElement)
                     messageList.append(message)
                     messageList.append("<li>")
-                    if (key!=null){
+                    if (key != null) {
                         messageList.append("Order key: " + key)
                     }
                     messageList.append("<li>")
@@ -143,5 +143,6 @@
             });
         </script>
         <a href="SupplierOrderPage.jsp">View Past Orders</a>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

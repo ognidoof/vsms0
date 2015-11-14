@@ -68,8 +68,8 @@
             SupplierOrderDAO supplierOrderDao = new SupplierOrderDAO();
             String num = request.getParameter("num");
             ArrayList<Order> orderList = supplierOrderDao.getRelevantOrders("1");
-            System.out.println("Order list is "+orderList);
-            Order display = supplierOrderDao.returnOrderBasedOnID(orderList,num);
+            System.out.println("Order list is " + orderList);
+            Order display = supplierOrderDao.returnOrderBasedOnID(orderList, num);
         %>                
         <div class="jumbotron">
             <div class="container">
@@ -257,11 +257,7 @@
 
 
         <hr>
-
-        <footer>
-            <p>&copy; Ognidoof 2015</p>
-        </footer> <!-- /container -->        
-
+        <%@include file="footer.jsp"%>
 
     </body>
 </html>

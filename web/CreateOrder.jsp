@@ -21,7 +21,7 @@
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
         <script src="js/parsley.js"></script>
-    <!-- test comment-->
+        <!-- test comment-->
 
 
 
@@ -30,8 +30,7 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <%
-            Menu menu = MenuManager.populateMenu("1");//(Menu) session.getAttribute("menu");
+        <%            Menu menu = MenuManager.populateMenu("1");//(Menu) session.getAttribute("menu");
             ArrayList<Dish> dishList = (ArrayList<Dish>) menu.getDishList();
 
         %>
@@ -66,7 +65,7 @@
 
 
                 <form name="OrderForm" action="OrderPage.jsp" method="get">
-</p>
+                    </p>
                     <%      for (int j = 0; j < dishList.size(); j++) {
                             Dish tempDish = dishList.get(j);
                             HashMap<Ingredient, Supplier> tempMap = tempDish.getIngredientList();
@@ -74,20 +73,20 @@
                             Iterator<Ingredient> iter = kSet.iterator();
 
                             //LOOPING ACCORDING TO THE MENU
-                    %>   
+%>   
                     <div >
                         <table>
-                        <!-- Title + Input textbox-->
-                        <tr><td>
-                       
-                                <h5>   <p id="<%=tempDish.getName()%>" > <%=tempDish.getName()%> 
-                                        Qty: </h5>
-                            </td>
-                            <td ><input class="inputs, toRight"  type="number" name="<%="quantity" + j%>" required data-parsley-type="integer" min="0" data-parsley-min="0"/>
-                            <input type="hidden" name="<%="dish" + j%>" value="<%=tempDish.getName()%>">
-                            </strong></p>
-                        </td></tr>
-                    </table>
+                            <!-- Title + Input textbox-->
+                            <tr><td>
+
+                                    <h5>   <p id="<%=tempDish.getName()%>" > <%=tempDish.getName()%> 
+                                            Qty: </h5>
+                                </td>
+                                <td ><input class="inputs, toRight"  type="number" name="<%="quantity" + j%>" required data-parsley-type="integer" min="0" data-parsley-min="0"/>
+                                    <input type="hidden" name="<%="dish" + j%>" value="<%=tempDish.getName()%>">
+                                    </strong></p>
+                                </td></tr>
+                        </table>
                     </div>
                     <!-- BOOTSTRAP FOR PANELS -->
 
@@ -138,8 +137,8 @@
                     <!-- PANEL ENDS HERE-->
                     <%}%>
                     <p>
-                    <input class="btn btn-success btn-lg" type="submit" value="Send Order"/>
-                    <a href="OrderPage.jsp" class="btn btn-primary btn-lg">Back</a>
+                        <input class="btn btn-success btn-lg" type="submit" value="Send Order"/>
+                        <a href="OrderPage.jsp" class="btn btn-primary btn-lg">Back</a>
                     </p>
                 </form>
             </div>
@@ -148,10 +147,7 @@
 
 
         <hr>
-
-        <footer>
-            <p>&copy; Ognidoof 2015</p>
-        </footer>
+        <%@include file="footer.jsp"%>
     </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')</script>
 
@@ -161,20 +157,20 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-            (function(b, o, i, l, e, r) {
-                b.GoogleAnalyticsObject = l;
-                b[l] || (b[l] =
-                        function() {
-                            (b[l].q = b[l].q || []).push(arguments)
-                        });
-                b[l].l = +new Date;
-                e = o.createElement(i);
-                r = o.getElementsByTagName(i)[0];
-                e.src = '//www.google-analytics.com/analytics.js';
-                r.parentNode.insertBefore(e, r)
-            }(window, document, 'script', 'ga'));
-            ga('create', 'UA-XXXXX-X', 'auto');
-            ga('send', 'pageview');
+        (function(b, o, i, l, e, r) {
+            b.GoogleAnalyticsObject = l;
+            b[l] || (b[l] =
+                    function() {
+                        (b[l].q = b[l].q || []).push(arguments)
+                    });
+            b[l].l = +new Date;
+            e = o.createElement(i);
+            r = o.getElementsByTagName(i)[0];
+            e.src = '//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e, r)
+        }(window, document, 'script', 'ga'));
+        ga('create', 'UA-XXXXX-X', 'auto');
+        ga('send', 'pageview');
     </script>
 </body>
 </html>

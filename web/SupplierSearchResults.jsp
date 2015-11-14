@@ -43,8 +43,7 @@
         <!--Insertion of menu, ref: script.js-->
         <div id="menu">
         </div>
-        <%
-            String inputStr = request.getParameter("supName");
+        <%            String inputStr = request.getParameter("supName");
             //SupplierDAO sDAO = new SupplierDAO();
             SearchDAO sDAO = new SearchDAO();
             List<Supplier> slist = sDAO.Search(inputStr);
@@ -80,8 +79,8 @@
                     %>
                     <a  href="SupplierView.jsp?id=<%= found.getId()%>" class="panel panel-default col-sm-5" style="display:block; height:inherit; width:inherit; text-decoration: none;">
                         <p><div class="panel-heading">
-                            <Strong><h3><%= found.getSupName()%></h3>
-                        </div></Strong></p>
+                            <h3><%= found.getSupName()%></h3>
+                        </div>
 
                         <p> <%= found.getDesc()%> </p><br/>
                         <%
@@ -93,27 +92,7 @@
                 </div>
             </div>
         </div>
-        <!--
-        <div>
-            <h4><strong><a href="SupplierFreshFruitz.jsp">Fresh Fruitz</a></strong></h4><br>
-            <p><strong>Description: </strong>Providing the freshest and cheapest fruits<br>
-                since 1987. Offering a wide range, from tropical to imported exotic fruits.</p><br>
-            <p><strong>Items Sold: </strong>Rainbow pinapples, Purple apples, Pink oranges etc<p/><br>
-            <p><strong>Location: </strong>Punggol Street 10, Industrial Block #B1-10</br>
-            
-            <h4><strong>Fresh Foodz</strong></h4><br>
-            <p><strong>Description: </strong>Providing the freshest and cheapest chicken since<br>
-                1887. Offering a wide range of fresh chicken parts.<p/><br>
-            <p><strong>Items Sold: </strong>Chicken feet, foreign and local chicken</p><br>
-            <p><strong>Location: </strong>Lakeside Street 20, Block 401, #11-10</p><br>
-            
-            <h4><strong>Fresh Saladz</strong></h4><br>
-            <p><strong>Description: </strong>Established in 2014, we provide the best technology in<br>
-                growing organic vegetables. We conduct research in additive free, genetically modified <br>
-                vegetables infused with a variety of vitamins and minerals.</p><br>
-            <p><strong>Items Sold: </strong>Rainbow cabbage, Blue spinach, Organic olives etc</p><br>
-            <p><strong>Location: </strong>Jurong Avenue 2, Opposite Jurong Bird Park</p><br>       
-        </div>
-        -->
+      
+        <%@include file="footer.jsp"%>
     </body>
 </html>

@@ -36,7 +36,7 @@
 
             // LISTEN FOR KEYPRESS EVENT
 
- messageField.keypress(function(e) {
+            messageField.keypress(function(e) {
                 if (e.keyCode == 13) {
                     //FIELD VALUES
                     var username = nameField.val();
@@ -141,5 +141,6 @@
                 messageList[0].scrollTop = messageList[0].scrollHeight;
             });
         </script>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

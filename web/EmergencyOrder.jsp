@@ -53,7 +53,7 @@
 
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script>
-            $(function () {
+            $(function() {
                 $("#datepicker").datepicker();
             });
         </script>
@@ -158,8 +158,7 @@
                                         </div>
                                         </div>
 
-                                        <%
-                                            ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute("eorders");
+                                        <%                                            ArrayList<Order> orderList = (ArrayList<Order>) session.getAttribute("eorders");
                                             String success_msg = "";
                                             if (request.getParameter("deadline") != null) {
                                                 int count = 1;
@@ -172,7 +171,7 @@
                                                     if (!s.equals("")) {
                                                         d = Double.parseDouble(s);
                                                     }
-                                                    
+
                                                     //UPDATE NOTE: Currently no feedback to user if order has invalid quantitiy, just brings to new page with no new order created.
                                                     //May consider error message?
                                                     if (d != 0.0) {
@@ -234,9 +233,7 @@
 
                                         <hr>
 
-                                        <footer>
-                                            <p>&copy; Ognidoof 2015</p>
-                                        </footer>
+                                        <%@include file="footer.jsp"%>
                                         </div> <!-- /container -->        
 
 
